@@ -2,8 +2,12 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaPrueba extends JFrame {
 
@@ -35,6 +39,21 @@ public class VentanaPrueba extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		JPanel panelSur = new JPanel();
+		contentPane.add(panelSur, BorderLayout.SOUTH);
+		
+		JButton btnPrueba = new JButton("Prueba");
+		btnPrueba.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Correcto", "WARNING",JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		panelSur.add(btnPrueba);
+		
+		JPanel panelCentral = new JPanel();
+		contentPane.add(panelCentral, BorderLayout.CENTER);
+		
 	}
 
 }
