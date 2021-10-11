@@ -10,6 +10,11 @@ public class Prueba {
 	public void setPrueba(int prueba) {
 		this.prueba = prueba;
 	}
+
+	@Override
+	public String toString() {
+		return "Prueba [prueba=" + prueba + "]";
+	}
 	
 	
 
