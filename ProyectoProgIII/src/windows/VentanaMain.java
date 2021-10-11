@@ -13,7 +13,7 @@ public class VentanaMain extends JFrame {
 
 	private JPanel contentPane;
 
-	//Holi 2
+
 	/**
 	 * Lanza la aplicacion
 	 */
