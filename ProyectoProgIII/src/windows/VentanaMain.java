@@ -12,7 +12,8 @@ import javax.swing.border.EmptyBorder;
 public class VentanaMain extends JFrame {
 
 	private JPanel contentPane;
-//holi
+
+	//Holi 2
 	/**
 	 * Lanza la aplicacion
 	 */
