@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -16,8 +18,12 @@ public class VentanaMain extends JFrame {
 
 	private JPanel contentPane, pnlMenu, pnlSuperior, pnlPrincipal;
 	private JLabel lblMenu;
-	private Image imgMenu;
-	private ImageIcon img;
+	private Image imgMenu, imgCesta;
+	private ImageIcon img, img2;
+	private JPanel pnlSudaderas;
+	private JPanel pnlCamisetas;
+	private JPanel pnlGorras;
+	private JLabel lblCesta;
 
 	/**
 	 * Lanza la aplicacion
@@ -63,23 +69,55 @@ public class VentanaMain extends JFrame {
 
 		lblMenu = new JLabel("");
 
-		sl_pnlSuperior.putConstraint(SpringLayout.SOUTH, lblMenu, 40, SpringLayout.NORTH, pnlSuperior);
-		sl_pnlSuperior.putConstraint(SpringLayout.EAST, lblMenu, 59, SpringLayout.WEST, pnlSuperior);
-		
-//Escalado de la imagen 
-		
+		// Escalado de la imagen MENU
+
 		imgMenu = new ImageIcon("src/img/icnMenu.png").getImage();
 		img = new ImageIcon(imgMenu.getScaledInstance(50, 30, Image.SCALE_SMOOTH));
 		lblMenu.setIcon(img);
 
+		sl_pnlSuperior.putConstraint(SpringLayout.SOUTH, lblMenu, 40, SpringLayout.NORTH, pnlSuperior);
+		sl_pnlSuperior.putConstraint(SpringLayout.EAST, lblMenu, 59, SpringLayout.WEST, pnlSuperior);
 		sl_pnlSuperior.putConstraint(SpringLayout.NORTH, lblMenu, 10, SpringLayout.NORTH, pnlSuperior);
 		sl_pnlSuperior.putConstraint(SpringLayout.WEST, lblMenu, 10, SpringLayout.WEST, pnlSuperior);
+
 		pnlSuperior.add(lblMenu);
+
+		lblCesta = new JLabel("");
+
+
+		// Escalado de la imagen CESTA
+
+		imgCesta = new ImageIcon("src/img/iconoCesta.png").getImage();
+		img2 = new ImageIcon(imgCesta.getScaledInstance(40, 30, Image.SCALE_SMOOTH));
+		lblCesta.setIcon(img2);
+
+		sl_pnlSuperior.putConstraint(SpringLayout.NORTH, lblCesta, 10, SpringLayout.NORTH, pnlSuperior);
+		sl_pnlSuperior.putConstraint(SpringLayout.WEST, lblCesta, -59, SpringLayout.EAST, pnlSuperior);
+		sl_pnlSuperior.putConstraint(SpringLayout.SOUTH, lblCesta, 0, SpringLayout.SOUTH, lblMenu);
+		sl_pnlSuperior.putConstraint(SpringLayout.EAST, lblCesta, -10, SpringLayout.EAST, pnlSuperior);
+		pnlSuperior.add(lblCesta);
 
 		pnlMenu = new JPanel();
 		pnlMenu.setBackground(Color.DARK_GRAY);
 		pnlMenu.setBounds(0, 50, 200, 510);
 		pnlPrincipal.add(pnlMenu);
+
+		pnlMenu.setLayout(null);
+
+		pnlSudaderas = new JPanel();
+		pnlSudaderas.setBackground(Color.GRAY);
+		pnlSudaderas.setBounds(0, 58, 200, 43);
+		pnlMenu.add(pnlSudaderas);
+
+		pnlCamisetas = new JPanel();
+		pnlCamisetas.setBackground(Color.GRAY);
+		pnlCamisetas.setBounds(0, 113, 200, 43);
+		pnlMenu.add(pnlCamisetas);
+
+		pnlGorras = new JPanel();
+		pnlGorras.setBackground(Color.GRAY);
+		pnlGorras.setBounds(0, 168, 200, 43);
+		pnlMenu.add(pnlGorras);
 		setLocationRelativeTo(null); // Centralizacion de la ventana en la pantalla
 		setTitle("Menu"); // Titulo de la ventana
 		setResizable(false);
@@ -88,15 +126,21 @@ public class VentanaMain extends JFrame {
 		/**
 		 * EVENTOS
 		 */
-		
+
 		lblMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-			
+				JOptionPane.showMessageDialog(null, "Informacion", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+
 			}
 		});
 		
+		lblCesta.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("Prueba");
+			}
+		});
 
 	}
 }
