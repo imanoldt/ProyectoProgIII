@@ -120,27 +120,31 @@ public class VentanaMain extends JFrame {
 		pnlMenu.add(pnlGorras);
 		setLocationRelativeTo(null); // Centralizacion de la ventana en la pantalla
 		setTitle("Menu"); // Titulo de la ventana
-		setResizable(false);
+		setResizable(false);  //No permite reescalar la ventana
 		setVisible(true);
 
 		/**
 		 * EVENTOS
 		 */
 
-		lblMenu.addMouseListener(new MouseAdapter() {
+		lblMenu.addMouseListener(new MouseAdapter() {//Accion con el click del mouse
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "Informacion", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-
+				JOptionPane.showMessageDialog(null, "Informacion", "Informacion", JOptionPane.INFORMATION_MESSAGE);		
 			}
 		});
 		
-		lblCesta.addMouseListener(new MouseAdapter() {
+		lblCesta.addMouseListener(new MouseAdapter() { //Accion con el click del mouse
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("Prueba");
 			}
 		});
+		
+		/**
+		 * HILOS
+		 */
 
 	}
 }
