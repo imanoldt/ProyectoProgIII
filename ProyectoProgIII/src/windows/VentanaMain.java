@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class VentanaMain extends JFrame {
@@ -15,6 +17,7 @@ public class VentanaMain extends JFrame {
 	private JPanel contentPane, pnlMenu, pnlSuperior, pnlPrincipal;
 	private JLabel lblMenu;
 	private Image imgMenu;
+	private ImageIcon img;
 
 	/**
 	 * Lanza la aplicacion
@@ -59,13 +62,14 @@ public class VentanaMain extends JFrame {
 		pnlSuperior.setLayout(sl_pnlSuperior);
 
 		lblMenu = new JLabel("");
+
 		sl_pnlSuperior.putConstraint(SpringLayout.SOUTH, lblMenu, 40, SpringLayout.NORTH, pnlSuperior);
 		sl_pnlSuperior.putConstraint(SpringLayout.EAST, lblMenu, 59, SpringLayout.WEST, pnlSuperior);
 		
 //Escalado de la imagen 
 		
-		Image imgMenu = new ImageIcon("src/img/icnMenu.png").getImage();
-		ImageIcon img = new ImageIcon(imgMenu.getScaledInstance(50, 30, Image.SCALE_SMOOTH));
+		imgMenu = new ImageIcon("src/img/icnMenu.png").getImage();
+		img = new ImageIcon(imgMenu.getScaledInstance(50, 30, Image.SCALE_SMOOTH));
 		lblMenu.setIcon(img);
 
 		sl_pnlSuperior.putConstraint(SpringLayout.NORTH, lblMenu, 10, SpringLayout.NORTH, pnlSuperior);
@@ -84,6 +88,15 @@ public class VentanaMain extends JFrame {
 		/**
 		 * EVENTOS
 		 */
+		
+		lblMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			
+			}
+		});
+		
 
 	}
 }
