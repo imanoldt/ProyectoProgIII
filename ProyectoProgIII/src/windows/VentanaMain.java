@@ -32,6 +32,8 @@ public class VentanaMain extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					VentanaLogIn login=new VentanaLogIn();
+					login.setVisible(true);
 					VentanaMain frame = new VentanaMain();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -61,7 +63,7 @@ public class VentanaMain extends JFrame {
 		pnlPrincipal.setLayout(null);
 
 		pnlSuperior = new JPanel();
-		pnlSuperior.setBackground(SystemColor.controlHighlight);
+		pnlSuperior.setBackground(new Color(183, 29, 57));
 		pnlSuperior.setBounds(0, 0, 907, 50);
 		pnlPrincipal.add(pnlSuperior);
 		SpringLayout sl_pnlSuperior = new SpringLayout();
