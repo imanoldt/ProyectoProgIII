@@ -52,7 +52,7 @@ public class VentanaLogIn extends JFrame {
 		lblIniciarS.setBackground(Color.BLACK);
 		lblIniciarS.setForeground(Color.WHITE);
 		lblIniciarS.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "",
-				TitledBorder.CENTER, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+		TitledBorder.CENTER, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
 		lblIniciarS.setFont(new Font("Arial Black", Font.PLAIN, 17));
 		lblIniciarS.setBounds(22, 34, 344, 52);
 

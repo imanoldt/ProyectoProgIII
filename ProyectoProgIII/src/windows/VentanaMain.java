@@ -128,9 +128,10 @@ public class VentanaMain extends JFrame {
 		/**
 		 * EVENTOS
 		 */
+		
+		
 
 		lblMenu.addMouseListener(new MouseAdapter() {//Accion con el click del mouse
-
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JOptionPane.showMessageDialog(null, "Informacion", "Informacion", JOptionPane.INFORMATION_MESSAGE);		
