@@ -36,7 +36,11 @@ public class VentanaLogIn extends JFrame {
 	 */
 
 	public VentanaLogIn() {
-		setBounds(100, 100, 804, 473);
+		setLocationByPlatform(true);
+		setUndecorated(true);
+		setBounds(100, 100, 1039, 549);
+		this.setTitle("Autentificacion");
+		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		pnlCentral = new JPanel();
@@ -49,10 +53,10 @@ public class VentanaLogIn extends JFrame {
 		pnlIzquierda.setLayout(null);
 
 		lblIniciarS = new JLabel("Iniciar Sesion:");
+		lblIniciarS.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIniciarS.setBackground(Color.BLACK);
 		lblIniciarS.setForeground(Color.WHITE);
-		lblIniciarS.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "",
-		TitledBorder.CENTER, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+		lblIniciarS.setBorder(new MatteBorder(3, 0, 3, 0, (Color) new Color(0, 0, 0)));
 		lblIniciarS.setFont(new Font("Arial Black", Font.PLAIN, 17));
 		lblIniciarS.setBounds(22, 34, 344, 52);
 
