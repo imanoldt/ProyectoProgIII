@@ -10,6 +10,10 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
+import java.awt.Font;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import javax.swing.border.MatteBorder;
 
 public class VentanaMain extends JFrame {
 
@@ -21,18 +25,26 @@ public class VentanaMain extends JFrame {
 	private JLabel lblCamisetas;
 	private JLabel lblPantalones;
 	private JLabel lblZapatillas;
-	private JLabel lblNewLabel;
+	private JLabel lblSudaderas;
 	private JLabel lblNewLabel_1;
 
 	/**
-	 * Launch the application.
+	 * Lanza JFrame
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					VentanaLogIn login =new VentanaLogIn();
 					VentanaMain frame = new VentanaMain();
+					login.setVisible(true);
 					frame.setVisible(true);
+//					if(login.getTfUsuario().getText()=="admin"){
+//						VentanaMain frame = new VentanaMain();
+//						frame.setVisible(true);
+//						login.setVisible(false);
+//					}
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -41,12 +53,14 @@ public class VentanaMain extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Crea el JFrame
 	 */
 	public VentanaMain() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 950, 600);
+		setLocationRelativeTo (null);
 		setTitle("OutFitShop");
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -57,7 +71,8 @@ public class VentanaMain extends JFrame {
 		pnlPrincipal.setLayout(new BorderLayout(0, 0));
 		
 		pnlNorte = new JPanel();
-		pnlNorte.setBackground(Color.RED);
+		pnlNorte.setPreferredSize(new Dimension(10, 40));
+		pnlNorte.setBackground(new Color(227, 48, 73));
 		pnlPrincipal.add(pnlNorte, BorderLayout.NORTH);
 		pnlNorte.setLayout(new GridLayout(0, 4, 0, 0));
 		
@@ -70,6 +85,9 @@ public class VentanaMain extends JFrame {
 		pnlIzquierda.setLayout(new GridLayout(4, 0, 0, 0));
 		
 		lblCamisetas = new JLabel("Camisetas");
+		lblCamisetas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblCamisetas.setBorder(new MatteBorder(2, 0, 2, 2, (Color) Color.BLACK));
+		lblCamisetas.setFont(new Font("Montserrat", Font.PLAIN, 14));
 		lblCamisetas.setBackground(Color.LIGHT_GRAY);
 		lblCamisetas.setOpaque(true);
 
@@ -77,14 +95,31 @@ public class VentanaMain extends JFrame {
 		pnlIzquierda.add(lblCamisetas);
 		
 		lblPantalones = new JLabel("Pantalones");
+		lblPantalones.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblPantalones.setBorder(new MatteBorder(2, 0, 2, 2, (Color) Color.BLACK));
+		lblPantalones.setFont(new Font("Montserrat", Font.PLAIN, 14));
+		lblPantalones.setBackground(Color.LIGHT_GRAY);
 		lblPantalones.setOpaque(true);
 
 		pnlIzquierda.add(lblPantalones);
 		
-		lblNewLabel = new JLabel("Sudaderas");
-		pnlIzquierda.add(lblNewLabel);
+		lblSudaderas = new JLabel("Sudaderas");
+		lblSudaderas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblSudaderas.setBorder(new MatteBorder(2, 0, 2, 2, (Color) Color.BLACK));
+		lblSudaderas.setFont(new Font("Montserrat", Font.PLAIN, 14));
+		lblSudaderas.setBackground(Color.LIGHT_GRAY);
+		lblSudaderas.setOpaque(true);
+		
+		
+		pnlIzquierda.add(lblSudaderas);
+		
 		
 		lblZapatillas = new JLabel("Zapatillas");
+		lblZapatillas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblZapatillas.setBorder(new MatteBorder(2, 0, 2, 2, (Color) Color.BLACK));
+		lblZapatillas.setFont(new Font("Montserrat", Font.PLAIN, 14));
+		lblZapatillas.setBackground(Color.LIGHT_GRAY);
+		lblZapatillas.setOpaque(true);
 		pnlIzquierda.add(lblZapatillas);
 		
 		pnlDerecha = new JPanel();
