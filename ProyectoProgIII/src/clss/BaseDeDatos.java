@@ -1,0 +1,102 @@
+package clss;
+
+import java.sql.*;
+import java.util.TreeMap;
+
+public class BaseDeDatos {
+/**
+ * 
+ * @param nombreBD Nombre de la base de datos
+ * @return Devuelve la connection 
+ */
+	public static Connection initBaseDatos(String nombreBD) {
+		Connection con = null;
+
+		try {
+			Class.forName("org.sqlite.JDBC");
+			con = DriverManager.getConnection("jdbc:sqlite:" + nombreBD);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return con;
+
+	}
+/**
+ * 
+ * @param con Una conexión con una base de datos específica. Las sentencias SQL se ejecutan y los resultados se devuelven dentro del contexto de una conexión. 
+ */
+	public static void closeBD(Connection con) {
+		if (con != null) {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * El metodo insertarCliente crea un nuevo cliente y lo guarda en la base de datos.
+	 * @param con Una conexión con una base de datos específica. Las sentencias SQL se ejecutan y los resultados se devuelven dentro del contexto de una conexión. Implementa la interfaz Connection para hacer el enlace con la Base de Datos
+	 * @param nombre Atributo de la clase cliente (guarda el nombre)
+	 * @param email Atributo de la clase cliente (guarda el email)
+	 * @param dni Atributo de la clase cliente(guarda el dni)
+	 * @param direccion Atributo de la clase cliente (guarda la direccion)
+	 * @param codigoPostal Atributo de la clase cliente (guarda el codigo postal)
+	 * @param edad Atributo de la clase cliente (guarda la edad de la persona)
+	 * @param sexo Atributo de la clase cliente (guarda el sexo de la persona)
+	 * @author imanoldt
+	 */
+	
+	public static void insertarCliente(Connection con, String nombre, String email, String dni, String direccion,
+			int codigoPostal, int edad, String sexo) {
+		String sentSQL = "INSERT INTO cliente VALUES('" + nombre + "','" + email + "'," + dni + ",'" + direccion
+				+ "', '" + codigoPostal + "', '" + edad + "', '" + sexo + "')";
+		try {
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate(sentSQL);
+			stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+/**
+ * 
+ * @param con Una conexión con una base de datos específica. Las sentencias SQL se ejecutan y los resultados se devuelven dentro del contexto de una conexión. 
+ * @return Devuelve el treeMap de clientes 
+ */
+	public static TreeMap<String, Cliente> obtenerMapaClientes(Connection con) {
+		TreeMap<String, Cliente> tmCliente = new TreeMap<>();
+
+		String sentSQL = "SELECT * FROM cliente";
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sentSQL);
+			while (rs.next()) { // Mientras no hayamos llegado al final del conjunto de resultados
+				String nom = rs.getString("dni");
+				String eml = rs.getString("nombre");
+				String dni = rs.getString("dni");
+				String dir = rs.getString("nombre");
+				String cod = rs.getString("dni");
+				String sex = rs.getString("nombre");
+
+				Cliente cl = new Cliente(nom, eml, dni, Enum.valueOf(TipoSexo.class, sex), dir, cod);
+				tmCliente.put(dni, cl);
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return tmCliente;
+	}
+
+}

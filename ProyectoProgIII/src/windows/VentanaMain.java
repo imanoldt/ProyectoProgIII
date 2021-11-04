@@ -8,12 +8,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.TreeMap;
+
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import java.awt.Font;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
+
+import clss.Cliente;
 
 public class VentanaMain extends JFrame {
 
@@ -27,6 +31,8 @@ public class VentanaMain extends JFrame {
 	private JLabel lblZapatillas;
 	private JLabel lblSudaderas;
 	private JLabel lblNewLabel_1;
+	public static TreeMap<String, Cliente> tmCliente = new TreeMap<>();
+	
 
 	/**
 	 * Lanza JFrame
