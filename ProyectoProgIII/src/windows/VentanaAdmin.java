@@ -32,10 +32,10 @@ public class VentanaAdmin extends JFrame{
 		cp.add(pnlCentral, BorderLayout.CENTER);
 		
 		pnlDerecha = new JPanel();
-//		pnlDerecha.setBackground(new Color(183, 29, 57));
+//		pnlDerecha.setBackground(new Color(183, 29, 57)); 
 		
 		pnlIzquierda = new JPanel();
-		pnlIzquierda.setBackground(new Color(110, 89, 70));
+//		pnlIzquierda.setBackground(new Color(110, 89, 70)); pongo el fondo de colores diferentes para ver si se habían añadido bien los panales
 		
 		pnlCentral.add(pnlIzquierda);
 		pnlCentral.add(pnlDerecha);
