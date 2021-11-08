@@ -3,7 +3,11 @@ package clss;
 import java.sql.*;
 import java.util.TreeMap;
 
+
 public class BaseDeDatos{
+public static ResultSet rs;
+public static Statement statment;
+
 /**
  * 
  * @param nombreBD Nombre de la base de datos
