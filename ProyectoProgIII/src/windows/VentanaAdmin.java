@@ -1,12 +1,16 @@
 package windows;
 
 import java.awt.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
+import java.util.logging.Level;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import clss.Ropa;
+
+import clss.BaseDeDatos;
 
 public class VentanaAdmin extends JFrame{
 	
@@ -18,11 +22,12 @@ public class VentanaAdmin extends JFrame{
 	protected JPanel pnlDerecha;
 	private static JTable tRopa;
 	private static JScrollPane sRopa;
+	private static DefaultTableModel mRopa;
 	
 
 	
 	public VentanaAdmin(){
-		construirTabla();
+//		construirTabla();
 		
 		Container cp = this.getContentPane();
 		
@@ -41,11 +46,11 @@ public class VentanaAdmin extends JFrame{
 		
 		
 //		private void EditarRopa() {
-//			Vector<String> cabeceras = new Vector<String>();
-//			cabeceras.add( "Nombre" ); cabeceras.add( "Talla" ); cabeceras.add( "Precio" ); cabeceras.add( "Sexo" ); cabeceras.add( "Marca" ); cabeceras.add( "Color" );
-//			mRopa = new DefaultTableModel(new Vector<Vector<Object>>(), cabeceras);
-//			tRopa= new JTable( mRopa);
-			
+			Vector<String> cabeceras = new Vector<String>();
+			cabeceras.add( "Nombre" ); cabeceras.add( "Talla" ); cabeceras.add( "Precio" ); cabeceras.add( "Sexo" ); cabeceras.add( "Marca" ); cabeceras.add( "Color" );
+			mRopa = new DefaultTableModel(new Vector<Vector<Object>>(), cabeceras);
+			tRopa= new JTable( mRopa);
+			sRopa.setViewportView(tRopa);	
 			
 //		}
 		
@@ -73,10 +78,11 @@ public class VentanaAdmin extends JFrame{
 		pnlDerecha.add(guardar);
 		pnlIzquierda.add(sRopa);
 		
+		
 //		pnlIzquierda.add(tRopa);
 	
 		
-		
+	
 		
 		
 		
@@ -87,17 +93,18 @@ public class VentanaAdmin extends JFrame{
 		
 	}
 	
-	private void construirTabla() {
-		String titulos[] = {"Nombre", "Talla", "Precio", "Sexo", "Marca", "Color" };
-		String informacion [][]= obtenerMatriz();
-		tRopa = new JTable(informacion, titulos);
-		sRopa.setViewportView(tRopa);
-	}
-
-	private String[][] obtenerMatriz() {
-//		Ropa miropa = new Ropa();
-		return null;
-	}
+//	private void construirTabla() {
+//		String titulos[] = {"Nombre", "Talla", "Precio", "Sexo", "Marca", "Color" };
+//		String informacion [][]= obtenerMatriz();
+//		tRopa = new JTable(informacion, titulos);
+//		sRopa.setViewportView(tRopa);
+//	}
+//
+//	private String[][] obtenerMatriz() {
+//		BaseDeDatos miropa = new BaseDeDatos();
+//		ArrayList<Ropa> lista = miropa
+//		return null;
+//	}
 
 	public static void main(String[] args) {
 			
