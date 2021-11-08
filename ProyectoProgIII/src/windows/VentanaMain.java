@@ -18,6 +18,8 @@ import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
 
 import clss.Cliente;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 public class VentanaMain extends JFrame {
 
@@ -32,6 +34,9 @@ public class VentanaMain extends JFrame {
 	private JLabel lblSudaderas;
 	private JLabel lblNewLabel_1;
 	public static TreeMap<String, Cliente> tmCliente = new TreeMap<>();
+	private JPanel pnlDerechaAbajo;
+	private JButton btnCesta;
+	private JButton btnNewButton_1;
 	
 
 	/**
@@ -80,9 +85,10 @@ public class VentanaMain extends JFrame {
 		pnlNorte.setPreferredSize(new Dimension(10, 40));
 		pnlNorte.setBackground(new Color(227, 48, 73));
 		pnlPrincipal.add(pnlNorte, BorderLayout.NORTH);
-		pnlNorte.setLayout(new GridLayout(0, 4, 0, 0));
+		pnlNorte.setLayout(new BorderLayout(0, 0));
 		
-		lblNewLabel_1 = new JLabel("Menu");
+		lblNewLabel_1 = new JLabel("Bienvenido a OutFitShop");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		pnlNorte.add(lblNewLabel_1);
 		
 		pnlIzquierda = new JPanel();
@@ -130,6 +136,16 @@ public class VentanaMain extends JFrame {
 		
 		pnlDerecha = new JPanel();
 		pnlPrincipal.add(pnlDerecha, BorderLayout.CENTER);
+		pnlDerecha.setLayout(new BorderLayout(0, 0));
+		
+		pnlDerechaAbajo = new JPanel();
+		pnlDerecha.add(pnlDerechaAbajo, BorderLayout.SOUTH);
+		
+		btnCesta = new JButton("Cesta");
+		pnlDerechaAbajo.add(btnCesta);
+		
+		btnNewButton_1 = new JButton("");
+		pnlDerechaAbajo.add(btnNewButton_1);
 	}
 
 }
