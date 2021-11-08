@@ -18,6 +18,9 @@ public abstract class Ropa {
 		this.marca = marca;
 		this.color = color;
 	}
+	public Ropa() {
+		super();
+	}
 	
 
 	public String getNombre() {

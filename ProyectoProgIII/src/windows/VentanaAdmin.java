@@ -1,8 +1,12 @@
 package windows;
 
 import java.awt.*;
+import java.util.Vector;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+import clss.Ropa;
 
 public class VentanaAdmin extends JFrame{
 	
@@ -12,8 +16,14 @@ public class VentanaAdmin extends JFrame{
 	protected JPanel pnlCentral;
 	protected JPanel pnlIzquierda;
 	protected JPanel pnlDerecha;
+	private static JTable tRopa;
+	private static JScrollPane sRopa;
+	
+
 	
 	public VentanaAdmin(){
+		construirTabla();
+		
 		Container cp = this.getContentPane();
 		
 		setLocationRelativeTo(null);
@@ -23,7 +33,21 @@ public class VentanaAdmin extends JFrame{
 //		this.setResizable(false);
 		this.setVisible(true);
 		this.setSize(600, 500);
-		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);		
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		
+		sRopa = new JScrollPane();
+//		sRopa.setBounds(27, 72, 379, 130);
+		
+		
+		
+//		private void EditarRopa() {
+//			Vector<String> cabeceras = new Vector<String>();
+//			cabeceras.add( "Nombre" ); cabeceras.add( "Talla" ); cabeceras.add( "Precio" ); cabeceras.add( "Sexo" ); cabeceras.add( "Marca" ); cabeceras.add( "Color" );
+//			mRopa = new DefaultTableModel(new Vector<Vector<Object>>(), cabeceras);
+//			tRopa= new JTable( mRopa);
+			
+			
+//		}
 		
 		
 		
@@ -47,6 +71,10 @@ public class VentanaAdmin extends JFrame{
 		pnlIzquierda.add(anyadirRopa);
 		pnlIzquierda.add(descatalogaRopa);
 		pnlDerecha.add(guardar);
+		pnlIzquierda.add(sRopa);
+		
+//		pnlIzquierda.add(tRopa);
+	
 		
 		
 		
@@ -59,7 +87,20 @@ public class VentanaAdmin extends JFrame{
 		
 	}
 	
+	private void construirTabla() {
+		String titulos[] = {"Nombre", "Talla", "Precio", "Sexo", "Marca", "Color" };
+		String informacion [][]= obtenerMatriz();
+		tRopa = new JTable(informacion, titulos);
+		sRopa.setViewportView(tRopa);
+	}
+
+	private String[][] obtenerMatriz() {
+//		Ropa miropa = new Ropa();
+		return null;
+	}
+
 	public static void main(String[] args) {
+			
 		new VentanaAdmin();
 	}
 
