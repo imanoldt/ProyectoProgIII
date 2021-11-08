@@ -11,17 +11,21 @@ public class Camiseta extends Ropa{
 //	private TipoSexo sexo;
 	private LinkedList<String> tejidos = new LinkedList<String>();
 	
-public Camiseta(int talla, int precio, TipoSexo sexo, String marca, String color, LinkedList<String> tejidos) {
-		super(talla, precio, sexo, marca, color);
+public Camiseta(String nombre, int talla, int precio, TipoSexo sexo, String marca, String color, LinkedList<String> tejidos) {
+		super(nombre, talla, precio, sexo, marca, color);
 		
 	}
 
-
 @Override
 public String toString() {
-	return "Camiseta [tejidos=" + tejidos + ", getTalla()=" + getTalla() + ", getPrecio()=" + getPrecio()
-			+ ", getSexo()=" + getSexo() + ", getMarca()=" + getMarca() + ", getColor()=" + getColor() + ", getClass()="
-			+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	return "Camiseta [tejidos=" + tejidos + ", getNombre()=" + getNombre() + ", getTalla()=" + getTalla()
+			+ ", getPrecio()=" + getPrecio() + ", getSexo()=" + getSexo() + ", getMarca()=" + getMarca()
+			+ ", getColor()=" + getColor() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+			+ ", toString()=" + super.toString() + "]";
+}
+
+
+
 }
 
 	
@@ -91,5 +95,5 @@ public String toString() {
 //		return "Camiseta [color=" + color + ", precio=" + precio + ", talla=" + talla + ", sexo=" + sexo + ", tejidos="
 //				+ tejidos + ", getMarca()=" + getMarca() + ", toString()=" + super.toString() + ", getClass()="
 //				+ getClass() + ", hashCode()=" + hashCode() + "]";
-	}
+	
 	
