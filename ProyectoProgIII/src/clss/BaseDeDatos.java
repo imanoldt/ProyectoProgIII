@@ -3,7 +3,7 @@ package clss;
 import java.sql.*;
 import java.util.TreeMap;
 
-public class BaseDeDatos {
+public class BaseDeDatos{
 /**
  * 
  * @param nombreBD Nombre de la base de datos
@@ -97,6 +97,21 @@ public class BaseDeDatos {
 		}
 
 		return tmCliente;
+	}
+	
+	public static void main(String[] args) {
+		try {
+			Connection connection = null;
+			connection = DriverManager.getConnection("jdbc:sqlite:DATOS.db");
+			Statement statement = connection.createStatement();
+			
+			statement.executeUpdate("drop table if exists cliente");
+			statement.executeUpdate("create table cliente (dni integer, name string, email string, sexo string, codPos string)");
+			int res = statement.executeUpdate("insert into cliente values(311112, 'prueba', 'prueba@gmail.com', 'Hombre', '26849')");
+			System.out.println(res);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 	
 	
