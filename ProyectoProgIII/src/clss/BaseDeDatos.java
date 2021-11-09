@@ -75,6 +75,8 @@ public static Statement statment;
  * @param con Una conexión con una base de datos específica. Las sentencias SQL se ejecutan y los resultados se devuelven dentro del contexto de una conexión. 
  * @return Devuelve el treeMap de clientes 
  */
+	
+
 	public static TreeMap<String, Cliente> obtenerMapaClientes(Connection con) {
 		TreeMap<String, Cliente> tmCliente = new TreeMap<>();
 
