@@ -3,7 +3,11 @@ package clss;
 import java.sql.*;
 import java.util.TreeMap;
 
+
 public class BaseDeDatos{
+public static ResultSet rs;
+public static Statement statment;
+
 /**
  * 
  * @param nombreBD Nombre de la base de datos
@@ -107,8 +111,18 @@ public class BaseDeDatos{
 			
 			statement.executeUpdate("drop table if exists cliente");
 			statement.executeUpdate("create table cliente (dni integer, name string, email string, sexo string, codPos string)");
-			int res = statement.executeUpdate("insert into cliente values(311112, 'prueba', 'prueba@gmail.com', 'Hombre', '26849')");
-			System.out.println(res);
+			statement.executeUpdate("insert into cliente values(311112, 'prueba', 'prueba@gmail.com', 'Hombre', '26849')");
+			
+			
+			statement.executeUpdate("drop table if exists clave");
+			statement.executeUpdate("create table clave (nombre string, contrasenya string)");
+			statement.executeUpdate("insert into clave values('admin', 'admin')");
+			
+			statement.executeUpdate("drop table if exists ropa");
+			statement.executeUpdate("create table ropa (nombre string, talla integer, precio integer, sexo string, marca string, color string)");
+			statement.executeUpdate("insert into ropa values('Sudadera gris nike', 'M', 35, 'Hombre', 'Nike', 'Gris')");
+	
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
