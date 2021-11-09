@@ -48,7 +48,7 @@ public class VentanaMain extends JFrame {
 				try {
 					
 					VentanaMain frame = new VentanaMain();
-					login.setVisible(true);
+
 					frame.setVisible(true);
 //					if(login.getTfUsuario().getText()=="admin"){
 //						VentanaMain frame = new VentanaMain();
@@ -136,7 +136,7 @@ public class VentanaMain extends JFrame {
 		
 		pnlDerecha = new JPanel();
 		pnlPrincipal.add(pnlDerecha, BorderLayout.CENTER);
-<<<<<<< HEAD
+
 		pnlDerecha.setLayout(new BorderLayout(0, 0));
 		
 		pnlDerechaAbajo = new JPanel();
@@ -147,10 +147,7 @@ public class VentanaMain extends JFrame {
 		
 		btnNewButton_1 = new JButton("");
 		pnlDerechaAbajo.add(btnNewButton_1);
-=======
-		
-		
->>>>>>> branch 'master' of https://github.com/imanoldt/ProyectoProgIII.git
+
 	}
 
 }
