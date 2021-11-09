@@ -3,11 +3,7 @@ package clss;
 import java.sql.*;
 import java.util.TreeMap;
 
-
-public class BaseDeDatos{
-public static ResultSet rs;
-public static Statement statment;
-
+public class BaseDeDatos {
 /**
  * 
  * @param nombreBD Nombre de la base de datos
@@ -75,8 +71,6 @@ public static Statement statment;
  * @param con Una conexión con una base de datos específica. Las sentencias SQL se ejecutan y los resultados se devuelven dentro del contexto de una conexión. 
  * @return Devuelve el treeMap de clientes 
  */
-	
-
 	public static TreeMap<String, Cliente> obtenerMapaClientes(Connection con) {
 		TreeMap<String, Cliente> tmCliente = new TreeMap<>();
 
@@ -105,30 +99,33 @@ public static Statement statment;
 		return tmCliente;
 	}
 	
-	public static void main(String[] args) {
+	public static void crearTablas(Connection con) {
+		String sent1 = "CREATE TABLE IF NOT EXISTS Cliente(nom String, eml String, dni String,dir String, cod String, sex String)";
+
+		Statement st = null;
+		
 		try {
-			Connection connection = null;
-			connection = DriverManager.getConnection("jdbc:sqlite:DATOS.db");
-			Statement statement = connection.createStatement();
-			
-			statement.executeUpdate("drop table if exists cliente");
-			statement.executeUpdate("create table cliente (dni integer, name string, email string, sexo string, codPos string)");
-			statement.executeUpdate("insert into cliente values(311112, 'prueba', 'prueba@gmail.com', 'Hombre', '26849')");
-			
-			
-			statement.executeUpdate("drop table if exists clave");
-			statement.executeUpdate("create table clave (nombre string, contrasenya string)");
-			statement.executeUpdate("insert into clave values('admin', 'admin')");
-			
-			statement.executeUpdate("drop table if exists ropa");
-			statement.executeUpdate("create table ropa (nombre string, talla integer, precio integer, sexo string, marca string, color string)");
-			statement.executeUpdate("insert into ropa values('Sudadera gris nike', 'M', 35, 'Hombre', 'Nike', 'Gris')");
-	
-			
-		} catch (Exception e) {
-			// TODO: handle exception
+			st = con.createStatement();
+			st.executeUpdate(sent1);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if(st!=null) {
+				try {
+					st.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
+	
+	
+	
+	
 	
 	
 
