@@ -46,7 +46,7 @@ public class VentanaMain extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaLogIn login =new VentanaLogIn();
+					
 					VentanaMain frame = new VentanaMain();
 					login.setVisible(true);
 					frame.setVisible(true);
