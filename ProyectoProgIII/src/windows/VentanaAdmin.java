@@ -96,7 +96,7 @@ private void actualizaTabla() {
 				mRopa.removeRow(0);
 				com = "select * from ropa";
 				logger.log( Level.INFO, "BD: " + com );
-				BaseDeDatos.rs = BaseDeDatos.statment.executeQuery( com );
+				BaseDeDatos.rs = BaseDeDatos.stmt.executeQuery( com );
 				System.out.println("rs: " + BaseDeDatos.rs);
 				while (BaseDeDatos.rs.next()) {
 					String nombre = BaseDeDatos.rs.getString( "nombre" );

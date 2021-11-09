@@ -4,6 +4,10 @@ import java.sql.*;
 import java.util.TreeMap;
 
 public class BaseDeDatos {
+	
+public static Statement stmt;
+public static ResultSet rs;
+
 /**
  * 
  * @param nombreBD Nombre de la base de datos
@@ -76,8 +80,8 @@ public class BaseDeDatos {
 
 		String sentSQL = "SELECT * FROM cliente";
 		try {
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sentSQL);
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sentSQL);
 			while (rs.next()) { // Mientras no hayamos llegado al final del conjunto de resultados
 				String nom = rs.getString("dni");
 				String eml = rs.getString("nombre");
@@ -120,6 +124,22 @@ public class BaseDeDatos {
 					e.printStackTrace();
 				}
 			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		try {
+			Connection connection = null;
+			connection = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
+			 stmt = connection.createStatement();
+			
+			stmt.executeUpdate("drop table if exists ropa");
+			stmt.executeUpdate("create table ropa (nombre string, talla integer, precio integer, sexo string, marca string, color string)");
+			stmt.executeUpdate("insert into ropa values('Sudadera gris nike', 'M', 35, 'Hombre', 'Nike', 'Gris')");
+	
+			
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 	}
 	

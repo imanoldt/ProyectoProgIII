@@ -115,28 +115,36 @@ public class VentanaLoginN extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				String usuario = textField.getText();
+				String contrasenya = passwordField.getText();
+				if (usuario.equals("admin") && contrasenya.equals("admin")) {
+					VentanaAdmin admin = new VentanaAdmin();
+					admin.setVisible(true);
+					setVisible(false);
+					
+					
+				}
 				
 			}
 			
 		});
 		
-		btnIniciarSession.addMouseMotionListener(new MouseMotionAdapter() {
-			@Override
-			public void mouseMoved(MouseEvent e) {
-				for (int i = 0; i < 5; i++) {
-					
-					try {
-						btnIniciarSession.setFont(new Font("Monaco", Font.PLAIN, i));
-						Thread.sleep(4000);
-					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
-				
-			}
-		});
+//		btnIniciarSession.addMouseMotionListener(new MouseMotionAdapter() {
+//			@Override
+//			public void mouseMoved(MouseEvent e) {
+//				for (int i = 0; i < 5; i++) {
+//					
+//					try {
+//						btnIniciarSession.setFont(new Font("Monaco", Font.PLAIN, i));
+//						Thread.sleep(4000);
+//					} catch (InterruptedException e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
+//				}
+//				
+//			}
+//		});
 		btnIniciarSession.setFont(new Font("Monaco", Font.PLAIN, 16));
 		btnIniciarSession.setPreferredSize(new Dimension(5000,50));
 		pnlIzquierda.add(btnIniciarSession, "flowx,cell 0 8,alignx center,aligny center");
