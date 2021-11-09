@@ -130,6 +130,8 @@ public class VentanaMain extends JFrame {
 		
 		pnlDerecha = new JPanel();
 		pnlPrincipal.add(pnlDerecha, BorderLayout.CENTER);
+		
+		
 	}
 
 }
