@@ -119,7 +119,24 @@ public class VentanaLogIn extends JFrame {
 				System.exit(0);
 			}
 		});
-
+		
+		btnIniciarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			String usuario = tfUsuario.getText();
+			String contraseña = (String) pfContraseya.getText();
+			System.out.println("Usuario: " + usuario);
+			System.out.println("contraseña: " + contraseña);
+			
+			if (usuario.equals("admin")  && contraseña.equals("admin")) {
+				System.out.println("entra");
+				VentanaAdmin admin = new VentanaAdmin();
+				admin.setVisible(true);
+			}else {
+				System.out.println("No entra");
+			}
+			
+		}
+	});
 		/**
 		 * Pone el JTextField en blanco cuando lo pulsamos y cambia el color de la letra
 		 * a negro para una mejor visualizacion
