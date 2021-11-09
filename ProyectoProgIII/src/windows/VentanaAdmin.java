@@ -97,6 +97,7 @@ private void actualizaTabla() {
 				com = "select * from ropa";
 				logger.log( Level.INFO, "BD: " + com );
 				BaseDeDatos.rs = BaseDeDatos.statment.executeQuery( com );
+				System.out.println("rs: " + BaseDeDatos.rs);
 				while (BaseDeDatos.rs.next()) {
 					String nombre = BaseDeDatos.rs.getString( "nombre" );
 					String talla = BaseDeDatos.rs.getString( "talla" );

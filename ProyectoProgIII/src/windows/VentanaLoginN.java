@@ -22,6 +22,8 @@ import java.awt.Dimension;
 import javax.swing.SwingConstants;
 import java.awt.*;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
@@ -108,6 +110,16 @@ public class VentanaLoginN extends JFrame {
 		pnlIzquierda.add(passwordField, "cell 0 6,growx");
 
 		btnIniciarSession = new JButton("Iniciar Sesion");
+		
+		btnIniciarSession.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+			
+		});
 		
 		btnIniciarSession.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
