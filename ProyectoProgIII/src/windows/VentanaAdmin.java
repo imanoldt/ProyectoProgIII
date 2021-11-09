@@ -22,6 +22,7 @@ public class VentanaAdmin extends JFrame{
 	protected JPanel pnlIzquierda;
 	protected JPanel pnlDerecha;
 	private static JTable tRopa;
+	private JTextArea txtArea;
 	private static JScrollPane sRopa;
 	private static DefaultTableModel mRopa;
 	private static Logger logger = Logger.getLogger("BaseDeDatos");
@@ -61,10 +62,13 @@ public class VentanaAdmin extends JFrame{
 			System.out.println("No se puede rellenar la tabla");
 		}
 		
+		txtArea = new JTextArea(20,50);
+		txtArea.setEditable(false);
+		txtArea.setText("RESUMEN PEDIDOS");
 		
 		pnlCentral = new JPanel();
 		pnlCentral.setLayout(new GridLayout(0, 2, 0, 0));
-//		cp.add(pnlCentral, BorderLayout.CENTER);
+		cp.add(pnlCentral, BorderLayout.CENTER);
 		
 		pnlDerecha = new JPanel();
 		pnlDerecha.setBackground(new Color(183, 29, 57)); 
@@ -83,6 +87,7 @@ public class VentanaAdmin extends JFrame{
 		pnlIzquierda.add(descatalogaRopa);
 		pnlDerecha.add(guardar);
 		pnlIzquierda.add(sRopa);
+		pnlDerecha.add(txtArea);
 		
 
 		
