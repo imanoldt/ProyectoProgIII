@@ -108,17 +108,17 @@ public static Statement statment;
 	public static void main(String[] args) {
 		try {
 			Connection connection = null;
-			connection = DriverManager.getConnection("jdbc:sqlite:DATOS.db");
+			connection = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
 			Statement statement = connection.createStatement();
 			
-			statement.executeUpdate("drop table if exists cliente");
-			statement.executeUpdate("create table cliente (dni integer, name string, email string, sexo string, codPos string)");
-			statement.executeUpdate("insert into cliente values(311112, 'prueba', 'prueba@gmail.com', 'Hombre', '26849')");
+//			statement.executeUpdate("drop table if exists cliente");
+//			statement.executeUpdate("create table cliente (dni integer, name string, email string, sexo string, codPos string)");
+//			statement.executeUpdate("insert into cliente values(311112, 'prueba', 'prueba@gmail.com', 'Hombre', '26849')");
 			
 			
-			statement.executeUpdate("drop table if exists clave");
-			statement.executeUpdate("create table clave (nombre string, contrasenya string)");
-			statement.executeUpdate("insert into clave values('admin', 'admin')");
+//			statement.executeUpdate("drop table if exists clave");
+//			statement.executeUpdate("create table clave (nombre string, contrasenya string)");
+//			statement.executeUpdate("insert into clave values('admin', 'admin')");
 			
 			statement.executeUpdate("drop table if exists ropa");
 			statement.executeUpdate("create table ropa (nombre string, talla integer, precio integer, sexo string, marca string, color string)");
