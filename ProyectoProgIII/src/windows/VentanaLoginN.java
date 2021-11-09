@@ -17,8 +17,6 @@ import java.awt.Font;
 import javax.swing.border.MatteBorder;
 import java.awt.Color;
 import java.awt.Dimension;
-
-
 import javax.swing.SwingConstants;
 import java.awt.*;
 import java.awt.event.MouseMotionAdapter;
@@ -29,22 +27,14 @@ import java.awt.event.MouseEvent;
 @SuppressWarnings("serial")
 public class VentanaLoginN extends JFrame {
 
-	private JPanel contentPane;
-	private JPanel pnlPrincipal;
-	private JPanel pnlIzquierda;
-	private JPanel pnlDerechaa;
-	private JLabel lblIniciarSesion;
-	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_4;
-	private JLabel lblCopy;
-	private JLabel lblNewLabel_2;
-	private JTextField textField;
-	private JLabel lblNewLabel_5;
-	private JPasswordField passwordField;
-	private JButton btnIniciarSession;
-	private JButton btnRegistrarse;
-	private JButton btnSalir;
-	private JLabel lblNewLabel_6;
+	private JPanel contentPane, pnlPrincipal, pnlIzquierda, pnlDerechaa;
+
+	private JLabel lblIniciarSesion, lblNewLabel_1, lblOutfitshop, lblCopy, lblUsuario, lblIconoUsu, lblContraseya;
+
+	private JTextField txtUsuario;
+	private JPasswordField passContraseya;
+	private JButton btnIniciarSession, btnRegistrarse, btnSalir;
+	private JLabel lblRegistrate;
 
 	/**
 	 * Launch the application.
@@ -67,6 +57,7 @@ public class VentanaLoginN extends JFrame {
 	 */
 
 	public VentanaLoginN() {
+		setTitle("LogIn");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1470, 830);
 		contentPane = new JPanel();
@@ -87,48 +78,48 @@ public class VentanaLoginN extends JFrame {
 		lblIniciarSesion = new JLabel("Iniciar Sesion");
 		lblIniciarSesion.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIniciarSesion.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
-		lblIniciarSesion.setFont(new Font("Monaco", Font.PLAIN, 23));
+		lblIniciarSesion.setFont(new Font("Monaco", Font.PLAIN, 29));
 		pnlIzquierda.add(lblIniciarSesion, "cell 0 0,growx,aligny center");
 
-		lblNewLabel_6 = new JLabel("");
-		lblNewLabel_6.setIcon(new ImageIcon(VentanaLoginN.class.getResource("/img/userIcon.png")));
-		pnlIzquierda.add(lblNewLabel_6, "cell 0 1,alignx center,aligny center");
+		lblIconoUsu = new JLabel("");
+		lblIconoUsu.setIcon(new ImageIcon(VentanaLoginN.class.getResource("/img/userIcon.png")));
+		pnlIzquierda.add(lblIconoUsu, "cell 0 1,alignx center,aligny center");
 
-		lblNewLabel_2 = new JLabel("Usuario:");
-		lblNewLabel_2.setFont(new Font("Monaco", Font.PLAIN, 16));
-		pnlIzquierda.add(lblNewLabel_2, "cell 0 2,alignx left,aligny center");
+		lblUsuario = new JLabel("Usuario:");
+		lblUsuario.setFont(new Font("Monaco", Font.PLAIN, 16));
+		pnlIzquierda.add(lblUsuario, "cell 0 2,alignx left,aligny center");
 
-		textField = new JTextField();
-		pnlIzquierda.add(textField, "cell 0 3,growx,aligny center");
-		textField.setColumns(10);
+		txtUsuario = new JTextField();
+		pnlIzquierda.add(txtUsuario, "cell 0 3,growx,aligny center");
+		txtUsuario.setColumns(10);
 
-		lblNewLabel_5 = new JLabel("Contraseña:");
-		lblNewLabel_5.setFont(new Font("Monaco", Font.PLAIN, 16));
-		pnlIzquierda.add(lblNewLabel_5, "cell 0 5,alignx left,aligny center");
+		lblContraseya = new JLabel("Contraseña:");
+		lblContraseya.setFont(new Font("Monaco", Font.PLAIN, 16));
+		pnlIzquierda.add(lblContraseya, "cell 0 5,alignx left,aligny center");
 
-		passwordField = new JPasswordField();
-		pnlIzquierda.add(passwordField, "cell 0 6,growx");
+		passContraseya = new JPasswordField();
+		pnlIzquierda.add(passContraseya, "cell 0 6,growx");
 
 		btnIniciarSession = new JButton("Iniciar Sesion");
-		
-		btnIniciarSession.addActionListener(new ActionListener(){
 
+		btnIniciarSession.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String usuario = textField.getText();
-				String contrasenya = passwordField.getText();
+				String usuario = txtUsuario.getText();
+
+				String contrasenya = passContraseya.getText();
 				if (usuario.equals("admin") && contrasenya.equals("admin")) {
 					VentanaAdmin admin = new VentanaAdmin();
 					admin.setVisible(true);
 					setVisible(false);
-					
-					
+
 				}
-				
+
 			}
-			
+
 		});
-		
+
 //		btnIniciarSession.addMouseMotionListener(new MouseMotionAdapter() {
 //			@Override
 //			public void mouseMoved(MouseEvent e) {
@@ -146,12 +137,12 @@ public class VentanaLoginN extends JFrame {
 //			}
 //		});
 		btnIniciarSession.setFont(new Font("Monaco", Font.PLAIN, 16));
-		btnIniciarSession.setPreferredSize(new Dimension(5000,50));
+		btnIniciarSession.setPreferredSize(new Dimension(5000, 50));
 		pnlIzquierda.add(btnIniciarSession, "flowx,cell 0 8,alignx center,aligny center");
 
 		btnRegistrarse = new JButton("Registrarse");
 		btnRegistrarse.setFont(new Font("Monaco", Font.PLAIN, 16));
-		btnRegistrarse.setPreferredSize(new Dimension(120,50));
+		btnRegistrarse.setPreferredSize(new Dimension(120, 50));
 		pnlIzquierda.add(btnRegistrarse, "cell 0 8,alignx center,aligny center");
 
 		btnSalir = new JButton();
@@ -160,47 +151,82 @@ public class VentanaLoginN extends JFrame {
 			@Override
 			public void mouseMoved(MouseEvent e) {
 				System.out.println("Prueba");
-				btnSalir.setBackground(new Color (0, 0, 0));
+				btnSalir.setBackground(new Color(0, 0, 0));
 			}
 		});
 		btnSalir.setText(" Salir");
 		btnSalir.setRolloverIcon(new ImageIcon(VentanaLoginN.class.getResource("/img/xEncendida.png")));
-		//btnSalir.setIcon(new ImageIcon(VentanaLoginN.class.getResource("/img/xApagada.png")));
+		// btnSalir.setIcon(new
+		// ImageIcon(VentanaLoginN.class.getResource("/img/xApagada.png")));
 		btnSalir.setFont(new Font("Monaco", Font.PLAIN, 16));
-		btnSalir.setPreferredSize(new Dimension(5000,20));
+		btnSalir.setPreferredSize(new Dimension(5000, 20));
 		pnlIzquierda.add(btnSalir, "cell 0 9,alignx center,aligny center");
 
 		pnlDerechaa = new JPanel();
+		pnlDerechaa.setBorder(new MatteBorder(0, 3, 0, 0, (Color) new Color(0, 0, 0)));
 		pnlDerechaa.setBackground(new Color(227, 48, 73));
 		pnlPrincipal.add(pnlDerechaa);
 		pnlDerechaa.setLayout(
-				new MigLayout("", "[][][][][][][][][][][][][][][][]", "[][][][][][35.00][][][][][][][][][]"));
-
-		lblNewLabel_4 = new JLabel("OutFitShop");
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		pnlDerechaa.add(lblNewLabel_4, "cell 8 4,grow");
-		lblNewLabel_4.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(0, 0, 0)));
-		lblNewLabel_4.setFont(new Font("Monaco", Font.PLAIN, 45));
-
-		lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(VentanaLoginN.class.getResource("/img/IconoAplicacion.png")));
-		pnlDerechaa.add(lblNewLabel_1, "cell 8 6,alignx center,aligny center");
+				new MigLayout("", "[][][][][][][][12.00][554.00][][][][][][][][]", "[][][][][][][][][35.00][472.00][][][][][][][][]"));
+		
+				lblOutfitshop = new JLabel("OutFitShop");
+				lblOutfitshop.setHorizontalAlignment(SwingConstants.CENTER);
+				pnlDerechaa.add(lblOutfitshop, "cell 8 1,grow");
+				lblOutfitshop.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(0, 0, 0)));
+				lblOutfitshop.setFont(new Font("Monaco", Font.PLAIN, 29));
+		
+				lblNewLabel_1 = new JLabel("");
+				lblNewLabel_1.setIcon(new ImageIcon(VentanaLoginN.class.getResource("/img/IconoAplicacion.png")));
+				pnlDerechaa.add(lblNewLabel_1, "cell 8 9,alignx center,aligny center");
 
 		lblCopy = new JLabel("OutFitShop 2021 Copyright © Todos los derechos reservados - Política de privacidad");
 		lblCopy.setHorizontalAlignment(SwingConstants.CENTER);
-		pnlDerechaa.add(lblCopy, "cell 8 11,alignx center,aligny center");
-	
-	
-	//Imagenes
-	//Imagen Salir boton login
-	ImageIcon imgIcon = new ImageIcon(getClass().getResource("/img/xApagada.png"));
-	Image imgEscalada = imgIcon.getImage().getScaledInstance(30,30, Image.SCALE_SMOOTH);
-	btnSalir.setIcon(new ImageIcon(imgEscalada));
-	
-	ImageIcon imgIconEnc = new ImageIcon(getClass().getResource("/img/xEncendida.png"));
-	Image imgEscaladaEnc = imgIconEnc.getImage().getScaledInstance(30,30, Image.SCALE_SMOOTH);
-	btnSalir.setRolloverIcon(new ImageIcon(imgEscaladaEnc));
-	
-	
+		pnlDerechaa.add(lblCopy, "cell 8 14,alignx center,aligny center");
+
+// Imagenes
+
+		// Imagen Salir boton login
+
+		ImageIcon imgIcon = new ImageIcon(getClass().getResource("/img/xApagada.png"));
+		Image imgEscalada = imgIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+		btnSalir.setIcon(new ImageIcon(imgEscalada));
+
+		ImageIcon imgIconEnc = new ImageIcon(getClass().getResource("/img/xEncendida.png"));
+		Image imgEscaladaEnc = imgIconEnc.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+		btnSalir.setRolloverIcon(new ImageIcon(imgEscaladaEnc));
+		
+		lblRegistrate = new JLabel("¡¡ Registrate que es gratis !!");
+		lblRegistrate.setFont(new Font("Montserrat", Font.PLAIN, 20));
+		pnlIzquierda.add(lblRegistrate, "cell 0 12,alignx center,aligny center");
+		
+		//Hilos
+		Runnable r1 = new Runnable() {
+			
+			@Override
+			public void run() {
+				while(true) {
+					lblRegistrate.setForeground(new Color (249, 194, 4));
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					lblRegistrate.setForeground(Color.BLACK);
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+				
+				
+			}
+		};
+		Thread t1 = new Thread(r1);
+		t1.start();
+
 	}
 }
