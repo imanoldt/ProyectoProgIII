@@ -1,6 +1,8 @@
 package windows;
 
 import java.awt.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -56,13 +58,9 @@ public class VentanaAdmin extends JFrame{
 		tRopa= new JTable( mRopa);
 		sRopa.setViewportView(tRopa);	
 			
-		try {
-			this.actualizaTabla();
-		} catch (Exception e) {
-			System.out.println("No se puede rellenar la tabla");
-		}
 		
-		txtArea = new JTextArea(20,50);
+		
+		txtArea = new JTextArea(20,45);
 		txtArea.setEditable(false);
 		txtArea.setText("RESUMEN PEDIDOS");
 		
@@ -89,40 +87,75 @@ public class VentanaAdmin extends JFrame{
 		pnlIzquierda.add(sRopa);
 		pnlDerecha.add(txtArea);
 		
+		
+		try {
+			this.actualizaTabla();
+		} catch (Exception e) {
+			System.out.println("No se puede rellenar la tabla");
+			e.printStackTrace();
+		}
+		
+		
 
 		
-			
 		
 	}
 	
 private void actualizaTabla() {
-		String com ="";
-		try {
-			while (mRopa.getRowCount()>0) {
-				mRopa.removeRow(0);
-				com = "select * from ropa";
-				logger.log( Level.INFO, "BD: " + com );
-				BaseDeDatos.rs = BaseDeDatos.stmt.executeQuery( com );
-				System.out.println("rs: " + BaseDeDatos.rs);
-				while (BaseDeDatos.rs.next()) {
-					String nombre = BaseDeDatos.rs.getString( "nombre" );
-					String talla = BaseDeDatos.rs.getString( "talla" );
-					String precio = BaseDeDatos.rs.getString( "precio" );
-					String sexo = BaseDeDatos.rs.getString("sexo");
-					String marca = BaseDeDatos.rs.getString("marca");
-					String color = BaseDeDatos.rs.getString("color");
-					
-					Vector<String> fila = new Vector<>();
-					fila.add(nombre); fila.add(talla);fila.add(precio); fila.add(sexo);fila.add(marca); fila.add(color);
-					mRopa.addRow(fila);
-					
-				
-				}
-				tRopa.repaint();
-			}
-		} catch (Exception e) {
-			System.out.println("ERROR");
+	String sql = "select * from Cliente";
+	try {
+		Connection connection = null;
+		connection = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
+		BaseDeDatos.stmt = connection.createStatement();
+		BaseDeDatos.rs = BaseDeDatos.stmt.executeQuery(sql);
+		while (BaseDeDatos.rs.next()) {
+			String nombre = BaseDeDatos.rs.getString( "nombre" );
+			String talla = String.valueOf(BaseDeDatos.rs.getInt("talla"));
+			String precio = String.valueOf(BaseDeDatos.rs.getInt("precio"));
+			String sexo = BaseDeDatos.rs.getString("sexo");
+			String marca = BaseDeDatos.rs.getString("marca");
+			String color = BaseDeDatos.rs.getString("color");
+			
+			String tbData[] = {nombre, talla, precio, sexo, marca, color};
+			System.out.println(tbData);
+			
+			mRopa.addRow(tbData);
+			
+			
 		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+//		String com ="";
+//		try {
+////			mRopa.addRow(Vector<> rowData);
+//			while (mRopa.getRowCount()> 0) {
+//				mRopa.removeRow(0);
+//				com = "select * from ropa";
+//				logger.log( Level.INFO, "BD: " + com );
+//				BaseDeDatos.rs = BaseDeDatos.stmt.executeQuery( com );
+//				System.out.println("rs: " + BaseDeDatos.rs);
+//				while (BaseDeDatos.rs.next()) {
+//					String nombre = BaseDeDatos.rs.getString( "nombre" );
+//					String talla = BaseDeDatos.rs.getString( "talla" );
+//					String precio = BaseDeDatos.rs.getString( "precio" );
+//					String sexo = BaseDeDatos.rs.getString("sexo");
+//					String marca = BaseDeDatos.rs.getString("marca");
+//					String color = BaseDeDatos.rs.getString("color");
+//					
+//					Vector<String> fila = new Vector<>();
+//					fila.add(nombre); fila.add(talla);fila.add(precio); fila.add(sexo);fila.add(marca); fila.add(color);
+//					mRopa.addRow(fila);
+//					
+//				
+//				}
+//				tRopa.repaint();
+//			}
+//		} catch (Exception e) {
+//			System.out.println("ERROR");
+//		}
 		
 	}
 

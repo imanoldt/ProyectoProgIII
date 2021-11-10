@@ -7,6 +7,8 @@ public class BaseDeDatos {
 	
 public static Statement stmt;
 public static ResultSet rs;
+public static char[] com;
+public static Connection con;
 
 /**
  * 
@@ -14,7 +16,7 @@ public static ResultSet rs;
  * @return Devuelve la connection 
  */
 	public static Connection initBaseDatos(String nombreBD) {
-		Connection con = null;
+		 con = null;
 
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -136,6 +138,8 @@ public static ResultSet rs;
 			stmt.executeUpdate("drop table if exists ropa");
 			stmt.executeUpdate("create table ropa (nombre string, talla integer, precio integer, sexo string, marca string, color string)");
 			stmt.executeUpdate("insert into ropa values('Sudadera gris nike', 'M', 35, 'Hombre', 'Nike', 'Gris')");
+			
+			System.out.println(stmt);
 	
 			
 		} catch (Exception e) {
