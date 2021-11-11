@@ -1,6 +1,8 @@
 package windows;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -20,6 +23,7 @@ public class VentanaAdmin extends JFrame{
 	protected JButton anyadirRopa;
 	protected JButton descatalogaRopa;
 	protected JButton guardar;
+	protected JButton volver;
 	protected JPanel pnlCentral;
 	protected JPanel pnlIzquierda;
 	protected JPanel pnlDerecha;
@@ -81,11 +85,29 @@ public class VentanaAdmin extends JFrame{
 		descatalogaRopa = new JButton("Descatalogar");
 		guardar = new JButton("Guardar");
 		
+		volver = new JButton(new ImageIcon(VentanaAdmin.class.getResource("/img/Inicio.png")));
+		volver.setOpaque(false);
+		volver.setBorderPainted(false);
+		volver.setBackground(new Color(0, 0, 0));
+		
+		volver.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaLoginN login = new VentanaLoginN();
+				login.setVisible(true);
+				setVisible(false);
+			}
+			});
+
+
+		
 		pnlIzquierda.add(anyadirRopa);
 		pnlIzquierda.add(descatalogaRopa);
 		pnlDerecha.add(guardar);
 		pnlIzquierda.add(sRopa);
 		pnlDerecha.add(txtArea);
+		pnlDerecha.add(volver);
 		
 		
 		try {
