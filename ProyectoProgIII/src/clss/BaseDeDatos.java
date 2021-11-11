@@ -3,6 +3,8 @@ package clss;
 import java.sql.*;
 import java.util.TreeMap;
 
+import javax.swing.table.DefaultTableModel;
+
 public class BaseDeDatos {
 	
 public static Statement stmt;
@@ -128,6 +130,37 @@ public static Connection con;
 			}
 		}
 	}
+		
+		public static void actualizaTabla(DefaultTableModel tabla) {
+			
+			try {
+				con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
+				String sentSQL = "SELECT * FROM ropa";
+				stmt = con.createStatement();
+				rs = stmt.executeQuery(sentSQL);
+				
+				
+				while (rs.next()) {
+					String nombre = rs.getString( "nombre" );
+					String talla = rs.getString( "talla" );
+					String precio = String.valueOf(rs.getInt("precio"));
+					String sexo = rs.getString("sexo");
+					String marca = rs.getString("marca");
+					String color = rs.getString("color");
+					
+					String tbData[] = {nombre, talla, precio, sexo, marca, color};
+					System.out.println(tbData);
+					
+					tabla.addRow(tbData);
+					
+					
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	}
 	
 	public static void main(String[] args) {
 		try {
@@ -136,7 +169,7 @@ public static Connection con;
 			 stmt = connection.createStatement();
 			
 			stmt.executeUpdate("drop table if exists ropa");
-			stmt.executeUpdate("create table ropa (nombre string, talla integer, precio integer, sexo string, marca string, color string)");
+			stmt.executeUpdate("create table ropa (nombre string, talla string, precio integer, sexo string, marca string, color string)");
 			stmt.executeUpdate("insert into ropa values('Sudadera gris nike', 'M', 35, 'Hombre', 'Nike', 'Gris')");
 			
 			System.out.println(stmt);
