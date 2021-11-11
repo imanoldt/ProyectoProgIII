@@ -3,25 +3,28 @@ package clss;
 public abstract class Ropa {
 	
 	private String nombre;
-	private int talla;
 	private int precio;
 	private TipoSexo sexo;
 	private String marca;
 	private String color;
 
-	public Ropa(String nombre, int talla, int precio, TipoSexo sexo, String marca, String color) {
+	public Ropa(String nombre, int precio, TipoSexo sexo, String marca, String color) {
 		super();
 		this.nombre = nombre;
-		this.talla = talla;
 		this.precio = precio;
 		this.sexo = sexo;
 		this.marca = marca;
 		this.color = color;
 	}
+	
 	public Ropa() {
 		super();
+		this.nombre = null;
+		this.precio = 0;
+		this.sexo = TipoSexo.HOMBRE;
+		this.marca = null;
+		this.color = null;
 	}
-	
 
 	public String getNombre() {
 		return nombre;
@@ -30,15 +33,6 @@ public abstract class Ropa {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-
-	public int getTalla() {
-		return talla;
-	}
-
-	public void setTalla(int talla) {
-		this.talla = talla;
 	}
 
 	public int getPrecio() {
@@ -71,12 +65,14 @@ public abstract class Ropa {
 	public void setColor(String color) {
 		this.color = color;
 	}
-	
-	
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Ropa [nombre=" + nombre + ", precio=" + precio + ", sexo=" + sexo + ", marca=" + marca + ", color="
+				+ color + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
+	}
+
 	
 
 }

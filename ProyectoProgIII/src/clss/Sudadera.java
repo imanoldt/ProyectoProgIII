@@ -2,66 +2,25 @@ package clss;
 
 import java.util.ArrayList;
 
-public class Sudadera extends Tienda{
-	
-	private String color;
-	private int precio;
-	private Talla talla;
-	private TipoSexo sexo;
+public class Sudadera extends Ropa{
+
 	private boolean gorro;
+	private Talla talla;
 	private ArrayList<String> tejidos = new ArrayList<String>();
 	
-	public Sudadera(String marca, String color, int precio, Talla talla, TipoSexo sexo, boolean gorro,
+	public Sudadera(String nombre, int precio, TipoSexo sexo, String marca, String color, boolean gorro, Talla talla,
 			ArrayList<String> tejidos) {
-		super(marca);
-		this.color = color;
-		this.precio = precio;
-		this.talla = talla;
-		this.sexo = sexo;
+		super(nombre, precio, sexo, marca, color);
 		this.gorro = gorro;
+		this.talla = talla;
 		this.tejidos = tejidos;
 	}
-	
+
 	public Sudadera() {
 		super();
-		this.color = null;
-		this.precio = 0;
-		this.talla = null;
-		this.sexo = null;
-		this.gorro = true;
-		this.tejidos = new ArrayList<String>();
-	}
-
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
-	public int getPrecio() {
-		return precio;
-	}
-
-	public void setPrecio(int precio) {
-		this.precio = precio;
-	}
-
-	public Talla getTalla() {
-		return talla;
-	}
-
-	public void setTalla(Talla talla) {
-		this.talla = talla;
-	}
-
-	public TipoSexo getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(TipoSexo sexo) {
-		this.sexo = sexo;
+		this.talla = Talla.M;		
+		this.gorro = false;
+		this.tejidos = null;
 	}
 
 	public boolean isGorro() {
@@ -72,21 +31,29 @@ public class Sudadera extends Tienda{
 		this.gorro = gorro;
 	}
 
+	public Talla getTalla() {
+		return talla;
+	}
+
+	public void setTalla(Talla talla) {
+		this.talla = talla;
+	}
+
 	public ArrayList<String> getTejidos() {
 		return tejidos;
 	}
 
 	public void setTejidos(ArrayList<String> tejidos) {
-		this.tejidos = new ArrayList<String>();
+		this.tejidos = tejidos;
 	}
 
 	@Override
 	public String toString() {
-		return "Sudadera [color=" + color + ", precio=" + precio + ", talla=" + talla + ", sexo=" + sexo + ", gorro="
-				+ gorro + ", tejidos=" + tejidos + ", getMarca()=" + getMarca() + ", toString()=" + super.toString()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
+		return "Sudadera [gorro=" + gorro + ", talla=" + talla + ", tejidos=" + tejidos + ", getNombre()=" + getNombre()
+				+ ", getPrecio()=" + getPrecio() + ", getSexo()=" + getSexo() + ", getMarca()=" + getMarca()
+				+ ", getColor()=" + getColor() + ", toString()=" + super.toString() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + "]";
 	}
-	
-	
 
+	
 }

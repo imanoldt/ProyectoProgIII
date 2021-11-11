@@ -2,51 +2,25 @@ package clss;
 
 import java.util.ArrayList;
 
-public class Pantalon extends Tienda{
-	
-	private int precio;
-	private String color;
+public class Pantalon extends Ropa{
+
 	private Talla talla;
-	private TipoSexo sexo;
 	private boolean rotos;
 	private ArrayList<String> tejidos = new ArrayList<String>();
 	
-	
-	public Pantalon(String marca, int precio, String color, Talla talla, TipoSexo sexo, boolean rotos,
+	public Pantalon(String nombre, int precio, TipoSexo sexo, String marca, String color, Talla talla, boolean rotos,
 			ArrayList<String> tejidos) {
-		super(marca);
-		this.precio = precio;
-		this.color = color;
+		super(nombre, precio, sexo, marca, color);
 		this.talla = talla;
-		this.sexo = sexo;
 		this.rotos = rotos;
 		this.tejidos = tejidos;
 	}
 
 	public Pantalon() {
 		super();
-		this.precio = 0;
-		this.color = null;
-		this.talla = null;
-		this.sexo = null;
-		this.rotos = true;
-		this.tejidos = new ArrayList<String>();
-	}
-
-	public int getPrecio() {
-		return precio;
-	}
-
-	public void setPrecio(int precio) {
-		this.precio = precio;
-	}
-
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
+		this.talla = Talla.M;
+		this.rotos = false;
+		this.tejidos = null;
 	}
 
 	public Talla getTalla() {
@@ -55,14 +29,6 @@ public class Pantalon extends Tienda{
 
 	public void setTalla(Talla talla) {
 		this.talla = talla;
-	}
-
-	public TipoSexo getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(TipoSexo sexo) {
-		this.sexo = sexo;
 	}
 
 	public boolean isRotos() {
@@ -78,16 +44,16 @@ public class Pantalon extends Tienda{
 	}
 
 	public void setTejidos(ArrayList<String> tejidos) {
-		this.tejidos = new ArrayList<String>();
+		this.tejidos = tejidos;
 	}
 
 	@Override
 	public String toString() {
-		return "Pantalon [precio=" + precio + ", color=" + color + ", talla=" + talla + ", sexo=" + sexo + ", rotos="
-				+ rotos + ", tejidos=" + tejidos + ", getMarca()=" + getMarca() + ", toString()=" + super.toString()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
+		return "Pantalon [talla=" + talla + ", rotos=" + rotos + ", tejidos=" + tejidos + ", getNombre()=" + getNombre()
+				+ ", getPrecio()=" + getPrecio() + ", getSexo()=" + getSexo() + ", getMarca()=" + getMarca()
+				+ ", getColor()=" + getColor() + ", toString()=" + super.toString() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + "]";
 	}
-	
-	
 
-}
+	
+}	
