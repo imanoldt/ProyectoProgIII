@@ -184,6 +184,8 @@ public static Connection con;
 			stmt.executeUpdate("drop table if exists ropa");
 			stmt.executeUpdate("create table ropa (nombre string, talla string, precio integer, sexo string, marca string, color string)");
 			stmt.executeUpdate("insert into ropa values('Sudadera gris nike', 'M', 35, 'Hombre', 'Nike', 'Gris')");
+			stmt.executeUpdate("insert into ropa values('camiseta gris nike', 'M', 35, 'Hombre', 'Nike', 'Gris')");
+			stmt.executeUpdate("insert into ropa values('Sudadera blanca nike', 'S', 20, 'Hombre', 'Nike', 'Gris')");
 			
 			System.out.println(stmt);
 	
