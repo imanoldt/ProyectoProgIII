@@ -74,6 +74,19 @@ public static Connection con;
 			e.printStackTrace();
 		}
 	}
+	
+	public static void insertarRopa(Connection con, String nombre, int precio, TipoSexo sexo, String marca, String color) {
+		String sentSQL = "INSERT INTO ropa VALUES('" + nombre + "','" + precio + "'," + sexo + ",'" + marca
+				+ "', '" + color + "')";
+		try {
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate(sentSQL);
+			stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 /**
  * 
  * @param con Una conexión con una base de datos específica. Las sentencias SQL se ejecutan y los resultados se devuelven dentro del contexto de una conexión. 
