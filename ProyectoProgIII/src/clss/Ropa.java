@@ -2,15 +2,15 @@ package clss;
 
 public abstract class Ropa {
 	
-	private String nombre;
+	private int codigo;
 	private int precio;
 	private TipoSexo sexo;
 	private String marca;
 	private String color;
 
-	public Ropa(String nombre, int precio, TipoSexo sexo, String marca, String color) {
+	public Ropa(int codigo, int precio, TipoSexo sexo, String marca, String color) {
 		super();
-		this.nombre = nombre;
+		this.codigo = codigo;
 		this.precio = precio;
 		this.sexo = sexo;
 		this.marca = marca;
@@ -19,20 +19,20 @@ public abstract class Ropa {
 	
 	public Ropa() {
 		super();
-		this.nombre = null;
+		this.codigo = 0;
 		this.precio = 0;
 		this.sexo = TipoSexo.HOMBRE;
 		this.marca = null;
 		this.color = null;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public int getCodigo() {
+		return codigo;
 	}
 
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 
 	public int getPrecio() {
@@ -68,7 +68,7 @@ public abstract class Ropa {
 
 	@Override
 	public String toString() {
-		return "Ropa [nombre=" + nombre + ", precio=" + precio + ", sexo=" + sexo + ", marca=" + marca + ", color="
+		return "Ropa [nombre=" + codigo + ", precio=" + precio + ", sexo=" + sexo + ", marca=" + marca + ", color="
 				+ color + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
 				+ super.toString() + "]";
 	}

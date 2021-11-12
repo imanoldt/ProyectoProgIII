@@ -8,9 +8,10 @@ public class Zapatos extends Ropa{
 	private boolean cordones;
 	private boolean plataforma;
 	
-	public Zapatos(String nombre, int precio, TipoSexo sexo, String marca, String color, int tallaZapato,
-			boolean cordones, boolean plataforma) {
-		super(nombre, precio, sexo, marca, color);
+
+	public Zapatos(int codigo, int precio, TipoSexo sexo, String marca, String color, int tallaZapato, boolean cordones,
+			boolean plataforma) {
+		super(codigo, precio, sexo, marca, color);
 		this.tallaZapato = tallaZapato;
 		this.cordones = cordones;
 		this.plataforma = plataforma;
@@ -50,7 +51,7 @@ public class Zapatos extends Ropa{
 	@Override
 	public String toString() {
 		return "Zapatos [tallaZapato=" + tallaZapato + ", cordones=" + cordones + ", plataforma=" + plataforma
-				+ ", getNombre()=" + getNombre() + ", getPrecio()=" + getPrecio() + ", getSexo()=" + getSexo()
+				+ ", getNombre()=" + getCodigo() + ", getPrecio()=" + getPrecio() + ", getSexo()=" + getSexo()
 				+ ", getMarca()=" + getMarca() + ", getColor()=" + getColor() + ", toString()=" + super.toString()
 				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
 	}

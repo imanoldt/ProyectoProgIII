@@ -8,9 +8,10 @@ public class Pantalon extends Ropa{
 	private boolean rotos;
 	private ArrayList<String> tejidos = new ArrayList<String>();
 	
-	public Pantalon(String nombre, int precio, TipoSexo sexo, String marca, String color, Talla talla, boolean rotos,
+
+	public Pantalon(int codigo, int precio, TipoSexo sexo, String marca, String color, Talla talla, boolean rotos,
 			ArrayList<String> tejidos) {
-		super(nombre, precio, sexo, marca, color);
+		super(codigo, precio, sexo, marca, color);
 		this.talla = talla;
 		this.rotos = rotos;
 		this.tejidos = tejidos;
@@ -49,7 +50,7 @@ public class Pantalon extends Ropa{
 
 	@Override
 	public String toString() {
-		return "Pantalon [talla=" + talla + ", rotos=" + rotos + ", tejidos=" + tejidos + ", getNombre()=" + getNombre()
+		return "Pantalon [talla=" + talla + ", rotos=" + rotos + ", tejidos=" + tejidos + ", getNombre()=" + getCodigo()
 				+ ", getPrecio()=" + getPrecio() + ", getSexo()=" + getSexo() + ", getMarca()=" + getMarca()
 				+ ", getColor()=" + getColor() + ", toString()=" + super.toString() + ", getClass()=" + getClass()
 				+ ", hashCode()=" + hashCode() + "]";

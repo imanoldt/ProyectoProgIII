@@ -75,8 +75,8 @@ public static Connection con;
 		}
 	}
 	
-	public static void insertarRopa(Connection con, String nombre, int precio, TipoSexo sexo, String marca, String color) {
-		String sentSQL = "INSERT INTO ropa VALUES('" + nombre + "','" + precio + "'," + sexo + ",'" + marca
+	public static void insertarRopa(Connection con, int codigo, int precio, TipoSexo sexo, String marca, String color) {
+		String sentSQL = "INSERT INTO ropa VALUES('" + codigo + "','" + precio + "'," + sexo + ",'" + marca
 				+ "', '" + color + "')";
 		try {
 			Statement stmt = con.createStatement();
@@ -154,7 +154,7 @@ public static Connection con;
 				
 				
 				while (rs.next()) {
-					String nombre = rs.getString( "nombre" );
+					String nombre = rs.getString( "codigo" );
 					String talla = rs.getString( "talla" );
 					String precio = String.valueOf(rs.getInt("precio"));
 					String sexo = rs.getString("sexo");
@@ -182,10 +182,10 @@ public static Connection con;
 			 stmt = connection.createStatement();
 			
 			stmt.executeUpdate("drop table if exists ropa");
-			stmt.executeUpdate("create table ropa (nombre string, talla string, precio integer, sexo string, marca string, color string)");
-			stmt.executeUpdate("insert into ropa values('Sudadera gris nike', 'M', 35, 'Hombre', 'Nike', 'Gris')");
-			stmt.executeUpdate("insert into ropa values('camiseta gris nike', 'M', 35, 'Hombre', 'Nike', 'Gris')");
-			stmt.executeUpdate("insert into ropa values('Sudadera blanca nike', 'S', 20, 'Hombre', 'Nike', 'Gris')");
+			stmt.executeUpdate("create table ropa (codigo integer, talla string, precio integer, sexo string, marca string, color string)");
+			stmt.executeUpdate("insert into ropa values('01', 'M', 35, 'Hombre', 'Nike', 'Gris')");
+			stmt.executeUpdate("insert into ropa values('02', 'M', 35, 'Hombre', 'Nike', 'Gris')");
+			stmt.executeUpdate("insert into ropa values('03', 'S', 20, 'Hombre', 'Nike', 'Gris')");
 			
 			System.out.println(stmt);
 	

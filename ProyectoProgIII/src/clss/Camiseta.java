@@ -9,9 +9,11 @@ public class Camiseta extends Ropa{
 	private Talla talla;
 	private LinkedList<String> tejidos = new LinkedList<String>();
 	
-	public Camiseta(String nombre, int precio, TipoSexo sexo, String marca, String color, boolean simple, Talla talla,
+
+
+	public Camiseta(int codigo, int precio, TipoSexo sexo, String marca, String color, boolean simple, Talla talla,
 			LinkedList<String> tejidos) {
-		super(nombre, precio, sexo, marca, color);
+		super(codigo, precio, sexo, marca, color);
 		this.simple = simple;
 		this.talla = talla;
 		this.tejidos = tejidos;
@@ -51,7 +53,7 @@ public class Camiseta extends Ropa{
 	@Override
 	public String toString() {
 		return "Camiseta [simple=" + simple + ", talla=" + talla + ", tejidos=" + tejidos + ", getNombre()="
-				+ getNombre() + ", getPrecio()=" + getPrecio() + ", getSexo()=" + getSexo() + ", getMarca()="
+				+ getCodigo() + ", getPrecio()=" + getPrecio() + ", getSexo()=" + getSexo() + ", getMarca()="
 				+ getMarca() + ", getColor()=" + getColor() + ", toString()=" + super.toString() + ", getClass()="
 				+ getClass() + ", hashCode()=" + hashCode() + "]";
 	}
