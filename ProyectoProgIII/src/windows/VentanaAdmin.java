@@ -81,7 +81,7 @@ public class VentanaAdmin extends JFrame{
 		pnlCentral.add(pnlIzquierda);
 		pnlCentral.add(pnlDerecha);
 		
-		anyadirRopa = new JButton("Añadir Ropa");
+		anyadirRopa = new JButton("Agregar Ropa");
 		descatalogaRopa = new JButton("Descatalogar");
 		guardar = new JButton("Guardar");
 		
