@@ -9,14 +9,14 @@ public class Cliente {
 	private String direccion;
 	private String codigoPostal;
 	
-	public Cliente(String nombre, String email, String dNI, TipoSexo sexo, String direccion, String codigoPostal) {
+	public Cliente(String nombre, String email, String dNI, TipoSexo sexo, String direccion, String cod) {
 		super();
 		this.nombre = nombre;
 		this.email = email;
 		DNI = dNI;
 		this.sexo = sexo;
 		this.direccion = direccion;
-		this.codigoPostal = codigoPostal;
+		this.codigoPostal = cod;
 	}
 	
 	public Cliente() {

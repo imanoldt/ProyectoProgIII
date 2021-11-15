@@ -122,7 +122,8 @@ public static Connection con;
 	
 	public static void crearTablas(Connection con) {
 		String sent1 = "CREATE TABLE IF NOT EXISTS Cliente(nom String, eml String, dni String,dir String, cod String, sex String)";
-
+		
+		
 		Statement st = null;
 		
 		try {
@@ -181,6 +182,9 @@ public static Connection con;
 			connection = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
 			 stmt = connection.createStatement();
 			
+			
+			 
+			 
 			stmt.executeUpdate("drop table if exists ropa");
 			stmt.executeUpdate("create table ropa (codigo integer, talla string, precio integer, sexo string, marca string, color string)");
 			stmt.executeUpdate("insert into ropa values('01', 'M', 35, 'Hombre', 'Nike', 'Gris')");

@@ -57,7 +57,7 @@ public class VentanaAdmin extends JFrame{
 		
 
 		Vector<String> cabeceras = new Vector<String>();
-		cabeceras.add( "Nombre" ); cabeceras.add( "Talla" ); cabeceras.add( "Precio" ); cabeceras.add( "Sexo" ); cabeceras.add( "Marca" ); cabeceras.add( "Color" );
+		cabeceras.add( "Codigo" ); cabeceras.add( "Talla" ); cabeceras.add( "Precio" ); cabeceras.add( "Sexo" ); cabeceras.add( "Marca" ); cabeceras.add( "Color" );
 		mRopa = new DefaultTableModel(new Vector<Vector<Object>>(), cabeceras);
 		tRopa= new JTable( mRopa);
 		sRopa.setViewportView(tRopa);	
