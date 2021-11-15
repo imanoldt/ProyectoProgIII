@@ -33,6 +33,7 @@ public class PanelZapatillas extends JPanel {
 		
 		
 		JLabel lblTitulo=new JLabel("Zapatillas", SwingConstants.CENTER);
+		lblTitulo.setFont(new Font("Monaco", Font.PLAIN, 16));
 		pnlNorte.add(lblTitulo,BorderLayout.CENTER);
 		
 	

@@ -28,8 +28,10 @@ public class PanelCamisetas extends JPanel {
 		pnlNorte.setBackground(new Color(227, 48, 73));
 		add(pnlNorte, BorderLayout.NORTH);
 		pnlNorte.setLayout(new BorderLayout(0, 0));
+	
 
 		JLabel lblTitulo=new JLabel("Camisetas", SwingConstants.CENTER);
+		lblTitulo.setFont(new Font("Monaco", Font.PLAIN, 16));
 		pnlNorte.add(lblTitulo,BorderLayout.CENTER);
 		
 		JLabel JLabelImagen = new JLabel();

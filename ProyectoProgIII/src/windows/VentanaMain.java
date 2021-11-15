@@ -88,8 +88,8 @@ public class VentanaMain extends JFrame {
 		
 		PanelPrincipal panel1 = new PanelPrincipal();
 		add(panel1, BorderLayout.WEST);
-		PanelInicio panel2 = new PanelInicio();
-		add(panel2, BorderLayout.NORTH);
+		PanelInicio panelInicio = new PanelInicio();
+		add(panelInicio, BorderLayout.NORTH);
 		
 
 //		pnlDerecha = new JPanel();
@@ -110,8 +110,8 @@ public class VentanaMain extends JFrame {
 		lblCamisetas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				panel2.removeAll();
-				panel2.revalidate();
+				panelInicio.removeAll();
+				panelInicio.revalidate();
 				add(new PanelCamisetas(), BorderLayout.CENTER);
 				
 			}
@@ -120,8 +120,8 @@ public class VentanaMain extends JFrame {
 		lblSudaderas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				panel2.removeAll();
-				panel2.revalidate();
+				panelInicio.removeAll();
+				panelInicio.revalidate();
 				add(new PanelSudaderas(), BorderLayout.CENTER);
 				
 			}
@@ -130,8 +130,8 @@ public class VentanaMain extends JFrame {
 		lblPantalones.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				panel2.removeAll();
-				panel2.revalidate();
+				panelInicio.removeAll();
+				panelInicio.revalidate();
 				add(new PanelPantalones(), BorderLayout.CENTER);
 				
 			}
@@ -140,8 +140,8 @@ public class VentanaMain extends JFrame {
 		lblZapatillas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				panel2.removeAll();
-				panel2.revalidate();
+				panelInicio.removeAll();
+				panelInicio.revalidate();
 				add(new PanelZapatillas(), BorderLayout.CENTER);
 				
 			}
@@ -151,26 +151,30 @@ public class VentanaMain extends JFrame {
 	}
 
 	
-class PanelPrincipal extends JPanel{
+		class PanelPrincipal extends JPanel{
 		
-		public PanelPrincipal() {
-			setLayout(new BorderLayout());
+			public PanelPrincipal() {
+				setLayout(new BorderLayout());
 			
-			pnlPrincipal = new JPanel();
-			contentPane.add(pnlPrincipal, BorderLayout.CENTER);
-			pnlPrincipal.setLayout(new BorderLayout(0, 0));
-			pnlNorte = new JPanel();
-			pnlNorte.setPreferredSize(new Dimension(10, 40));
-			pnlNorte.setBackground(new Color(227, 48, 73));
-			pnlPrincipal.add(pnlNorte, BorderLayout.NORTH);
-			pnlNorte.setLayout(new BorderLayout(0, 0));
-			
-			
-			PanelBotones panelBotones = new PanelBotones();
-			add(panelBotones, BorderLayout.CENTER);
-			
-			
-		}
+				pnlPrincipal = new JPanel();
+				contentPane.add(pnlPrincipal, BorderLayout.CENTER);
+				pnlPrincipal.setLayout(new BorderLayout(0, 0));
+				pnlNorte = new JPanel();
+				pnlNorte.setPreferredSize(new Dimension(10, 40));
+				pnlNorte.setBackground(new Color(227, 48, 73));
+				pnlPrincipal.add(pnlNorte, BorderLayout.NORTH);
+				pnlNorte.setLayout(new BorderLayout(0, 0));
+				
+				lblNewLabel_1 = new JLabel("Bienvenido a OutFitShop");
+				lblNewLabel_1.setFont(new Font("Monaco", Font.PLAIN, 16));
+				lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+				pnlNorte.add(lblNewLabel_1);
+				
+				PanelBotones panelBotones = new PanelBotones();
+				add(panelBotones, BorderLayout.CENTER);
+				
+				
+			}
 		
 		class PanelBotones extends JPanel{
 	
@@ -180,9 +184,11 @@ class PanelPrincipal extends JPanel{
 				
 				
 				JLabel JLabelImagen = new JLabel();
-				JLabelImagen.setIcon(new ImageIcon("E:\\Joseba\\Desktop\\alud\\2º\\1º CUATRI\\PROG\\ProyectoProgIII\\ProyectoProgIII\\ProyectoProgIII\\src\\img\\systemusers_104569.png"));
+				JLabelImagen.setIcon(new ImageIcon("E:\\Joseba\\Desktop\\alud\\2º\\1º CUATRI\\PROG\\ProyectoProgIII\\ProyectoProgIII\\ProyectoProgIII\\src\\img\\Inicio.png"));
 				add(JLabelImagen, BorderLayout.NORTH);
 				
+				
+
 				 
 				
 				lblCamisetas = new JLabel("Camisetas");
@@ -229,20 +235,10 @@ class PanelPrincipal extends JPanel{
 		
 	}
 	
-	class PanelInicio extends JPanel{ 
+	class PanelInicio extends JPanel{ //Panel con el que se inicia
 		public PanelInicio(){
-			pnlPrincipal = new JPanel();
-			contentPane.add(pnlPrincipal, BorderLayout.CENTER);
-			pnlPrincipal.setLayout(new BorderLayout(0, 0));
-			pnlNorte = new JPanel();
-			pnlNorte.setPreferredSize(new Dimension(10, 40));
-			pnlNorte.setBackground(new Color(227, 48, 73));
-			pnlPrincipal.add(pnlNorte, BorderLayout.NORTH);
-			pnlNorte.setLayout(new BorderLayout(0, 0));
+		
 			
-			lblNewLabel_1 = new JLabel("Bienvenido a OutFitShop");
-			lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-			pnlNorte.add(lblNewLabel_1);
 			
 		
 

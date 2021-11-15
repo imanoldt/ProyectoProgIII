@@ -33,6 +33,7 @@ public class PanelSudaderas extends JPanel {
 		
 		
 		JLabel lblTitulo=new JLabel("Sudaderas", SwingConstants.CENTER);
+		lblTitulo.setFont(new Font("Monaco", Font.PLAIN, 16));
 		pnlNorte.add(lblTitulo,BorderLayout.CENTER);
 		
 	
