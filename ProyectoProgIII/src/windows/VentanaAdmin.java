@@ -39,6 +39,7 @@ public class VentanaAdmin extends JFrame{
 
 		
 		Container cp = this.getContentPane();
+
 		
 //		setLocationRelativeTo(null);
 
