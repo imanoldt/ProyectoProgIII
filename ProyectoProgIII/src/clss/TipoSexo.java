@@ -1,6 +1,6 @@
 package clss;
 
 public enum TipoSexo {
-	HOMBRE, MUJER;
+	HOMBRE, MUJER, UNISEX;
 
 }

@@ -1,10 +1,15 @@
 package windows;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 import javax.swing.*;
 
+import clss.BaseDeDatos;
 import clss.Talla;
+import clss.TipoSexo;
 
 public class VentanaAgregarRopa extends JFrame{
 	private JLabel labelcod;
@@ -16,21 +21,27 @@ public class VentanaAgregarRopa extends JFrame{
 	
 	private JTextField tfcod;
 	private JTextField tfprecio;
-	private JTextField tfsexo;
+	
 	private JTextField tfmarca;
 	private JTextField tfcolor;
 	
 	private JComboBox<Talla> cbtalla;
+	private JComboBox<TipoSexo> cbsexo;
+	private JButton btnAgregar;
+	
+	
 	
 	
 	public VentanaAgregarRopa(){
 		Container cp = this.getContentPane();
-		cp.setLayout(new FlowLayout());
+//		cp.setLayout(new FlowLayout());
+		cp.setLayout(new GridLayout(7,1));
 		
-		this.setSize(400, 300);
-		this.setVisible(true);
+		this.setSize(400, 200);
+//		this.setUndecorated (true);
+		setLocationRelativeTo(null);
 		this.setTitle("Agregar Ropa");
-		this.setBackground(new Color(183, 29, 57));
+		cp.setBackground(new Color(249, 194, 4));
 		
 		labelcod = new JLabel("Codigo: ");
 		tfcod = new JTextField(20);
@@ -46,14 +57,56 @@ public class VentanaAgregarRopa extends JFrame{
 		cp.add(labeltalla);
 		cp.add(cbtalla);
 		
+		labelprecio = new JLabel("Precio: ");
+		tfprecio = new JTextField(20);
 		
+		cp.add(labelprecio);
+		cp.add(tfprecio);
 		
+		labelsexo = new JLabel("Sexo: ");
+		cbsexo = new JComboBox<TipoSexo>();
+		for (TipoSexo ts : TipoSexo.values()) {
+			cbsexo.addItem(ts);
+		}
+		
+		cp.add(labelsexo);
+		cp.add(cbsexo);
+		
+		labelmarca = new JLabel("Marca: ");
+		tfmarca = new JTextField(20);
+		cp.add(labelmarca);
+		cp.add(tfmarca);
+		
+		labelcolor = new JLabel("Color: ");
+		tfcolor = new JTextField(20);
+		cp.add(labelcolor);
+		cp.add(tfcolor);
+		
+		btnAgregar = new JButton("Agregar");
+		cp.add(btnAgregar);
+		
+		btnAgregar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int codigo = Integer.parseInt(labelcod.getText());
+				String talla = (String) cbtalla.getSelectedItem();
+	
+				Connection con = BaseDeDatos.initBaseDatos("Clientes.db");
+				BaseDeDatos.insertarRopa(con, codigo, ABORT, null, getWarningString(), getName());
+				BaseDeDatos.closeBD(con);
+				
+				Integer.decode(labelcod.getText());
+			}
+			});
 		
 	}
 	
 	
+	
 	public static void main(String[] args) {
 		VentanaAgregarRopa ventana = new VentanaAgregarRopa();
+		ventana.setVisible(true);
 	}
 
 }

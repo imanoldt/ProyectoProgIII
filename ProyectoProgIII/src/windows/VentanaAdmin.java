@@ -49,7 +49,8 @@ public class VentanaAdmin extends JFrame{
 		
 		this.setSize(1000, 500);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		this.setVisible(true);
+		
+		
 		
 		sRopa = new JScrollPane();
 //		sRopa.setBounds(27, 72, 379, 130);
@@ -100,6 +101,15 @@ public class VentanaAdmin extends JFrame{
 				setVisible(false);
 			}
 			});
+		
+		anyadirRopa.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaAgregarRopa agregar = new VentanaAgregarRopa();
+				agregar.setVisible(true);
+			}
+			});
 
 
 		
@@ -128,7 +138,8 @@ public class VentanaAdmin extends JFrame{
 
 	public static void main(String[] args) {
 			
-		new VentanaAdmin();
+		VentanaAdmin ventana = new VentanaAdmin();
+		ventana.setVisible(true);
 	}
 
 }
