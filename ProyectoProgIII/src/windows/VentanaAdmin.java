@@ -108,17 +108,15 @@ public class VentanaAdmin extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				VentanaAgregarRopa agregar = new VentanaAgregarRopa();
 				agregar.setVisible(true);
+					
 			}
 			});
 		descatalogaRopa.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int fila = tRopa.getSelectedRow();				
-				mRopa.removeRow(fila);
-				
-				
-
+				VentanaDescatalogar descatalogar = new VentanaDescatalogar();
+				descatalogar.setVisible(true);
 			
 			}
 			});
@@ -139,10 +137,7 @@ public class VentanaAdmin extends JFrame{
 			System.out.println("No se puede rellenar la tabla");
 			e.printStackTrace();
 		}
-		
-		
-
-		
+	
 		
 	}
 	

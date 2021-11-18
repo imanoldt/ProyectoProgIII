@@ -74,9 +74,9 @@ public class VentanaMain extends JFrame {
 	}
 	
 
-//	/**
-//	 * Crea el JFrame
-//	 */
+	/**
+	 * Crea el JFrame
+	 */
 	public VentanaMain() {
 	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -89,7 +89,7 @@ public class VentanaMain extends JFrame {
 		PanelPrincipal panel1 = new PanelPrincipal();
 		add(panel1, BorderLayout.WEST);
 		PanelInicio panelInicio = new PanelInicio();
-		add(panelInicio, BorderLayout.NORTH);
+		add(panelInicio, BorderLayout.SOUTH);
 		
 
 //		pnlDerecha = new JPanel();
@@ -189,8 +189,6 @@ public class VentanaMain extends JFrame {
 				
 				
 
-				 
-				
 				lblCamisetas = new JLabel("Camisetas");
 				lblCamisetas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				lblCamisetas.setFont(new Font("Verdana", Font.PLAIN, 14));

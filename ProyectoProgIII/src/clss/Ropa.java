@@ -8,9 +8,11 @@ public abstract class Ropa {
 	private String marca;
 	private String color;
 
+
 	public Ropa(int codigo, int precio, TipoSexo sexo, String marca, String color) {
 		super();
 		this.codigo = codigo;
+		
 		this.precio = precio;
 		this.sexo = sexo;
 		this.marca = marca;
@@ -25,7 +27,8 @@ public abstract class Ropa {
 		this.marca = null;
 		this.color = null;
 	}
-
+	
+	
 	public int getCodigo() {
 		return codigo;
 	}

@@ -2,7 +2,10 @@ package clss;
 
 import java.sql.*;
 import java.util.TreeMap;
+import java.util.Vector;
+import java.util.logging.Level;
 
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class BaseDeDatos {
@@ -144,6 +147,7 @@ public static Connection con;
 			}
 		}
 	}
+
 		
 		public static void actualizaTabla(DefaultTableModel tabla) {
 			
@@ -152,7 +156,7 @@ public static Connection con;
 				String sentSQL = "SELECT * FROM ropa";
 				stmt = con.createStatement();
 				rs = stmt.executeQuery(sentSQL);
-				
+			while (tabla.getRowCount()>0) tabla.removeRow(0);	
 				
 				while (rs.next()) {
 					String codigo = rs.getString( "codigo" );
@@ -164,16 +168,7 @@ public static Connection con;
 					
 					String tbData[] = {codigo, talla, precio, sexo, marca, color};
 					System.out.println(tbData);
-					tabla.addRow(tbData);
-					
-//					for (int i = 0; i < tabla.getRowCount(); i++) {
-//						if (tabla.getValueAt(i, 1).equals(tbData[0])) {
-//							tabla.removeRow(i);
-//						}
-//						
-//					}
-					
-					
+					tabla.addRow(tbData);			
 					
 				}
 			} catch (SQLException e) {

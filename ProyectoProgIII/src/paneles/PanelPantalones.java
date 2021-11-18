@@ -3,7 +3,7 @@ package paneles;
 import java.awt.Font;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
+
 import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import windows.VentanaLoginN;
+
 
 public class PanelPantalones extends JPanel {
 	
