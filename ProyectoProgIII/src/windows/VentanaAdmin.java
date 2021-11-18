@@ -110,6 +110,14 @@ public class VentanaAdmin extends JFrame{
 				agregar.setVisible(true);
 			}
 			});
+		descatalogaRopa.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int fila = tRopa.getSelectedRow();
+				mRopa.removeRow(fila);
+			}
+			});
 
 
 		
