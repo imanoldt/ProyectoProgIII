@@ -114,8 +114,12 @@ public class VentanaAdmin extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int fila = tRopa.getSelectedRow();
+				int fila = tRopa.getSelectedRow();				
 				mRopa.removeRow(fila);
+				
+				
+
+			
 			}
 			});
 
