@@ -166,12 +166,12 @@ public static Connection con;
 					System.out.println(tbData);
 					tabla.addRow(tbData);
 					
-					for (int i = 0; i < tabla.getRowCount(); i++) {
-						if (tabla.getValueAt(i, 1).equals(tbData[0])) {
-							tabla.removeRow(i);
-						}
-						
-					}
+//					for (int i = 0; i < tabla.getRowCount(); i++) {
+//						if (tabla.getValueAt(i, 1).equals(tbData[0])) {
+//							tabla.removeRow(i);
+//						}
+//						
+//					}
 					
 					
 					
