@@ -75,8 +75,8 @@ public static Connection con;
 		}
 	}
 	
-	public static void insertarRopa(Connection con, int codigo, int precio, TipoSexo sexo, String marca, String color) {
-		String sentSQL = "INSERT INTO ropa VALUES('" + codigo + "','" + precio + "'," + sexo + ",'" + marca
+	public static void insertarRopa(Connection con, int codigo, Talla talla, int precio, TipoSexo sexo, String marca, String color) {
+		String sentSQL = "INSERT INTO ropa VALUES('" + codigo + "', '" + talla + "','" + precio + "','" + sexo + "','" + marca
 				+ "', '" + color + "')";
 		try {
 			Statement stmt = con.createStatement();
@@ -155,17 +155,24 @@ public static Connection con;
 				
 				
 				while (rs.next()) {
-					String nombre = rs.getString( "codigo" );
+					String codigo = rs.getString( "codigo" );
 					String talla = rs.getString( "talla" );
 					String precio = String.valueOf(rs.getInt("precio"));
 					String sexo = rs.getString("sexo");
 					String marca = rs.getString("marca");
 					String color = rs.getString("color");
 					
-					String tbData[] = {nombre, talla, precio, sexo, marca, color};
+					String tbData[] = {codigo, talla, precio, sexo, marca, color};
 					System.out.println(tbData);
-					
 					tabla.addRow(tbData);
+					
+					for (int i = 0; i < tabla.getRowCount(); i++) {
+						if (tabla.getValueAt(i, 1).equals(tbData[0])) {
+							tabla.removeRow(i);
+						}
+						
+					}
+					
 					
 					
 				}
@@ -190,8 +197,6 @@ public static Connection con;
 			stmt.executeUpdate("insert into ropa values('01', 'M', 35, 'Hombre', 'Nike', 'Gris')");
 			stmt.executeUpdate("insert into ropa values('02', 'M', 35, 'Hombre', 'Nike', 'Gris')");
 			stmt.executeUpdate("insert into ropa values('03', 'S', 20, 'Hombre', 'Nike', 'Gris')");
-			
-			System.out.println(stmt);
 	
 			
 		} catch (Exception e) {

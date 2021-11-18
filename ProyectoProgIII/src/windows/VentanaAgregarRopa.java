@@ -89,14 +89,18 @@ public class VentanaAgregarRopa extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int codigo = Integer.parseInt(labelcod.getText());
-				String talla = (String) cbtalla.getSelectedItem();
+				int codigo = Integer.parseInt(tfcod.getText());
+				Talla talla = (Talla) cbtalla.getSelectedItem();
+				int precio = Integer.parseInt(tfprecio.getText());
+				TipoSexo sexo = (TipoSexo) cbsexo.getSelectedItem();
+				String marca = tfmarca.getText();
+				String color = tfcolor.getText();
 	
 				Connection con = BaseDeDatos.initBaseDatos("Clientes.db");
-				BaseDeDatos.insertarRopa(con, codigo, ABORT, null, getWarningString(), getName());
+				BaseDeDatos.insertarRopa(con, codigo, talla, precio, sexo, marca, color);
 				BaseDeDatos.closeBD(con);
+				BaseDeDatos.actualizaTabla(VentanaAdmin.mRopa);
 				
-				Integer.decode(labelcod.getText());
 			}
 			});
 		

@@ -30,7 +30,7 @@ public class VentanaAdmin extends JFrame{
 	private static JTable tRopa;
 	private JTextArea txtArea;
 	private static JScrollPane sRopa;
-	private static DefaultTableModel mRopa;
+	static DefaultTableModel mRopa;
 	private static Logger logger = Logger.getLogger("BaseDeDatos");
 	
 
