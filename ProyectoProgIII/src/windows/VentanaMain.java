@@ -47,6 +47,7 @@ public class VentanaMain extends JFrame {
 	private JPanel pnlDerechaAbajo;
 	private JButton btnCesta;
 	private JButton btnNewButton_1;
+	protected JButton volver;
 	
 
 	/**
@@ -146,7 +147,14 @@ public class VentanaMain extends JFrame {
 				
 			}
 	});
-		
+		volver.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				
+			}
+		});
 
 	}
 
@@ -183,11 +191,11 @@ public class VentanaMain extends JFrame {
 				
 				
 				
-				JLabel JLabelImagen = new JLabel();
-				JLabelImagen.setIcon(new ImageIcon("E:\\Joseba\\Desktop\\alud\\2º\\1º CUATRI\\PROG\\ProyectoProgIII\\ProyectoProgIII\\ProyectoProgIII\\src\\img\\Inicio.png"));
-				add(JLabelImagen, BorderLayout.NORTH);
-				
-				
+				volver = new JButton(new ImageIcon(VentanaAdmin.class.getResource("/img/Inicio.png")));
+				volver.setOpaque(false);
+				volver.setBorderPainted(false);
+				volver.setBackground(new Color(0, 0, 0));
+				add(volver, BorderLayout.CENTER);
 
 				lblCamisetas = new JLabel("Camisetas");
 				lblCamisetas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
