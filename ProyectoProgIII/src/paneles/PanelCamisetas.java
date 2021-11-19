@@ -8,9 +8,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import windows.VentanaAdmin;
 
 
 
@@ -44,9 +47,9 @@ public class PanelCamisetas extends JPanel {
 		lblTitulo.setFont(new Font("Monaco", Font.PLAIN, 16));
 		pnlNorte.add(lblTitulo,BorderLayout.CENTER);
 		
-		JLabel JLabelImagen = new JLabel();
-		JLabelImagen.setIcon(new ImageIcon("E:\\Joseba\\Desktop\\alud\\2º\\1º CUATRI\\PROG\\ProyectoProgIII\\ProyectoProgIII\\ProyectoProgIII\\src\\img\\220px-Camiseta-negra.jpg"));
-		pnlDerecha.add(JLabelImagen, BorderLayout.NORTH);
+		JButton btnImagenCamisetaNegra = new JButton(new ImageIcon(PanelCamisetas.class.getResource("/img/camisetaNegra.jpg")));
+//		JLabelImagen.setIcon(new ImageIcon("/img/camisetaNegra.png")); 
+		pnlDerecha.add(btnImagenCamisetaNegra, BorderLayout.WEST);
 		
 		JLabel lblprecio=new JLabel("Precio", SwingConstants.CENTER);
 		lblprecio.setFont(new Font("Monaco", Font.PLAIN, 14));
