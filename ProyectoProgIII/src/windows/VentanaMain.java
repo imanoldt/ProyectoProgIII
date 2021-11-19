@@ -90,7 +90,7 @@ public class VentanaMain extends JFrame {
 		PanelPrincipal panel1 = new PanelPrincipal();
 		add(panel1, BorderLayout.WEST);
 		PanelInicio panelInicio = new PanelInicio();
-		add(panelInicio, BorderLayout.SOUTH);
+		add(panelInicio, BorderLayout.EAST);
 		
 
 //		pnlDerecha = new JPanel();
@@ -151,8 +151,9 @@ public class VentanaMain extends JFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				
+				panelInicio.removeAll();
+				panelInicio.revalidate();
+				add(new PanelInicio(), BorderLayout.CENTER);
 			}
 		});
 
@@ -192,9 +193,10 @@ public class VentanaMain extends JFrame {
 				
 				
 				volver = new JButton(new ImageIcon(VentanaAdmin.class.getResource("/img/Inicio.png")));
-				volver.setOpaque(false);
+				volver.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				volver.setBorderPainted(false);
-				volver.setBackground(new Color(0, 0, 0));
+				volver.setBackground(Color.LIGHT_GRAY);
+				volver.setOpaque(false);
 				add(volver, BorderLayout.CENTER);
 
 				lblCamisetas = new JLabel("Camisetas");
@@ -243,8 +245,21 @@ public class VentanaMain extends JFrame {
 	
 	class PanelInicio extends JPanel{ //Panel con el que se inicia
 		public PanelInicio(){
-		
 			
+			setLayout(new BorderLayout());
+			pnlNorte = new JPanel();
+			pnlNorte.setPreferredSize(new Dimension(10, 40));
+			pnlNorte.setBackground(new Color(227, 48, 73));
+			add(pnlNorte, BorderLayout.NORTH);
+			pnlNorte.setLayout(new BorderLayout(0, 0));
+			
+			
+			
+			
+			lblNewLabel_1 = new JLabel("Bienvenido a OutFitShop");
+			lblNewLabel_1.setFont(new Font("Monaco", Font.PLAIN, 16));
+			lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+			pnlNorte.add(lblNewLabel_1);
 			
 		
 

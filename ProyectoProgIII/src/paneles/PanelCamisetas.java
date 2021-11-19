@@ -47,17 +47,17 @@ public class PanelCamisetas extends JPanel {
 		lblTitulo.setFont(new Font("Monaco", Font.PLAIN, 16));
 		pnlNorte.add(lblTitulo,BorderLayout.CENTER);
 		
-		JButton btnImagenCamisetaNegra = new JButton(new ImageIcon(PanelCamisetas.class.getResource("/img/camisetaNegra.jpg")));
+		//JButton btnImagenCamisetaNegra = new JButton(new ImageIcon(PanelCamisetas.class.getResource("/img/camisetaNegra.jpg")));
 //		JLabelImagen.setIcon(new ImageIcon("/img/camisetaNegra.png")); 
-		pnlDerecha.add(btnImagenCamisetaNegra, BorderLayout.WEST);
+	//	pnlDerecha.add(btnImagenCamisetaNegra, BorderLayout.WEST);
 		
 		JLabel lblprecio=new JLabel("Precio", SwingConstants.CENTER);
 		lblprecio.setFont(new Font("Monaco", Font.PLAIN, 14));
-		pnlDerecha.add(lblprecio,BorderLayout.CENTER);
+		add(lblprecio,BorderLayout.CENTER);
 		
 		JLabel JLabelImagen2 = new JLabel();
-		JLabelImagen2.setIcon(new ImageIcon("E:\\Joseba\\Desktop\\alud\\2º\\1º CUATRI\\PROG\\ProyectoProgIII\\ProyectoProgIII\\ProyectoProgIII\\src\\img\\0594178b-9366-48a5-90c4-71a2283e472d._CR0,0,220,220_PT0_SX220__.jpg"));
-		pnlDerecha.add(JLabelImagen2, BorderLayout.SOUTH);
+		JLabelImagen2.setIcon(new ImageIcon("img/camisetaNegra.jpg"));
+		add(JLabelImagen2, BorderLayout.EAST);
 		
 		
 	
