@@ -6,6 +6,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import clss.BaseDeDatos;
+import clss.Talla;
+import clss.TipoSexo;
+
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -13,6 +18,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 
 public class VentanaRegistro extends JFrame {
@@ -173,6 +181,9 @@ public class VentanaRegistro extends JFrame {
 				}
 			}
 		});
+		
+		
+		
 		panel.add(btnNewButton);
 		
 		btnNewButton_1 = new JButton("Volver");
@@ -180,6 +191,27 @@ public class VentanaRegistro extends JFrame {
 		
 		btnNewButton_2 = new JButton("Cerrar");
 		panel.add(btnNewButton_2);
+		
+		btnNewButton_1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaLoginN registro = new VentanaLoginN();
+				registro.setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnNewButton_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+				dispose();
+			}
+	});
+		
+		
+		
+	
 	}
 
 }

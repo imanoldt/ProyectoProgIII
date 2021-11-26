@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import net.miginfocom.swing.MigLayout;
+import paneles.PanelCamisetas;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -22,6 +24,7 @@ import java.awt.*;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
@@ -198,6 +201,25 @@ public class VentanaLoginN extends JFrame {
 		lblRegistrate = new JLabel("¡¡ Registrate que es gratis !!");
 		lblRegistrate.setFont(new Font("Montserrat", Font.PLAIN, 20));
 		pnlIzquierda.add(lblRegistrate, "cell 0 12,alignx center,aligny center");
+		
+		btnRegistrarse.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				VentanaRegistro registro = new VentanaRegistro();
+				registro.setVisible(true);
+				setVisible(false);
+			}
+	});
+		
+		btnSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+				dispose();
+			}
+	});
+		
 		
 		//Hilos
 		Runnable r1 = new Runnable() {
