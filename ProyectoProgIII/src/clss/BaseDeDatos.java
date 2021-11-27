@@ -64,10 +64,10 @@ public static Connection con;
 	 * @author imanoldt
 	 */
 	
-	public static void insertarCliente(Connection con, String nombre, String email, String dni, String direccion,
-			int codigoPostal, int edad, String sexo) {
-		String sentSQL = "INSERT INTO cliente VALUES('" + nombre + "','" + email + "'," + dni + ",'" + direccion
-				+ "', '" + codigoPostal + "', '" + edad + "', '" + sexo + "')";
+	public static void insertarCliente(Connection con, String nombre, String email, int dni, String direccion,
+			int codigoPostal, String fecha_nac, TipoSexo sexo, String usuario, String contraseña) {
+		String sentSQL = "INSERT INTO clientes VALUES('" + nombre + "','" + email + "'," + dni + ",'" + direccion
+				+ "', '" + codigoPostal + "', '" + fecha_nac + "', '" + sexo + "', '" + usuario + "', '" + contraseña+ "')";
 		try {
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate(sentSQL);
@@ -124,7 +124,7 @@ public static Connection con;
 	}
 	
 	public static void crearTablas(Connection con) {
-		String sent1 = "CREATE TABLE IF NOT EXISTS Cliente(nom String, eml String, dni String,dir String, cod String, sex String)";
+		String sent1 = "create table clientes (nombre string, email string, dni string, direccion string, codigoPostal integer, fecha nacimiento string, sexo string, usuario string, contraseña string)";
 		
 		
 		Statement st = null;
@@ -183,15 +183,14 @@ public static Connection con;
 			Connection connection = null;
 			connection = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
 			 stmt = connection.createStatement();
-			
-			
-			 
-			 
-			stmt.executeUpdate("drop table if exists ropa");
+		 
+			stmt.executeUpdate("drop table if exists clientes");
+			stmt.executeUpdate("create table clientes (nombre string, email string, dni integer, direccion string, codigoPostal integer, fecha_nac string, sexo string, usuario string, contraseña string)");
 			stmt.executeUpdate("create table ropa (codigo integer, talla string, precio integer, sexo string, marca string, color string)");
 			stmt.executeUpdate("insert into ropa values('01', 'M', 35, 'Hombre', 'Nike', 'Gris')");
 			stmt.executeUpdate("insert into ropa values('02', 'M', 35, 'Hombre', 'Nike', 'Gris')");
 			stmt.executeUpdate("insert into ropa values('03', 'S', 20, 'Hombre', 'Nike', 'Gris')");
+			
 	
 			
 		} catch (Exception e) {

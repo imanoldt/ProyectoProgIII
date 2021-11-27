@@ -1,6 +1,7 @@
 package windows;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,19 +9,22 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import clss.BaseDeDatos;
-import clss.Talla;
 import clss.TipoSexo;
 
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JRadioButton;
+
 import javax.swing.JSeparator;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
+
 import java.awt.event.ActionEvent;
 
 public class VentanaRegistro extends JFrame {
@@ -33,27 +37,28 @@ public class VentanaRegistro extends JFrame {
 	private JTextField txtEmail;
 	private JLabel lblNewLabel_2;
 	private JTextField txtDni;
-	private JLabel lblRegistro;
-	private JLabel lblNewLabel_4;
 	private JLabel lblNewLabel_3;
-	private JRadioButton rdbtnNewRadioButton;
-	private JRadioButton rdbtnNewRadioButton_1;
 	private JLabel lblNewLabel_5;
 	private JTextField txtDireccion;
 	private JLabel lblNewLabel_6;
 	private JTextField txtCodigoPostal;
-	private JLabel lblNewLabel_7;
-	private JLabel lblNewLabel_8;
-	private JLabel lblNewLabel_9;
-	private JLabel lblNewLabel_10;
-	private JLabel lblNewLabel_11;
-	private JSeparator separator;
-	private JSeparator separator_1;
-	private JSeparator separator_2;
-	private JSeparator separator_3;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
+	private JComboBox<TipoSexo> comboBox;
+	private JLabel lblNewLabel_12;
+	private JTextField txtFecha;
+	private JSeparator separator;
+	private JLabel lblNewLabel_15;
+	private JLabel lblNewLabel_16;
+	private JSeparator separator_1;
+	private JSeparator separator_2;
+	private JSeparator separator_3;
+	private JButton btnNewButton_3;
+	private JLabel lblNewLabel_7;
+	private JTextField txtContraseña;
+	private JTextField txtusuario;
+	private JLabel lblNewLabel_4;
 
 	/**
 	 * Launch the application.
@@ -84,16 +89,8 @@ public class VentanaRegistro extends JFrame {
 		
 		panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(new GridLayout(9, 3, 0, 0));
-		
-		lblRegistro = new JLabel("Registro:");
-		panel.add(lblRegistro);
-		
-		lblNewLabel_7 = new JLabel("");
-		panel.add(lblNewLabel_7);
-		
-		lblNewLabel_4 = new JLabel("");
-		panel.add(lblNewLabel_4);
+		panel.setBackground(Color.YELLOW);
+		panel.setLayout(new GridLayout(0, 4, 0, 0));
 		
 		lblNewLabel = new JLabel("Nombre:");
 		panel.add(lblNewLabel);
@@ -102,9 +99,6 @@ public class VentanaRegistro extends JFrame {
 		panel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
-		lblNewLabel_8 = new JLabel("");
-		panel.add(lblNewLabel_8);
-		
 		lblNewLabel_1 = new JLabel("Email:");
 		panel.add(lblNewLabel_1);
 		
@@ -112,27 +106,20 @@ public class VentanaRegistro extends JFrame {
 		panel.add(txtEmail);
 		txtEmail.setColumns(10);
 		
-		lblNewLabel_9 = new JLabel("");
-		panel.add(lblNewLabel_9);
-		
-		lblNewLabel_2 = new JLabel("DNI:");
+		lblNewLabel_2 = new JLabel("DNI (sin letra):");
 		panel.add(lblNewLabel_2);
 		
 		txtDni = new JTextField();
 		panel.add(txtDni);
 		txtDni.setColumns(10);
 		
-		lblNewLabel_10 = new JLabel("");
-		panel.add(lblNewLabel_10);
-		
 		lblNewLabel_3 = new JLabel("Sexo");
 		panel.add(lblNewLabel_3);
 		
-		rdbtnNewRadioButton = new JRadioButton("Hombre");
-		panel.add(rdbtnNewRadioButton);
+		panel.add(lblNewLabel_3);
 		
-		rdbtnNewRadioButton_1 = new JRadioButton("Mujer");
-		panel.add(rdbtnNewRadioButton_1);
+		comboBox = new JComboBox<TipoSexo>();
+		panel.add(comboBox);
 		
 		lblNewLabel_5 = new JLabel("Direccion:");
 		panel.add(lblNewLabel_5);
@@ -141,9 +128,6 @@ public class VentanaRegistro extends JFrame {
 		panel.add(txtDireccion);
 		txtDireccion.setColumns(10);
 		
-		lblNewLabel_11 = new JLabel("");
-		panel.add(lblNewLabel_11);
-		
 		lblNewLabel_6 = new JLabel("Codigo Postal:");
 		panel.add(lblNewLabel_6);
 		
@@ -151,14 +135,44 @@ public class VentanaRegistro extends JFrame {
 		panel.add(txtCodigoPostal);
 		txtCodigoPostal.setColumns(10);
 		
+		lblNewLabel_15 = new JLabel("Usuario: ");
+		panel.add(lblNewLabel_15);
+		
+		txtusuario = new JTextField();
+		panel.add(txtusuario);
+		txtusuario.setColumns(10);
+		
+		lblNewLabel_12 = new JLabel("Fecha_nac (DD/MM/AAAA):");
+		panel.add(lblNewLabel_12);
+		
+		txtFecha = new JTextField();
+		panel.add(txtFecha);
+		txtFecha.setColumns(10);
+		
+		lblNewLabel_16 = new JLabel("Contraseña:");
+		panel.add(lblNewLabel_16);
+		
+		txtContraseña = new JTextField();
+		panel.add(txtContraseña);
+		txtContraseña.setColumns(10);
+		
+		lblNewLabel_7 = new JLabel("");
+		panel.add(lblNewLabel_7);
+		for (TipoSexo ts : TipoSexo.values()) {
+			comboBox.addItem(ts);
+		}
+		
+		lblNewLabel_4 = new JLabel("");
+		panel.add(lblNewLabel_4);
+		
+		separator_2 = new JSeparator();
+		panel.add(separator_2);
+		
 		separator = new JSeparator();
 		panel.add(separator);
 		
 		separator_1 = new JSeparator();
 		panel.add(separator_1);
-		
-		separator_2 = new JSeparator();
-		panel.add(separator_2);
 		
 		separator_3 = new JSeparator();
 		panel.add(separator_3);
@@ -186,11 +200,47 @@ public class VentanaRegistro extends JFrame {
 		
 		panel.add(btnNewButton);
 		
+			
+				
+				btnNewButton.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						String nombre = txtNombre.getText();
+						String email = txtEmail.getText();
+						int dni = Integer.parseInt(txtDni.getText());
+						TipoSexo sexo = (TipoSexo) comboBox.getSelectedItem();
+						String direccion = txtDireccion.getText();
+						int codigoPostal = Integer.parseInt(txtCodigoPostal.getText());
+						String fechanac = txtFecha.getText();
+						String usuario = txtusuario.getText();
+						String contraseña = txtContraseña.getText();
+						
+					//	JOptionPane.showMessageDialog(null, "La contraseña es diferente", "Error", JOptionPane.ERROR_MESSAGE);
+						
+						
+					
+						Connection con = BaseDeDatos.initBaseDatos("Clientes.db");
+						BaseDeDatos.insertarCliente(con, nombre, email, dni, direccion , codigoPostal,fechanac, sexo, usuario, contraseña);
+						BaseDeDatos.closeBD(con);
+					}
+				});
+		
 		btnNewButton_1 = new JButton("Volver");
 		panel.add(btnNewButton_1);
 		
 		btnNewButton_2 = new JButton("Cerrar");
 		panel.add(btnNewButton_2);
+		
+		btnNewButton_3 = new JButton("Borrar");
+		panel.add(btnNewButton_3);
+		btnNewButton_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+				dispose();
+			}
+	});
 		
 		btnNewButton_1.addActionListener(new ActionListener() {
 			
@@ -201,17 +251,9 @@ public class VentanaRegistro extends JFrame {
 				setVisible(false);
 			}
 		});
-		btnNewButton_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
-				dispose();
-			}
-	});
-		
-		
-		
-	
 	}
-
 }
+				
+
+
+
