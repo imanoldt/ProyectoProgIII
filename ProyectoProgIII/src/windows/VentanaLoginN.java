@@ -22,6 +22,7 @@ import java.awt.Dimension;
 import javax.swing.SwingConstants;
 import java.awt.*;
 import java.awt.event.MouseMotionAdapter;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -106,12 +107,14 @@ public class VentanaLoginN extends JFrame {
 		btnIniciarSession = new JButton("Iniciar Sesion");
 
 		btnIniciarSession.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String usuario = txtUsuario.getText();
 
 				String contrasenya = passContraseya.getText();
+
+				
 				if (usuario.equals("admin") && contrasenya.equals("admin")) {
 					VentanaAdmin admin = new VentanaAdmin();
 					admin.setVisible(true);

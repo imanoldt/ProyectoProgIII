@@ -206,23 +206,25 @@ public class VentanaRegistro extends JFrame {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						String nombre = txtNombre.getText();
-						String email = txtEmail.getText();
-						int dni = Integer.parseInt(txtDni.getText());
-						TipoSexo sexo = (TipoSexo) comboBox.getSelectedItem();
-						String direccion = txtDireccion.getText();
-						int codigoPostal = Integer.parseInt(txtCodigoPostal.getText());
-						String fechanac = txtFecha.getText();
-						String usuario = txtusuario.getText();
-						String contraseña = txtContraseña.getText();
-						
-					//	JOptionPane.showMessageDialog(null, "La contraseña es diferente", "Error", JOptionPane.ERROR_MESSAGE);
-						
-						
-					
-						Connection con = BaseDeDatos.initBaseDatos("Clientes.db");
-						BaseDeDatos.insertarCliente(con, nombre, email, dni, direccion , codigoPostal,fechanac, sexo, usuario, contraseña);
-						BaseDeDatos.closeBD(con);
+						if (!txtNombre.getText().isEmpty() && txtDni.getText().isEmpty() && txtEmail.getText().isEmpty() && txtDireccion.getText().isEmpty() && txtCodigoPostal.getText().isEmpty() && txtFecha.getText().isEmpty() && txtusuario.getText().isEmpty() && txtusuario.getText().isEmpty() && txtContraseña.getText().isEmpty()) {
+							String nombre = txtNombre.getText();
+							String email = txtEmail.getText();
+							int dni = Integer.parseInt(txtDni.getText());
+							TipoSexo sexo = (TipoSexo) comboBox.getSelectedItem();
+							String direccion = txtDireccion.getText();
+							int codigoPostal = Integer.parseInt(txtCodigoPostal.getText());
+							String fechanac = txtFecha.getText();
+							String usuario = txtusuario.getText();
+							String contraseña = txtContraseña.getText();
+							
+							Connection con = BaseDeDatos.initBaseDatos("Clientes.db");
+							BaseDeDatos.insertarCliente(con, nombre, email, dni, direccion , codigoPostal,fechanac, sexo, usuario, contraseña);
+							BaseDeDatos.closeBD(con);
+							
+						} else {
+							JOptionPane.showMessageDialog( contentPane, "Debes rellenar todos campos" );
+						}
+			
 					}
 				});
 		
