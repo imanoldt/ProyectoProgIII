@@ -10,7 +10,10 @@ import java.awt.GridLayout;
 import net.miginfocom.swing.MigLayout;
 import paneles.PanelCamisetas;
 
+import clss.BaseDeDatos;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
@@ -22,6 +25,8 @@ import java.awt.Dimension;
 import javax.swing.SwingConstants;
 import java.awt.*;
 import java.awt.event.MouseMotionAdapter;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -113,35 +118,45 @@ public class VentanaLoginN extends JFrame {
 				String usuario = txtUsuario.getText();
 
 				String contrasenya = passContraseya.getText();
-
-				
-				if (usuario.equals("admin") && contrasenya.equals("admin")) {
-					VentanaAdmin admin = new VentanaAdmin();
-					admin.setVisible(true);
-					setVisible(false);
+		
+					try {
+						BaseDeDatos.con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
+						String sentSQL = "SELECT usuario, contraseña FROM clientes where usuario = '"+usuario+"' AND contraseña = '"+contrasenya+"' ";
+						BaseDeDatos.stmt = BaseDeDatos.con.createStatement();
+						BaseDeDatos.rs = BaseDeDatos.stmt.executeQuery(sentSQL);
+						
+						
+						if (BaseDeDatos.rs.next()) {
+	
+							if (usuario.equals("admin") && contrasenya.equals("admin")) {
+								setVisible(false);
+								VentanaAdmin admin = new VentanaAdmin();
+								admin.setVisible(true);
+							}else {
+								setVisible(false);
+								VentanaMain main = new VentanaMain();
+								main.setVisible(true);
+							}
+							
+							
+						} else {
+							JOptionPane.showMessageDialog( contentPane, "Usuario o contraseña incorrectos" );
+						}
+						
+						
+						
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+					
 
 				}
 
-			}
+			
 
 		});
 
-//		btnIniciarSession.addMouseMotionListener(new MouseMotionAdapter() {
-//			@Override
-//			public void mouseMoved(MouseEvent e) {
-//				for (int i = 0; i < 5; i++) {
-//					
-//					try {
-//						btnIniciarSession.setFont(new Font("Monaco", Font.PLAIN, i));
-//						Thread.sleep(4000);
-//					} catch (InterruptedException e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					}
-//				}
-//				
-//			}
-//		});
+
 		btnIniciarSession.setFont(new Font("Monaco", Font.PLAIN, 16));
 		btnIniciarSession.setPreferredSize(new Dimension(5000, 50));
 		pnlIzquierda.add(btnIniciarSession, "flowx,cell 0 8,alignx center,aligny center");
