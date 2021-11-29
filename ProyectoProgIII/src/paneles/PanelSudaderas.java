@@ -1,12 +1,13 @@
 package paneles;
 
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
 import java.awt.Dimension;
 
-import javax.swing.ImageIcon;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -15,8 +16,7 @@ import javax.swing.SwingConstants;
 
 public class PanelSudaderas extends JPanel {
 	
-	private JLabel lblNewLabel;
-	private JPanel pnlDerechaa;
+	
 	private JPanel pnlNorte;
 
 	public PanelSudaderas() {
@@ -25,16 +25,19 @@ public class PanelSudaderas extends JPanel {
 		setLayout(new BorderLayout());
 		pnlNorte = new JPanel();
 		pnlNorte.setPreferredSize(new Dimension(10, 40));
-		pnlNorte.setBackground(new Color(227, 48, 73));
+		pnlNorte.setBackground(Color.BLACK);
 		add(pnlNorte, BorderLayout.NORTH);
-		pnlNorte.setLayout(new BorderLayout(0, 0));
+		pnlNorte.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		
-		
-		
+
 		JLabel lblTitulo=new JLabel("Sudaderas", SwingConstants.CENTER);
 		lblTitulo.setFont(new Font("Monaco", Font.PLAIN, 16));
-		pnlNorte.add(lblTitulo,BorderLayout.CENTER);
+		lblTitulo.setForeground(Color.WHITE);
+		pnlNorte.add(lblTitulo);
+		
+
+	
+		
 		
 	
 	}

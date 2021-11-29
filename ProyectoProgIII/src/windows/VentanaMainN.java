@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.TreeMap;
 
 import javax.swing.JLabel;
@@ -18,15 +20,24 @@ import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
 
 import clss.Cliente;
+import paneles.PanelCamisetas;
+import paneles.PanelPantalones;
+import paneles.PanelSudaderas;
+import paneles.PanelZapatillas;
+import windows.VentanaMain.PanelInicio;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaMainN extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel pnlPrincipal;
 	private JPanel pnlNorte;
-	private JPanel pnlIzquierda;
+	public static JPanel pnlIzquierda;
 	private JPanel pnlDerecha;
 	private JLabel lblCamisetas;
 	private JLabel lblPantalones;
@@ -37,6 +48,7 @@ public class VentanaMainN extends JFrame {
 	private JPanel pnlDerechaAbajo;
 	private JButton btnCesta;
 	private JButton btnNewButton_1;
+	private JButton btnNewButton;
 
 	/**
 	 * Lanza JFrame
@@ -65,6 +77,7 @@ public class VentanaMainN extends JFrame {
 	 * Crea el JFrame
 	 */
 	public VentanaMainN() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 950, 600);
 		setLocationRelativeTo(null);
@@ -86,8 +99,11 @@ public class VentanaMainN extends JFrame {
 		pnlNorte.setLayout(new BorderLayout(0, 0));
 
 		lblNewLabel_1 = new JLabel("Bienvenido a OutFitShop");
+		lblNewLabel_1.setFont(new Font("Monaco", Font.PLAIN, 16));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		pnlNorte.add(lblNewLabel_1);
+		
+		
 
 		pnlIzquierda = new JPanel();
 		pnlIzquierda.setBackground(Color.DARK_GRAY);
@@ -132,15 +148,59 @@ public class VentanaMainN extends JFrame {
 		pnlDerecha = new JPanel();
 		pnlPrincipal.add(pnlDerecha, BorderLayout.CENTER);
 		pnlDerecha.setLayout(new BorderLayout(0, 0));
+		
 
-		pnlDerechaAbajo = new JPanel();
-		pnlDerecha.add(pnlDerechaAbajo, BorderLayout.SOUTH);
 
-		btnCesta = new JButton("Cesta");
-		pnlDerechaAbajo.add(btnCesta);
+//
+//		btnCesta = new JButton("Cesta");
+//		pnlDerechaAbajo.add(btnCesta);
+//
+//		btnNewButton_1 = new JButton("");
+//		pnlDerechaAbajo.add(btnNewButton_1);
+		
+		
+		lblCamisetas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				pnlDerecha.removeAll();
+				pnlDerecha.revalidate();
+				pnlDerecha.add(new PanelCamisetas(), BorderLayout.CENTER);
+				
+			}
+	});
 
-		btnNewButton_1 = new JButton("");
-		pnlDerechaAbajo.add(btnNewButton_1);
+		lblSudaderas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				pnlDerecha.removeAll();
+				pnlDerecha.revalidate();
+				pnlDerecha.add(new PanelSudaderas(), BorderLayout.CENTER);
+				
+			}
+	});
+
+		lblPantalones.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				pnlDerecha.removeAll();
+				pnlDerecha.revalidate();
+				pnlDerecha.add(new PanelPantalones(), BorderLayout.CENTER);
+				
+			}
+	});
+
+		lblZapatillas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				pnlDerecha.removeAll();
+				pnlDerecha.revalidate();
+				pnlDerecha.add(new PanelZapatillas(), BorderLayout.CENTER);
+				
+			}
+	});
+		
+		
+		
 	}
 
 }

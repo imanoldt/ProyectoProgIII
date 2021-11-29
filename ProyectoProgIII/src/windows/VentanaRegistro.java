@@ -206,7 +206,7 @@ public class VentanaRegistro extends JFrame {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						if (!txtNombre.getText().isEmpty() && txtDni.getText().isEmpty() && txtEmail.getText().isEmpty() && txtDireccion.getText().isEmpty() && txtCodigoPostal.getText().isEmpty() && txtFecha.getText().isEmpty() && txtusuario.getText().isEmpty() && txtusuario.getText().isEmpty() && txtContraseña.getText().isEmpty()) {
+						if (!txtNombre.getText().isEmpty() && !txtDni.getText().isEmpty() && !txtEmail.getText().isEmpty() && !txtDireccion.getText().isEmpty() && !txtCodigoPostal.getText().isEmpty() && !txtFecha.getText().isEmpty() && !txtusuario.getText().isEmpty() && !txtusuario.getText().isEmpty() && !txtContraseña.getText().isEmpty()) {
 							String nombre = txtNombre.getText();
 							String email = txtEmail.getText();
 							int dni = Integer.parseInt(txtDni.getText());
@@ -218,7 +218,7 @@ public class VentanaRegistro extends JFrame {
 							String contraseña = txtContraseña.getText();
 							
 							Connection con = BaseDeDatos.initBaseDatos("Clientes.db");
-							BaseDeDatos.insertarCliente(con, nombre, email, dni, direccion , codigoPostal,fechanac, sexo, usuario, contraseña);
+//							BaseDeDatos.insertarCliente(con, nombre, email, dni, direccion , codigoPostal,fechanac, sexo, usuario, contraseña);
 							BaseDeDatos.closeBD(con);
 							
 						} else {

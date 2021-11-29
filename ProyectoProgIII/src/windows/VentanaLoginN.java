@@ -27,6 +27,7 @@ import java.awt.*;
 import java.awt.event.MouseMotionAdapter;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -134,7 +135,7 @@ public class VentanaLoginN extends JFrame {
 								admin.setVisible(true);
 							}else {
 								setVisible(false);
-								VentanaMain main = new VentanaMain();
+								VentanaMainN main = new VentanaMainN();
 								main.setVisible(true);
 							}
 							
@@ -224,9 +225,16 @@ public class VentanaLoginN extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				VentanaRegistro registro = new VentanaRegistro();
-				registro.setVisible(true);
-				setVisible(false);
+				VentanaRegistroN registro;
+				try {
+					registro = new VentanaRegistroN();
+					registro.setVisible(true);
+					setVisible(false);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 	});
 		

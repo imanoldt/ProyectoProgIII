@@ -1,6 +1,7 @@
 package clss;
 
 import java.sql.*;
+import java.util.Date;
 import java.util.TreeMap;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -64,10 +65,10 @@ public static Connection con;
 	 * @author imanoldt
 	 */
 	
-	public static void insertarCliente(Connection con, String nombre, String email, int dni, String direccion,
-			int codigoPostal, String fecha_nac, TipoSexo sexo, String usuario, String contraseña) {
-		String sentSQL = "INSERT INTO clientes VALUES('" + nombre + "','" + email + "'," + dni + ",'" + direccion
-				+ "', '" + codigoPostal + "', '" + fecha_nac + "', '" + sexo + "', '" + usuario + "', '" + contraseña+ "')";
+	public static void insertarCliente(Connection con, String nombre, String email, String dni, String direccion,
+			int codigoPostal, Date fechanac, TipoSexo sexo, String usuario, String contraseña) {
+		String sentSQL = "INSERT INTO clientes VALUES('" + nombre + "','" + email + "','" + dni + "','" + direccion
+				+ "', '" + codigoPostal + "', '" + fechanac + "', '" + sexo + "', '" + usuario + "', '" + contraseña+ "')";
 		try {
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate(sentSQL);
@@ -124,7 +125,7 @@ public static Connection con;
 	}
 	
 	public static void crearTablas(Connection con) {
-		String sent1 = "create table clientes (nombre string, email string, dni string, direccion string, codigoPostal integer, fecha nacimiento string, sexo string, usuario string, contraseña string)";
+		String sent1 = "create table clientes (nombre string, email string, dni string, direccion string, codigoPostal integer, fecha nacimiento date, sexo string, usuario string, contraseña string)";
 		
 		
 		Statement st = null;
@@ -180,16 +181,30 @@ public static Connection con;
 	
 	public static void main(String[] args) {
 		try {
-			Connection connection = null;
-			connection = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
-			 stmt = connection.createStatement();
-		 
+			
+			BaseDeDatos.con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("insert into clientes values('admin','admin@admin.es', '79002845', 'Calle a', '1100/11/20', 'HOMBRE', 'admin', 'admin'))");
+			rs = stmt.executeQuery("insert into clientes values('admin', 'admin', 12345678, 'Calle a', 'Sat Nov 27 16:53:13 CET 2021' , 'HOMBRE', 'usuario', 'contraseña')");
+			rs = stmt.executeQuery(("INSERT INTO ropa VALUES(1, 'M', 35, 'Hombre', 'Nike', 'Gris')"));
+			
 			stmt.executeUpdate("drop table if exists clientes");
-			stmt.executeUpdate("create table clientes (nombre string, email string, dni integer, direccion string, codigoPostal integer, fecha_nac string, sexo string, usuario string, contraseña string)");
+
+			stmt.executeUpdate("create table clientes (nombre string, email string, dni string, direccion string, codigoPostal integer, fecha_nac date, sexo string, usuario string, contraseña string)");
+//			stmt.executeUpdate("insert into clientes ('admin','admin@admin.es', '79002845', 'Calle a', '1100/11/20', 'HOMBRE', 'admin', 'admin'))");
+
+	
+			
+			
+			
+//			((BaseDeDatos) stmt).insertarCliente(con, "nombre", "eml", "dni", "direccion" , 1222, 12-06-2000 , TipoSexo.HOMBRE, "usuario", "contraseña");
+				
+			
+			
+			
 			stmt.executeUpdate("create table ropa (codigo integer, talla string, precio integer, sexo string, marca string, color string)");
-			stmt.executeUpdate("insert into ropa values('01', 'M', 35, 'Hombre', 'Nike', 'Gris')");
-			stmt.executeUpdate("insert into ropa values('02', 'M', 35, 'Hombre', 'Nike', 'Gris')");
-			stmt.executeUpdate("insert into ropa values('03', 'S', 20, 'Hombre', 'Nike', 'Gris')");
+			stmt.executeUpdate("INSERT INTO ropa VALUES(1, 'M', 35, 'Hombre', 'Nike', 'Gris')");
+		
 			
 	
 			
