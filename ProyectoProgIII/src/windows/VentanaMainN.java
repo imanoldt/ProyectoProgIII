@@ -1,6 +1,7 @@
 package windows;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -22,8 +23,13 @@ import javax.swing.border.MatteBorder;
 import clss.Cliente;
 import paneles.PanelCamisetas;
 import paneles.PanelPantalones;
+
 import paneles.PanelSudaderas;
 import paneles.PanelZapatillas;
+import paneles.PnlCamisetas;
+import paneles.PnlPantalones;
+import paneles.PnlSudaderas;
+import paneles.PnlZapatillas;
 import windows.VentanaMain.PanelInicio;
 
 import javax.swing.ImageIcon;
@@ -49,6 +55,7 @@ public class VentanaMainN extends JFrame {
 	private JButton btnCesta;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton;
+	private JPanel panel;
 
 	/**
 	 * Lanza JFrame
@@ -145,9 +152,11 @@ public class VentanaMainN extends JFrame {
 		lblZapatillas.setOpaque(true);
 		pnlIzquierda.add(lblZapatillas);
 
-		pnlDerecha = new JPanel();
-		pnlPrincipal.add(pnlDerecha, BorderLayout.CENTER);
-		pnlDerecha.setLayout(new BorderLayout(0, 0));
+//		PanelPrincipalN panelDerechaN=new PanelPrincipalN();
+//		pnlPrincipal.add(panelDerechaN, BorderLayout.CENTER);
+		panel=new PnlCamisetas();
+		pnlPrincipal.add(panel, BorderLayout.CENTER);
+		
 		
 
 
@@ -159,12 +168,15 @@ public class VentanaMainN extends JFrame {
 //		pnlDerechaAbajo.add(btnNewButton_1);
 		
 		
+//EVENTOS________
+		
 		lblCamisetas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				pnlDerecha.removeAll();
-				pnlDerecha.revalidate();
-				pnlDerecha.add(new PanelCamisetas(), BorderLayout.CENTER);
+				
+				panel=new PnlCamisetas();
+				pnlDerecha.add(panel);
+			
 				
 			}
 	});
@@ -172,9 +184,9 @@ public class VentanaMainN extends JFrame {
 		lblSudaderas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				pnlDerecha.removeAll();
-				pnlDerecha.revalidate();
-				pnlDerecha.add(new PanelSudaderas(), BorderLayout.CENTER);
+				
+				panel=new PnlSudaderas();
+				pnlDerecha.add(panel);
 				
 			}
 	});
@@ -182,9 +194,9 @@ public class VentanaMainN extends JFrame {
 		lblPantalones.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				pnlDerecha.removeAll();
-				pnlDerecha.revalidate();
-				pnlDerecha.add(new PanelPantalones(), BorderLayout.CENTER);
+				
+				panel=new PnlPantalones();
+				pnlDerecha.add(panel);
 				
 			}
 	});
@@ -192,15 +204,29 @@ public class VentanaMainN extends JFrame {
 		lblZapatillas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				pnlDerecha.removeAll();
-				pnlDerecha.revalidate();
-				pnlDerecha.add(new PanelZapatillas(), BorderLayout.CENTER);
+				
+				panel=new PnlZapatillas();
+				pnlDerecha.add(panel);
 				
 			}
 	});
+
+		
+		
+
+		
+	
+
+
+		
+		
 		
 		
 		
 	}
+	
+	//METODOS_______
+	
+
 
 }
