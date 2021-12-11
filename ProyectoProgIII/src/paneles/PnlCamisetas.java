@@ -1,7 +1,7 @@
 package paneles;
 
 import javax.swing.JPanel;
-import javax.swing.JLabel;
+
 
 import java.awt.Button;
 import java.awt.Color;
@@ -15,10 +15,13 @@ public class PnlCamisetas extends JPanel {
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		
+
+
 		anyardirArticulos(10);
 		
 
 	}
+	
 	private void anyardirArticulos(int number) {
 		for (int i = 0; i < number; i++) {
 			add(getCuadroArticulo("#Camisetas " + i));

@@ -1,6 +1,6 @@
 package clss;
 
-public abstract class Ropa {
+public abstract class Articulo {
 	
 	private int codigo;
 	private int precio;
@@ -9,7 +9,7 @@ public abstract class Ropa {
 	private String color;
 
 
-	public Ropa(int codigo, int precio, TipoSexo sexo, String marca, String color) {
+	public Articulo(int codigo, int precio, TipoSexo sexo, String marca, String color) {
 		super();
 		this.codigo = codigo;
 		
@@ -19,7 +19,7 @@ public abstract class Ropa {
 		this.color = color;
 	}
 	
-	public Ropa() {
+	public Articulo() {
 		super();
 		this.codigo = 0;
 		this.precio = 0;

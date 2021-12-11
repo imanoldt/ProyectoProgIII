@@ -2,59 +2,44 @@ package clss;
 
 import java.util.ArrayList;
 
-public class Pantalon extends Ropa{
+public class Pantalon extends Articulo{
 
 	private Talla talla;
-	private boolean rotos;
-	private ArrayList<String> tejidos = new ArrayList<String>();
+	private TipoPantalon tipo;
 	
-
-	public Pantalon(int codigo, int precio, TipoSexo sexo, String marca, String color, Talla talla, boolean rotos,
-			ArrayList<String> tejidos) {
+	public Pantalon(int codigo, int precio, TipoSexo sexo, String marca, String color, Talla talla, TipoPantalon tipo) {
 		super(codigo, precio, sexo, marca, color);
 		this.talla = talla;
-		this.rotos = rotos;
-		this.tejidos = tejidos;
+		this.tipo = tipo;
 	}
-
 	public Pantalon() {
 		super();
-		this.talla = Talla.M;
-		this.rotos = false;
-		this.tejidos = null;
-	}
 
+	}
 	public Talla getTalla() {
 		return talla;
 	}
-
 	public void setTalla(Talla talla) {
 		this.talla = talla;
 	}
-
-	public boolean isRotos() {
-		return rotos;
+	public TipoPantalon getTipo() {
+		return tipo;
 	}
-
-	public void setRotos(boolean rotos) {
-		this.rotos = rotos;
+	public void setTipo(TipoPantalon tipo) {
+		this.tipo = tipo;
 	}
-
-	public ArrayList<String> getTejidos() {
-		return tejidos;
-	}
-
-	public void setTejidos(ArrayList<String> tejidos) {
-		this.tejidos = tejidos;
-	}
-
 	@Override
 	public String toString() {
-		return "Pantalon [talla=" + talla + ", rotos=" + rotos + ", tejidos=" + tejidos + ", getNombre()=" + getCodigo()
-				+ ", getPrecio()=" + getPrecio() + ", getSexo()=" + getSexo() + ", getMarca()=" + getMarca()
-				+ ", getColor()=" + getColor() + ", toString()=" + super.toString() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + "]";
+		return "Pantalon [talla=" + talla + ", tipo=" + tipo + "]";
 	}
+	
+	
+	
+	
 
+
+	
+
+	
 	
 }	

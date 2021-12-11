@@ -47,7 +47,7 @@ public class VentanaAdmin extends JFrame{
 		this.setTitle("Administrador");
 //		this.setResizable(false);
 		
-		this.setSize(1000, 500);
+		this.setSize(1240, 625);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		

@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -44,18 +46,17 @@ public class VentanaMainN extends JFrame {
 	private JPanel pnlPrincipal;
 	private JPanel pnlNorte;
 	public static JPanel pnlIzquierda;
-	private JPanel pnlDerecha;
+
 	private JLabel lblCamisetas;
 	private JLabel lblPantalones;
 	private JLabel lblZapatillas;
 	private JLabel lblSudaderas;
 	private JLabel lblNewLabel_1;
 	public static TreeMap<String, Cliente> tmCliente = new TreeMap<>();
-	private JPanel pnlDerechaAbajo;
-	private JButton btnCesta;
-	private JButton btnNewButton_1;
-	private JButton btnNewButton;
+
 	private JPanel panel;
+	private JPanel pnlPrincipalDerecha;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Lanza JFrame
@@ -66,7 +67,7 @@ public class VentanaMainN extends JFrame {
 				try {
 
 					VentanaMainN frame = new VentanaMainN();
-				frame.setVisible(true);
+					frame.setVisible(true);
 //					if(login.getTfUsuario().getText()=="admin"){
 //						VentanaMain frame = new VentanaMain();
 //						frame.setVisible(true);
@@ -84,7 +85,7 @@ public class VentanaMainN extends JFrame {
 	 * Crea el JFrame
 	 */
 	public VentanaMainN() {
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 950, 600);
 		setLocationRelativeTo(null);
@@ -109,8 +110,6 @@ public class VentanaMainN extends JFrame {
 		lblNewLabel_1.setFont(new Font("Monaco", Font.PLAIN, 16));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		pnlNorte.add(lblNewLabel_1);
-		
-		
 
 		pnlIzquierda = new JPanel();
 		pnlIzquierda.setBackground(Color.DARK_GRAY);
@@ -152,81 +151,64 @@ public class VentanaMainN extends JFrame {
 		lblZapatillas.setOpaque(true);
 		pnlIzquierda.add(lblZapatillas);
 
-//		PanelPrincipalN panelDerechaN=new PanelPrincipalN();
-//		pnlPrincipal.add(panelDerechaN, BorderLayout.CENTER);
-		panel=new PnlCamisetas();
-		pnlPrincipal.add(panel, BorderLayout.CENTER);
-		
-		
+		pnlPrincipalDerecha = new JPanel();
+		pnlPrincipalDerecha.setBackground(Color.RED);
 
+		pnlPrincipal.add(pnlPrincipalDerecha, BorderLayout.CENTER);
+		pnlPrincipalDerecha.setLayout(new GridLayout(0, 4, 0, 0));
 
-//
-//		btnCesta = new JButton("Cesta");
-//		pnlDerechaAbajo.add(btnCesta);
-//
-//		btnNewButton_1 = new JButton("");
-//		pnlDerechaAbajo.add(btnNewButton_1);
-		
-		
+		// scrollPane = new JScrollPane();
+		// pnlPrincipalDerecha.add(scrollPane);
+
 //EVENTOS________
-		
+
 		lblCamisetas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				panel=new PnlCamisetas();
-				pnlDerecha.add(panel);
-			
-				
+				pnlPrincipalDerecha.removeAll();
+				panel = new PnlCamisetas();
+				pnlPrincipalDerecha.add(panel);
+				pnlPrincipalDerecha.updateUI();
+
 			}
-	});
+		});
 
 		lblSudaderas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				panel=new PnlSudaderas();
-				pnlDerecha.add(panel);
-				
+				pnlPrincipalDerecha.removeAll();
+				panel = new PnlSudaderas();
+				pnlPrincipalDerecha.add(panel);
+				pnlPrincipalDerecha.updateUI();
+
 			}
-	});
+		});
 
 		lblPantalones.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				panel=new PnlPantalones();
-				pnlDerecha.add(panel);
-				
+
+				pnlPrincipalDerecha.removeAll();
+				panel = new PnlPantalones();
+				pnlPrincipalDerecha.add(panel);
+				pnlPrincipalDerecha.updateUI();
+
 			}
-	});
+		});
 
 		lblZapatillas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				panel=new PnlZapatillas();
-				pnlDerecha.add(panel);
-				
+				pnlPrincipalDerecha.removeAll();
+				panel = new PnlZapatillas();
+				pnlPrincipalDerecha.add(panel);
+				pnlPrincipalDerecha.updateUI();
+
 			}
-	});
+		});
 
-		
-		
-
-		
-	
-
-
-		
-		
-		
-		
-		
 	}
-	
-	//METODOS_______
-	
 
+	// METODOS_______
 
 }

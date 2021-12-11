@@ -38,13 +38,12 @@ import java.awt.event.MouseEvent;
 public class VentanaLoginN extends JFrame {
 
 	private JPanel contentPane, pnlPrincipal, pnlIzquierda, pnlDerechaa;
-
-	private JLabel lblIniciarSesion, lblNewLabel_1, lblOutfitshop, lblCopy, lblUsuario, lblIconoUsu, lblContraseya;
-
+	private JLabel lblIniciarSesion, lblIconoAplicacion, lblOutfitshop, lblCopyright, lblUsuario, lblIconoUsu, lblContraseya,lblRegistrate;
 	private JTextField txtUsuario;
 	private JPasswordField passContraseya;
-	private JButton btnIniciarSession, btnRegistrarse, btnSalir;
-	private JLabel lblRegistrate;
+	private JButton btnIniciarSession, btnRegistrarse, btnSalir,btnVisualizar,btnOcultar;
+
+
 
 	/**
 	 * Launch the application.
@@ -108,55 +107,49 @@ public class VentanaLoginN extends JFrame {
 		pnlIzquierda.add(lblContraseya, "cell 0 5,alignx left,aligny center");
 
 		passContraseya = new JPasswordField();
-		pnlIzquierda.add(passContraseya, "cell 0 6,growx");
+		passContraseya.setEchoChar('*');
+		pnlIzquierda.add(passContraseya, "flowx,cell 0 6,growx");
 
 		btnIniciarSession = new JButton("Iniciar Sesion");
 
 		btnIniciarSession.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String usuario = txtUsuario.getText();
 
 				String contrasenya = passContraseya.getText();
-		
-					try {
-						BaseDeDatos.con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
-						String sentSQL = "SELECT usuario, contraseña FROM clientes where usuario = '"+usuario+"' AND contraseña = '"+contrasenya+"' ";
-						BaseDeDatos.stmt = BaseDeDatos.con.createStatement();
-						BaseDeDatos.rs = BaseDeDatos.stmt.executeQuery(sentSQL);
-						
-						
-						if (BaseDeDatos.rs.next()) {
-	
-							if (usuario.equals("admin") && contrasenya.equals("admin")) {
-								setVisible(false);
-								VentanaAdmin admin = new VentanaAdmin();
-								admin.setVisible(true);
-							}else {
-								setVisible(false);
-								VentanaMainN main = new VentanaMainN();
-								main.setVisible(true);
-							}
-							
-							
-						} else {
-							JOptionPane.showMessageDialog( contentPane, "Usuario o contraseña incorrectos" );
-						}
-						
-						
-						
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-					
 
+				try {
+					BaseDeDatos.con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
+					String sentSQL = "SELECT usuario, contraseña FROM clientes where usuario = '" + usuario
+							+ "' AND contraseña = '" + contrasenya + "' ";
+					BaseDeDatos.stmt = BaseDeDatos.con.createStatement();
+					BaseDeDatos.rs = BaseDeDatos.stmt.executeQuery(sentSQL);
+
+					if (BaseDeDatos.rs.next()) {
+
+						if (usuario.equals("admin") && contrasenya.equals("admin")) {
+							setVisible(false);
+							VentanaAdmin admin = new VentanaAdmin();
+							admin.setVisible(true);
+						} else {
+							setVisible(false);
+							VentanaMainN main = new VentanaMainN();
+							main.setVisible(true);
+						}
+
+					} else {
+						JOptionPane.showMessageDialog(contentPane, "Usuario o contraseña incorrectos");
+					}
+
+				} catch (SQLException e1) {
+					e1.printStackTrace();
 				}
 
-			
+			}
 
 		});
-
 
 		btnIniciarSession.setFont(new Font("Monaco", Font.PLAIN, 16));
 		btnIniciarSession.setPreferredSize(new Dimension(5000, 50));
@@ -188,24 +181,34 @@ public class VentanaLoginN extends JFrame {
 		pnlDerechaa.setBorder(new MatteBorder(0, 3, 0, 0, (Color) new Color(0, 0, 0)));
 		pnlDerechaa.setBackground(new Color(227, 48, 73));
 		pnlPrincipal.add(pnlDerechaa);
-		pnlDerechaa.setLayout(
-				new MigLayout("", "[][][][][][][][12.00][554.00][][][][][][][][]", "[][][][][][][][][35.00][472.00][][][][][][][][]"));
-		
-				lblOutfitshop = new JLabel("OutFitShop");
-				lblOutfitshop.setHorizontalAlignment(SwingConstants.CENTER);
-				pnlDerechaa.add(lblOutfitshop, "cell 8 1,grow");
-				lblOutfitshop.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(0, 0, 0)));
-				lblOutfitshop.setFont(new Font("Monaco", Font.PLAIN, 29));
-		
-				lblNewLabel_1 = new JLabel("");
-				lblNewLabel_1.setIcon(new ImageIcon(VentanaLoginN.class.getResource("/img/IconoAplicacion.png")));
-				pnlDerechaa.add(lblNewLabel_1, "cell 8 9,alignx center,aligny center");
+		pnlDerechaa.setLayout(new MigLayout("", "[][][][][][][][12.00][554.00][][][][][][][][]",
+				"[][][][][][][][][35.00][472.00][][][][][][][][]"));
 
-		lblCopy = new JLabel("OutFitShop 2021 Copyright © Todos los derechos reservados - Política de privacidad");
-		lblCopy.setHorizontalAlignment(SwingConstants.CENTER);
-		pnlDerechaa.add(lblCopy, "cell 8 14,alignx center,aligny center");
+		lblOutfitshop = new JLabel("OutFitShop");
+		lblOutfitshop.setHorizontalAlignment(SwingConstants.CENTER);
+		pnlDerechaa.add(lblOutfitshop, "cell 8 1,grow");
+		lblOutfitshop.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(0, 0, 0)));
+		lblOutfitshop.setFont(new Font("Monaco", Font.PLAIN, 29));
 
-// Imagenes
+		lblIconoAplicacion = new JLabel("");
+		lblIconoAplicacion.setIcon(new ImageIcon(VentanaLoginN.class.getResource("/img/IconoAplicacion.png")));
+		pnlDerechaa.add(lblIconoAplicacion, "cell 8 9,alignx center,aligny center");
+
+		lblCopyright = new JLabel("OutFitShop 2021 Copyright © Todos los derechos reservados - Política de privacidad");
+		lblCopyright.setHorizontalAlignment(SwingConstants.CENTER);
+
+		pnlDerechaa.add(lblCopyright, "cell 8 14,alignx center,aligny center");
+		lblRegistrate = new JLabel("¡¡ Registrate que es gratis !!");
+		lblRegistrate.setFont(new Font("Montserrat", Font.PLAIN, 20));
+		pnlIzquierda.add(lblRegistrate, "cell 0 12,alignx center,aligny center");
+
+		btnVisualizar = new JButton("");
+		btnOcultar = new JButton("");
+	
+		pnlIzquierda.add(btnOcultar, "cell 0 6");
+		pnlIzquierda.add(btnVisualizar, "cell 0 6");
+
+// IMAGENES
 
 		// Imagen Salir boton login
 
@@ -216,11 +219,17 @@ public class VentanaLoginN extends JFrame {
 		ImageIcon imgIconEnc = new ImageIcon(getClass().getResource("/img/xEncendida.png"));
 		Image imgEscaladaEnc = imgIconEnc.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
 		btnSalir.setRolloverIcon(new ImageIcon(imgEscaladaEnc));
+
+		ImageIcon imgIconVis = new ImageIcon(getClass().getResource("/img/icnVisualizar.png"));
+		Image imgEscaladaVis = imgIconVis.getImage().getScaledInstance(23, 19, Image.SCALE_SMOOTH);
+		btnVisualizar.setIcon(new ImageIcon(imgEscaladaVis));
 		
-		lblRegistrate = new JLabel("¡¡ Registrate que es gratis !!");
-		lblRegistrate.setFont(new Font("Montserrat", Font.PLAIN, 20));
-		pnlIzquierda.add(lblRegistrate, "cell 0 12,alignx center,aligny center");
-		
+		ImageIcon imgIconOcu = new ImageIcon(getClass().getResource("/img/icnOcultar.png"));
+		Image imgEscaladaOcu = imgIconOcu.getImage().getScaledInstance(23, 19, Image.SCALE_SMOOTH);
+		btnOcultar.setIcon(new ImageIcon(imgEscaladaOcu));
+
+// EVENTOS
+
 		btnRegistrarse.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -234,26 +243,42 @@ public class VentanaLoginN extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 			}
-	});
-		
+		});
+
 		btnSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setVisible(false);
 				dispose();
 			}
-	});
-		
-		
-		//Hilos
-		Runnable r1 = new Runnable() {
+		});
+		btnVisualizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getSource() ==btnVisualizar)
+					passContraseya.setEchoChar((char)0);
+				
 			
+			}
+			
+		});
+		btnOcultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				passContraseya.setEchoChar('*');
+			}
+		});
+		
+
+//HILOS
+
+		Runnable r1 = new Runnable() {
+
 			@Override
 			public void run() {
-				while(true) {
-					lblRegistrate.setForeground(new Color (249, 194, 4));
+				while (true) {
+					lblRegistrate.setForeground(new Color(249, 194, 4));
 					try {
 						Thread.sleep(500);
 					} catch (InterruptedException e) {
@@ -267,14 +292,14 @@ public class VentanaLoginN extends JFrame {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
+
 				}
-				
-				
+
 			}
 		};
 		Thread t1 = new Thread(r1);
 		t1.start();
 
 	}
+
 }
