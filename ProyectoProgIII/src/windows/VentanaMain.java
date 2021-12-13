@@ -61,11 +61,7 @@ public class VentanaMain extends JFrame {
 					VentanaMain frame = new VentanaMain();
 
 					frame.setVisible(true);
-//					if(login.getTfUsuario().getText()=="admin"){
-//						VentanaMain frame = new VentanaMain();
-//						frame.setVisible(true);
-//						login.setVisible(false);
-//					}
+
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -73,6 +69,9 @@ public class VentanaMain extends JFrame {
 			}
 		});
 	}
+	
+
+	
 	
 
 	/**

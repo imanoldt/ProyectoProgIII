@@ -8,8 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import net.miginfocom.swing.MigLayout;
-import paneles.PanelCamisetas;
-
 import clss.BaseDeDatos;
 
 import javax.swing.JLabel;
@@ -28,11 +26,11 @@ import java.awt.event.MouseMotionAdapter;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.Vector;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JProgressBar;
 
 @SuppressWarnings("serial")
 public class VentanaLoginN extends JFrame {
@@ -42,6 +40,9 @@ public class VentanaLoginN extends JFrame {
 	private JTextField txtUsuario;
 	private JPasswordField passContraseya;
 	private JButton btnIniciarSession, btnRegistrarse, btnSalir,btnVisualizar,btnOcultar;
+	private JProgressBar progressBar;
+	private int num;
+	
 
 
 
@@ -69,6 +70,7 @@ public class VentanaLoginN extends JFrame {
 		setTitle("LogIn");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1470, 830);
+		this.setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -207,6 +209,14 @@ public class VentanaLoginN extends JFrame {
 	
 		pnlIzquierda.add(btnOcultar, "cell 0 6");
 		pnlIzquierda.add(btnVisualizar, "cell 0 6");
+		
+		
+		progressBar = new JProgressBar();
+		pnlIzquierda.add(progressBar, "cell 0 14,growx,aligny center");
+		progressBar.setVisible(true);
+		
+		
+		
 
 // IMAGENES
 
@@ -227,6 +237,11 @@ public class VentanaLoginN extends JFrame {
 		ImageIcon imgIconOcu = new ImageIcon(getClass().getResource("/img/icnOcultar.png"));
 		Image imgEscaladaOcu = imgIconOcu.getImage().getScaledInstance(23, 19, Image.SCALE_SMOOTH);
 		btnOcultar.setIcon(new ImageIcon(imgEscaladaOcu));
+		
+		
+		
+		
+		
 
 // EVENTOS
 
@@ -270,6 +285,11 @@ public class VentanaLoginN extends JFrame {
 			}
 		});
 		
+		
+		
+		
+		
+		
 
 //HILOS
 
@@ -299,7 +319,44 @@ public class VentanaLoginN extends JFrame {
 		};
 		Thread t1 = new Thread(r1);
 		t1.start();
+		
+		
+		
+		
+		
+		Runnable r2 =new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
+				 while (num < 2000) {
+					  progressBar.setValue(num);
+					  progressBar.repaint();
+					  
+					  try {
+					  Thread.sleep(50);
+					  } catch (InterruptedException e) { 
+					    }
+					  num += 95;
+					  }
+					  }
+				
+			};
+		Thread t2 = new Thread(r2);
+		t2.start();
 
 	}
+	public void CentrarJFrame(JFrame v){
+	     
+	      Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+	      int height = pantalla.height;
+	      int width = pantalla.width;
+	      v.setSize(width/2, height/2);		
+
+	      v.setLocationRelativeTo(null);		
+
+	  }
+	
 
 }

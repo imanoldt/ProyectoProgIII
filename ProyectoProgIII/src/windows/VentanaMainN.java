@@ -57,8 +57,6 @@ public class VentanaMainN extends JFrame {
 	private JPanel panel;
 	private JPanel pnlPrincipalDerecha;
 	private JScrollPane scrollPane;
-	private JPanel pnlPrincipalDerechaAbajo;
-	private JButton btnCesta;
 
 	/**
 	 * Lanza JFrame
@@ -157,13 +155,7 @@ public class VentanaMainN extends JFrame {
 		pnlPrincipalDerecha.setBackground(Color.YELLOW);
 
 		pnlPrincipal.add(pnlPrincipalDerecha, BorderLayout.CENTER);
-		pnlPrincipalDerecha.setLayout(new BorderLayout(0, 0));
-		
-		pnlPrincipalDerechaAbajo = new JPanel();
-		pnlPrincipalDerecha.add(pnlPrincipalDerechaAbajo, BorderLayout.SOUTH);
-		
-		btnCesta = new JButton("Cesta");
-		pnlPrincipalDerechaAbajo.add(btnCesta);
+		pnlPrincipalDerecha.setLayout(new GridLayout(0, 1, 0, 0));
 
 		// scrollPane = new JScrollPane();
 		// pnlPrincipalDerecha.add(scrollPane);

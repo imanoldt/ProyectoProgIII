@@ -47,65 +47,21 @@ import javax.swing.ImageIcon;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JSeparator;
-
+import java.awt.Cursor;
 
 public class VentanaRegistroN extends JFrame {
 
 	private JPanel contentPane, pnlSuperior, pnlCentral, pnlCentralIzq, pnlCentralDerecha;
-
 	private JLabel lblNombre, lblDni, lblEmail, lblDireccion, lblFNacimiento, lblCodigoPostal, lblSexo, lblAvatar,
-			lblRegistro, lblAvatarIcono;
-	private JTextField txtNombre, txtDni, txtEmail, txtDir, txtCodigoPostal;
-
+			lblRegistro, lblAvatarIcono, lblContraseña, lblUsuario, lblContraseña2;
+	private JTextField txtNombre, txtDni, txtEmail, txtDir, txtCodigoPostal, txtusuario;
 	private JDateChooser dChooser;
-
 	private JComboBox<TipoSexo> cbSexo;
-	private JButton btnRegistrarse, btnCerrar, btnSeleccionar;
-	private JLabel lblNewLabel;
-	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_3;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JLabel lblNewLabel_7;
-
-	private JTextField txtusuario;
-
-	private JLabel lblUsuario;
-
-	private JLabel lblContraseña;
-
-	private JPasswordField txtContraseña;
-	private JLabel lblNewLabel_8;
-	private JSeparator separator;
-	private JSeparator separator_1;
-	private JSeparator separator_2;
-	private JSeparator separator_3;
-	private JLabel lblNewLabel_4;
-	private JLabel lblNewLabel_5;
-
-	private JPasswordField txtContraseña2;
-
-	private JLabel lblContraseña2;
-	private JButton btnNewButton;
-
-	/**
-	 * Launch the application.
-	 */
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaRegistroN frame = new VentanaRegistroN();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JButton btnRegistrarse, btnSeleccionar, btnVolver;
+	private JLabel lblV1, lblV4, lbl3, lblV2;
+	private JPasswordField passContraseña, passContraseña2;
+	private JSeparator separator, separator_1, separator_2, separator_3;
+	private JButton btnCerrar;
 
 	/**
 	 * Create the frame.
@@ -113,6 +69,7 @@ public class VentanaRegistroN extends JFrame {
 	public VentanaRegistroN() throws ParseException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1087, 590);
+		this.setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -152,168 +109,132 @@ public class VentanaRegistroN extends JFrame {
 
 		txtNombre.setColumns(10);
 		pnlCentralIzq.add(txtNombre);
-		
-				lblDni = new JLabel("DNI:");
-				lblDni.setForeground(Color.WHITE);
-				lblDni.setFont(new Font("Monaco", Font.PLAIN, 14));
-				pnlCentralIzq.add(lblDni);
-		
-				txtDni = new JTextField();
-				txtDni.setColumns(10);
-				pnlCentralIzq.add(txtDni);
-		
-				lblEmail = new JLabel("Email:");
-				lblEmail.setForeground(Color.WHITE);
-				lblEmail.setFont(new Font("Monaco", Font.PLAIN, 14));
-				pnlCentralIzq.add(lblEmail);
-		
-				txtEmail = new JTextField();
-				txtEmail.setColumns(10);
-				pnlCentralIzq.add(txtEmail);
-		
-				lblCodigoPostal = new JLabel("Codigo Postal:");
-				lblCodigoPostal.setForeground(Color.WHITE);
-				lblCodigoPostal.setFont(new Font("Monaco", Font.PLAIN, 14));
-				pnlCentralIzq.add(lblCodigoPostal);
-		
-				txtCodigoPostal = new JTextField();
-				txtCodigoPostal.setColumns(10);
-				pnlCentralIzq.add(txtCodigoPostal);
-		
-				lblDireccion = new JLabel("Direccion: ");
-				lblDireccion.setForeground(Color.WHITE);
-				lblDireccion.setFont(new Font("Monaco", Font.PLAIN, 14));
-				pnlCentralIzq.add(lblDireccion);
-		
-				txtDir = new JTextField();
-				txtDir.setColumns(10);
-				pnlCentralIzq.add(txtDir);
-		
-				lblFNacimiento = new JLabel("Fecha de Nacimiento:");
-				lblFNacimiento.setForeground(Color.WHITE);
-				lblFNacimiento.setFont(new Font("Monaco", Font.PLAIN, 14));
-				pnlCentralIzq.add(lblFNacimiento);
-		
-				long millisSystem = System.currentTimeMillis();
-				Date currentDate = new Date(millisSystem);
-				Date fMax = currentDate;
-				dChooser = new JDateChooser();
-				dChooser.setMaxSelectableDate(fMax);
-				
-			
-				pnlCentralIzq.add(dChooser);
-						
-		
-				lblSexo = new JLabel("Sexo:");
-				lblSexo.setForeground(Color.WHITE);
-				lblSexo.setFont(new Font("Monaco", Font.PLAIN, 14));
-				pnlCentralIzq.add(lblSexo);
-		
-				cbSexo = new JComboBox<TipoSexo>();			
-				pnlCentralIzq.add(cbSexo);
-				for (TipoSexo ts : TipoSexo.values()) {
-					cbSexo.addItem(ts);
-				}
-		
-		lblNewLabel_1 = new JLabel("");
-		
-		pnlCentralIzq.add(lblNewLabel_1);
-		
-		lblNewLabel_5 = new JLabel("");
-		pnlCentralIzq.add(lblNewLabel_5);
-		
+
+		lblDni = new JLabel("DNI:");
+		lblDni.setForeground(Color.WHITE);
+		lblDni.setFont(new Font("Monaco", Font.PLAIN, 14));
+		pnlCentralIzq.add(lblDni);
+
+		txtDni = new JTextField();
+		txtDni.setColumns(10);
+		pnlCentralIzq.add(txtDni);
+
+		lblEmail = new JLabel("Email:");
+		lblEmail.setForeground(Color.WHITE);
+		lblEmail.setFont(new Font("Monaco", Font.PLAIN, 14));
+		pnlCentralIzq.add(lblEmail);
+
+		txtEmail = new JTextField();
+		txtEmail.setColumns(10);
+		pnlCentralIzq.add(txtEmail);
+
+		lblCodigoPostal = new JLabel("Codigo Postal:");
+		lblCodigoPostal.setForeground(Color.WHITE);
+		lblCodigoPostal.setFont(new Font("Monaco", Font.PLAIN, 14));
+		pnlCentralIzq.add(lblCodigoPostal);
+
+		txtCodigoPostal = new JTextField();
+		txtCodigoPostal.setColumns(10);
+		pnlCentralIzq.add(txtCodigoPostal);
+
+		lblDireccion = new JLabel("Direccion: ");
+		lblDireccion.setForeground(Color.WHITE);
+		lblDireccion.setFont(new Font("Monaco", Font.PLAIN, 14));
+		pnlCentralIzq.add(lblDireccion);
+
+		txtDir = new JTextField();
+		txtDir.setColumns(10);
+		pnlCentralIzq.add(txtDir);
+
+		lblFNacimiento = new JLabel("Fecha de Nacimiento:");
+		lblFNacimiento.setForeground(Color.WHITE);
+		lblFNacimiento.setFont(new Font("Monaco", Font.PLAIN, 14));
+		pnlCentralIzq.add(lblFNacimiento);
+
+		long millisSystem = System.currentTimeMillis();
+		Date currentDate = new Date(millisSystem);
+		Date fMax = currentDate;
+		dChooser = new JDateChooser();
+		dChooser.setMaxSelectableDate(fMax);
+
+		pnlCentralIzq.add(dChooser);
+
+		lblSexo = new JLabel("Sexo:");
+		lblSexo.setForeground(Color.WHITE);
+		lblSexo.setFont(new Font("Monaco", Font.PLAIN, 14));
+		pnlCentralIzq.add(lblSexo);
+
+		cbSexo = new JComboBox<TipoSexo>();
+		pnlCentralIzq.add(cbSexo);
+		for (TipoSexo ts : TipoSexo.values()) {
+			cbSexo.addItem(ts);
+		}
+
+		lblV1 = new JLabel("");
+		lblV1.setEnabled(false);
+
+		pnlCentralIzq.add(lblV1);
+
+		lblV2 = new JLabel("");
+		lblV2.setEnabled(false);
+		pnlCentralIzq.add(lblV2);
+
 		lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setForeground(Color.WHITE);
 		lblUsuario.setFont(new Font("Monaco", Font.PLAIN, 14));
 		pnlCentralIzq.add(lblUsuario);
-		
+
 		txtusuario = new JTextField();
 		pnlCentralIzq.add(txtusuario);
 		txtusuario.setColumns(10);
-		
-		lblNewLabel_2 = new JLabel("");
-		pnlCentralIzq.add(lblNewLabel_2);
-		
-		lblNewLabel_8 = new JLabel("");
-		pnlCentralIzq.add(lblNewLabel_8);
-				
-				lblContraseña = new JLabel("Contraseña:");
-				lblContraseña.setFont(new Font("Monaco", Font.PLAIN, 14));
-				lblContraseña.setForeground(Color.WHITE);
-				pnlCentralIzq.add(lblContraseña);
-				
-				txtContraseña = new JPasswordField();
-				pnlCentralIzq.add(txtContraseña);
-				txtContraseña.setColumns(10);
-				
-				lblContraseña2 = new JLabel("Repetir Contraseña:");
-				lblContraseña2.setFont(new Font("Monaco", Font.PLAIN, 14));
-				lblContraseña2.setForeground(Color.WHITE);
-				pnlCentralIzq.add(lblContraseña2);
-				
-				txtContraseña2 = new JPasswordField();
-				pnlCentralIzq.add(txtContraseña2);
-				txtContraseña2.setColumns(10);
-				
-				separator = new JSeparator();
-				pnlCentralIzq.add(separator);
-				
-				separator_1 = new JSeparator();
-				pnlCentralIzq.add(separator_1);
-				
-				separator_2 = new JSeparator();
-				pnlCentralIzq.add(separator_2);
-				
-				separator_3 = new JSeparator();
-				pnlCentralIzq.add(separator_3);
-				
-						lblAvatar = new JLabel("Avatar:");
-						lblAvatar.setForeground(Color.WHITE);
-						lblAvatar.setFont(new Font("Monaco", Font.PLAIN, 14));
-						pnlCentralIzq.add(lblAvatar);
-		
-				btnSeleccionar = new JButton("Buscar");
-				
-						pnlCentralIzq.add(btnSeleccionar);
-						
-								// EVENTOS
-						
-								btnSeleccionar.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent e) {
-						
-										JFileChooser fc = new JFileChooser("src/img");
-										FileFilter filter = new FileNameExtensionFilter("PNG file", new String[] { "png" });
-										fc.setFileFilter(filter);
-										int seleccion = fc.showOpenDialog(null);
-										if (seleccion == JFileChooser.APPROVE_OPTION) {
-											File fSeleccionado = fc.getSelectedFile();
-											int input = JOptionPane.showConfirmDialog(null, "¿Seguro que este es el archivo correcto?",
-													"Confirmacion", JOptionPane.YES_NO_CANCEL_OPTION);
-											if (input == JOptionPane.YES_OPTION) {
-												String rutaFoto = fSeleccionado.getAbsolutePath();
-												System.out.println(rutaFoto);
-												ImageIcon imgIcon = new ImageIcon(rutaFoto);
-												Image imgEscalada = imgIcon.getImage().getScaledInstance(199, 199, Image.SCALE_SMOOTH);
-												ImageIcon im = new ImageIcon(imgEscalada);
-												im.setDescription(rutaFoto);
-												lblAvatarIcono.setIcon(im);
-												// ImageIcon imgIcon = new ImageIcon(rutaFoto);
-												// lblAvatarIcono.setIcon(imgIcon);
-						
-											} else {
-						
-											}
-						
-										} else {
-											JOptionPane.showMessageDialog(fc, "No se ha encontrado el archivo");
-										}
-						
-									}
-						
-								});
-		
-		lblNewLabel_7 = new JLabel("");
-		pnlCentralIzq.add(lblNewLabel_7);
+
+		lbl3 = new JLabel("");
+		lbl3.setEnabled(false);
+		pnlCentralIzq.add(lbl3);
+
+		lblV4 = new JLabel("");
+		lblV4.setEnabled(false);
+		pnlCentralIzq.add(lblV4);
+
+		lblContraseña = new JLabel("Contraseña:");
+		lblContraseña.setFont(new Font("Monaco", Font.PLAIN, 14));
+		lblContraseña.setForeground(Color.WHITE);
+		pnlCentralIzq.add(lblContraseña);
+
+		passContraseña = new JPasswordField();
+		pnlCentralIzq.add(passContraseña);
+		passContraseña.setColumns(10);
+
+		lblContraseña2 = new JLabel("Repetir Contraseña:");
+		lblContraseña2.setFont(new Font("Monaco", Font.PLAIN, 14));
+		lblContraseña2.setForeground(Color.WHITE);
+		pnlCentralIzq.add(lblContraseña2);
+
+		passContraseña2 = new JPasswordField();
+		pnlCentralIzq.add(passContraseña2);
+		passContraseña2.setColumns(10);
+
+		separator = new JSeparator();
+		pnlCentralIzq.add(separator);
+
+		separator_1 = new JSeparator();
+		pnlCentralIzq.add(separator_1);
+
+		separator_2 = new JSeparator();
+		pnlCentralIzq.add(separator_2);
+
+		separator_3 = new JSeparator();
+		pnlCentralIzq.add(separator_3);
+
+		lblAvatar = new JLabel("Avatar:");
+		lblAvatar.setForeground(Color.WHITE);
+		lblAvatar.setFont(new Font("Monaco", Font.PLAIN, 14));
+		pnlCentralIzq.add(lblAvatar);
+
+		btnSeleccionar = new JButton("Buscar");
+		btnSeleccionar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+		pnlCentralIzq.add(btnSeleccionar);
 
 		pnlCentralDerecha = new JPanel();
 		pnlCentralDerecha.setBackground(new Color(227, 48, 73));
@@ -325,99 +246,153 @@ public class VentanaRegistroN extends JFrame {
 		lblAvatarIcono.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		lblAvatarIcono.setHorizontalAlignment(SwingConstants.CENTER);
 		pnlCentralDerecha.add(lblAvatarIcono, "cell 0 1,grow");
+
+		btnVolver = new JButton("Volver");
+		btnVolver.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+		pnlCentralDerecha.add(btnVolver, "cell 0 2, grow");
+
+		btnRegistrarse = new JButton("Registrarme");
+		btnRegistrarse.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+		pnlCentralDerecha.add(btnRegistrarse, "cell 0 3,grow");
+
+		btnCerrar = new JButton("Abandonar");
+	
+		pnlCentralDerecha.add(btnCerrar, "cell 0 4,growx,aligny center");
+
+// EVENTOS
 		
-		btnNewButton = new JButton("Volver");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				System.out.println("HOLAAAAA");
+				int opcion = JOptionPane.showConfirmDialog(null, "Seguro que desea salir OutFitShop?",
+						"Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if (opcion == 0) {
+					setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
+
+			}
+		});
+
+		btnSeleccionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				JFileChooser fc = new JFileChooser("src/img");
+				FileFilter filter = new FileNameExtensionFilter("PNG file", new String[] { "png" });
+				fc.setFileFilter(filter);
+				int seleccion = fc.showOpenDialog(null);
+				if (seleccion == JFileChooser.APPROVE_OPTION) {
+					File fSeleccionado = fc.getSelectedFile();
+					int input = JOptionPane.showConfirmDialog(null, "¿Seguro que este es el archivo correcto?",
+							"Confirmacion", JOptionPane.YES_NO_CANCEL_OPTION);
+					if (input == JOptionPane.YES_OPTION) {
+						String rutaFoto = fSeleccionado.getAbsolutePath();
+						System.out.println(rutaFoto);
+						ImageIcon imgIcon = new ImageIcon(rutaFoto);
+						Image imgEscalada = imgIcon.getImage().getScaledInstance(199, 199, Image.SCALE_SMOOTH);
+						ImageIcon im = new ImageIcon(imgEscalada);
+						im.setDescription(rutaFoto);
+						lblAvatarIcono.setIcon(im);
+						// ImageIcon imgIcon = new ImageIcon(rutaFoto);
+						// lblAvatarIcono.setIcon(imgIcon);
+
+					} else {
+
+					}
+
+				} else {
+					JOptionPane.showMessageDialog(fc, "No se ha encontrado el archivo");
+				}
+
+			}
+
+		});
+
+		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaLoginN registro = new VentanaLoginN();
 				registro.setVisible(true);
 				setVisible(false);
 			}
 		});
-	
-		pnlCentralDerecha.add(btnNewButton, "cell 0 2, grow");
-
-		btnRegistrarse = new JButton("Registrarme");
-
-		pnlCentralDerecha.add(btnRegistrarse, "cell 0 3,grow");
-
-		btnCerrar = new JButton("Cerrar");
-		pnlCentralDerecha.add(btnCerrar, "cell 0 4,growx");
-		btnCerrar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
-				dispose();
-			}
-	});
 
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				if (!txtNombre.getText().isEmpty() && !txtDni.getText().isEmpty() && !txtEmail.getText().isEmpty() && !txtDir.getText().isEmpty() && !txtCodigoPostal.getText().isEmpty() && !txtusuario.getText().isEmpty() && !txtContraseña.getText().isEmpty()) {
-					
-					Pattern pat = Pattern.compile("[0-9]{7,8}[A-Z]");
-					String dni = txtDni.getText();
-					Matcher mat = pat.matcher(dni);
-					boolean cumplePatron = mat.matches();
 
-					if (cumplePatron == true) {
-						
-						if ( txtContraseña.getText().equals( txtContraseña2.getText())) {
-									try {
-										BaseDeDatos.con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
-										String com = "";
-										com = "select * from clientes where usuario = '" + txtusuario.getText() + "'";
-										BaseDeDatos.stmt = BaseDeDatos.con.createStatement();
-										BaseDeDatos.rs = BaseDeDatos.stmt.executeQuery(com);
-										
-									} catch (SQLException e2) {
-										e2.printStackTrace();
-									}
-									try {
-										if (!BaseDeDatos.rs.next()) {
-											String nombre = txtNombre.getText();
-											String eml = txtEmail.getText();
-											String dni2 = txtDni.getText();
-											TipoSexo sexo =  (TipoSexo) cbSexo.getSelectedItem();
-											String direccion = txtDir.getText();
-											int codigoPostal = Integer.parseInt(txtCodigoPostal.getText());
-											Date fechanac = dChooser.getDate() ;
-											String usuario = txtusuario.getText();
-											String contraseña = txtContraseña.getText();
-										
-											Connection con = BaseDeDatos.initBaseDatos("Clientes.db");
-											BaseDeDatos.insertarCliente(con, nombre, eml, dni2, direccion , codigoPostal,fechanac, sexo, usuario, contraseña);
-											BaseDeDatos.closeBD(con);
-										
-											JOptionPane.showMessageDialog( contentPane, "Registro  realizado" ); 
-										} else {
-											JOptionPane.showMessageDialog( contentPane, "Usuario o email ocupados" );
-										}
-									} catch (SQLException e1) {
-										e1.printStackTrace();
-									} 
-										
-								} else {
-									JOptionPane.showMessageDialog( contentPane, "Contraseñas diferentes" ); 
-								}
-							 	
-								
-							} else {
-								JOptionPane.showMessageDialog(null, "Campo DNI no validado", "Error",JOptionPane.ERROR_MESSAGE);
+				if (!txtNombre.getText().isEmpty() && !txtDni.getText().isEmpty() && !txtEmail.getText().isEmpty()
+						&& !txtDir.getText().isEmpty() && !txtCodigoPostal.getText().isEmpty()
+						&& !txtusuario.getText().isEmpty() && !passContraseña.getText().isEmpty()) {
+
+					Pattern patDni = Pattern.compile("[0-9]{7,8}[A-Z]"); // Patron DNI
+					Pattern patEmail = Pattern.compile("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+							+ "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$"); // Patron Email
+
+					String dni = txtDni.getText();
+					Matcher matDni = patDni.matcher(dni);
+
+					String email = txtEmail.getText();
+					Matcher matEmail = patEmail.matcher(email);
+
+					boolean cumplePatronDni = matDni.matches();
+					boolean cumplePatronEmail = matEmail.matches();
+
+					if (cumplePatronDni == true && cumplePatronEmail == true) {
+
+						if (passContraseña.getText().equals(passContraseña2.getText())) {
+							try {
+								BaseDeDatos.con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
+								String com = "";
+								com = "select * from clientes where usuario = '" + txtusuario.getText() + "'";
+								BaseDeDatos.stmt = BaseDeDatos.con.createStatement();
+								BaseDeDatos.rs = BaseDeDatos.stmt.executeQuery(com);
+
+							} catch (SQLException e2) {
+								e2.printStackTrace();
 							}
-					
-				}else {
-					JOptionPane.showMessageDialog( contentPane, "Debes rellenar todos campos" );
+							try {
+								if (!BaseDeDatos.rs.next()) {
+									String nombre = txtNombre.getText();
+									String eml = txtEmail.getText();
+									String dni2 = txtDni.getText();
+									TipoSexo sexo = (TipoSexo) cbSexo.getSelectedItem();
+									String direccion = txtDir.getText();
+									int codigoPostal = Integer.parseInt(txtCodigoPostal.getText());
+									Date fechanac = dChooser.getDate();
+									String usuario = txtusuario.getText();
+
+									String contraseña = passContraseña.getText();
+
+									Connection con = BaseDeDatos.initBaseDatos("Clientes.db");
+									BaseDeDatos.insertarCliente(con, nombre, eml, dni2, direccion, codigoPostal,
+											fechanac, sexo, usuario, contraseña);
+									BaseDeDatos.closeBD(con);
+
+									JOptionPane.showMessageDialog(contentPane, "Registro  realizado");
+								} else {
+									JOptionPane.showMessageDialog(contentPane, "Usuario o email en uso");
+								}
+							} catch (SQLException e1) {
+								e1.printStackTrace();
+							}
+
+						} else {
+							JOptionPane.showMessageDialog(contentPane, "Las contraseñas deven coincidir");
+						}
+
+					} else {
+						JOptionPane.showMessageDialog(null, "Compruebe que los datos proporcionados son correctos",
+								"Error", JOptionPane.ERROR_MESSAGE);
+					}
+
+				} else {
+					JOptionPane.showMessageDialog(contentPane, "Debes rellenar todos campos");
 				}
 			}
-				});
-		}
+		});
 	}
-		
-
-		
+}
 //
 //				} else if (txtEmail.getText().equals("")) {
 //					JOptionPane.showMessageDialog(null, "Campo nombre no validado", "Error", JOptionPane.ERROR_MESSAGE);
@@ -433,6 +408,4 @@ public class VentanaRegistroN extends JFrame {
 //						int pos = ruta.lastIndexOf("/");
 //						ruta = "img/" + ruta.substring(pos + 1);
 
-						// Meter todos los datos en la BBDD
-
-
+// Meter todos los datos en la BBDD
