@@ -105,9 +105,10 @@ public class VentanaAdminN extends JFrame {
 		lblTAlmacen.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblTAlmacen.setHorizontalAlignment(SwingConstants.CENTER);
 		pnlIzquierda.add(lblTAlmacen, "cell 1 0 6 1,grow");
+		sRopa = new JScrollPane();
 		tRopa = new JTable(mRopa);
-		//sRopa.setViewportView(tRopa);
-		pnlIzquierda.add(tRopa, "cell 1 1 6 9,grow");
+		sRopa.setViewportView(tRopa);
+		pnlIzquierda.add(sRopa, "cell 1 1 6 9,grow");
 		
 		btnAgregar = new JButton("Agregar Ropa");
 		pnlIzquierda.add(btnAgregar, "cell 1 16,growx,aligny center");
