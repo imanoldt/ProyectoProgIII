@@ -7,8 +7,8 @@ public class Camiseta extends Articulo{
 
 	private Talla talla;
 
-	public Camiseta(int codigo, int precio, TipoSexo sexo, String marca, String color, Talla talla) {
-		super(codigo, precio, sexo, marca, color);
+	public Camiseta(int codigo,TipoArticulo tipo, int precio, TipoSexo sexo, String marca, String color, Talla talla) {
+		super(codigo, tipo, precio, sexo, marca, color);
 		this.talla = talla;
 	}
 	public Camiseta() {

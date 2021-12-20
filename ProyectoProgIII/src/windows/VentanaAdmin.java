@@ -14,9 +14,10 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
-
+import javax.swing.table.TableRowSorter;
 
 import clss.BaseDeDatos;
+import clss.TipoArticulo;
 
 public class VentanaAdmin extends JFrame{
 	
@@ -32,6 +33,8 @@ public class VentanaAdmin extends JFrame{
 	private static JScrollPane sRopa;
 	static DefaultTableModel mRopa;
 	private static Logger logger = Logger.getLogger("BaseDeDatos");
+	private static JComboBox cbtipo;
+	private JButton btnNewButton;
 	
 
 	
@@ -59,7 +62,7 @@ public class VentanaAdmin extends JFrame{
 		
 
 		Vector<String> cabeceras = new Vector<String>();
-		cabeceras.add( "Codigo" ); cabeceras.add( "Talla" ); cabeceras.add( "Precio" ); cabeceras.add( "Sexo" ); cabeceras.add( "Marca" ); cabeceras.add( "Color" );
+		cabeceras.add( "Codigo" ); cabeceras.add( "Tipo" ); cabeceras.add( "Talla" ); cabeceras.add( "Precio" ); cabeceras.add( "Sexo" ); cabeceras.add( "Marca" ); cabeceras.add( "Color" );
 		mRopa = new DefaultTableModel(new Vector<Vector<Object>>(), cabeceras);
 		tRopa= new JTable( mRopa);
 		sRopa.setViewportView(tRopa);	
@@ -120,8 +123,22 @@ public class VentanaAdmin extends JFrame{
 			
 			}
 			});
-
-
+		cbtipo = new JComboBox();
+		for (TipoArticulo ta : TipoArticulo.values()) {
+			cbtipo.addItem(ta);
+		}
+		pnlIzquierda.add(cbtipo);
+		
+		btnNewButton = new JButton("Filtrar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FiltrarTabla(mRopa);
+			}
+		});
+		pnlIzquierda.add(btnNewButton);
+		
+		
+		
 		
 		pnlIzquierda.add(anyadirRopa);
 		pnlIzquierda.add(descatalogaRopa);
@@ -141,7 +158,19 @@ public class VentanaAdmin extends JFrame{
 		
 	}
 	
-
+	public static void FiltrarTabla(DefaultTableModel tabla) {	
+		
+		String query = cbtipo.getSelectedItem().toString();
+		TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel> (tabla);
+		tRopa.setRowSorter(tr);
+		
+		if (query != " ") {
+			tr.setRowFilter(RowFilter.regexFilter(query));
+			
+		} else {
+			tRopa.setRowSorter(tr);
+		}
+	}
 
 	public static void main(String[] args) {
 			

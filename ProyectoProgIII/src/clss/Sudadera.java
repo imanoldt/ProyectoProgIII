@@ -7,8 +7,8 @@ public class Sudadera extends Articulo{
 	private boolean gorro;
 	private Talla talla;
 	
-	public Sudadera(int codigo, int precio, TipoSexo sexo, String marca, String color, boolean gorro, Talla talla) {
-		super(codigo, precio, sexo, marca, color);
+	public Sudadera(int codigo,TipoArticulo tipo, int precio, TipoSexo sexo, String marca, String color, boolean gorro, Talla talla) {
+		super(codigo,tipo, precio, sexo, marca, color);
 		this.gorro = gorro;
 		this.talla = talla;
 	}

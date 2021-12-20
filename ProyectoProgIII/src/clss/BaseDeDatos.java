@@ -7,7 +7,9 @@ import java.util.Vector;
 import java.util.logging.Level;
 
 import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 public class BaseDeDatos {
 	
@@ -79,8 +81,8 @@ public static Connection con;
 		}
 	}
 	
-	public static void insertarRopa(Connection con, int codigo, Talla talla, int precio, TipoSexo sexo, String marca, String color) {
-		String sentSQL = "INSERT INTO ropa VALUES('" + codigo + "', '" + talla + "','" + precio + "','" + sexo + "','" + marca
+	public static void insertarRopa(Connection con, int codigo,TipoArticulo tipo, Talla talla, int precio, TipoSexo sexo, String marca, String color) {
+		String sentSQL = "INSERT INTO ropa VALUES('" + codigo + "', '"+ tipo + "','" + talla + "','" + precio + "','" + sexo + "','" + marca
 				+ "', '" + color + "')";
 		try {
 			Statement stmt = con.createStatement();
@@ -161,13 +163,14 @@ public static Connection con;
 				
 				while (rs.next()) {
 					String codigo = rs.getString( "codigo" );
+					String tipo = rs.getString( "tipo" );
 					String talla = rs.getString( "talla" );
 					String precio = String.valueOf(rs.getInt("precio"));
 					String sexo = rs.getString("sexo");
 					String marca = rs.getString("marca");
 					String color = rs.getString("color");
 					
-					String tbData[] = {codigo, talla, precio, sexo, marca, color};
+					String tbData[] = {codigo,tipo, talla, precio, sexo, marca, color};
 					System.out.println(tbData);
 					tabla.addRow(tbData);			
 					
@@ -179,31 +182,19 @@ public static Connection con;
 		
 	}
 	
+	
 	public static void main(String[] args) {
 		try {
 			
-			BaseDeDatos.con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
+			con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
 			stmt = con.createStatement();
-			rs = stmt.executeQuery("insert into clientes values('admin','admin@admin.es', '79002845', 'Calle a', '1100/11/20', 'HOMBRE', 'admin', 'admin'))");
-			rs = stmt.executeQuery("insert into clientes values('admin', 'admin', 12345678, 'Calle a', 'Sat Nov 27 16:53:13 CET 2021' , 'HOMBRE', 'usuario', 'contraseña')");
-			rs = stmt.executeQuery(("INSERT INTO ropa VALUES(1, 'M', 35, 'Hombre', 'Nike', 'Gris')"));
+			rs = stmt.executeQuery("insert into ropa values (4, 'Zapatos','S',80,'HOMBRE','Adidas','Negro')");
+
 			
-			stmt.executeUpdate("drop table if exists clientes");
+
 
 			stmt.executeUpdate("create table clientes (nombre string, email string, dni string, direccion string, codigoPostal integer, fecha_nac date, sexo string, usuario string, contraseña string)");
-//			stmt.executeUpdate("insert into clientes ('admin','admin@admin.es', '79002845', 'Calle a', '1100/11/20', 'HOMBRE', 'admin', 'admin'))");
 
-	
-			
-			
-			
-//			((BaseDeDatos) stmt).insertarCliente(con, "nombre", "eml", "dni", "direccion" , 1222, 12-06-2000 , TipoSexo.HOMBRE, "usuario", "contraseña");
-				
-			
-			
-			
-			stmt.executeUpdate("create table ropa (codigo integer, talla string, precio integer, sexo string, marca string, color string)");
-			stmt.executeUpdate("INSERT INTO ropa VALUES(1, 'M', 35, 'Hombre', 'Nike', 'Gris')");
 		
 			
 	
