@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
 
 import javax.swing.*;
 
@@ -37,7 +39,7 @@ public class VentanaAgregarRopa extends JFrame{
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
-	private JButton btnNewButton;
+	private JButton btnCancelar;
 	private JComboBox cbtipo;
 	
 	
@@ -128,11 +130,19 @@ public class VentanaAgregarRopa extends JFrame{
 		lblNewLabel_2 = new JLabel("");
 		getContentPane().add(lblNewLabel_2);
 		
-		btnAgregar = new JButton("Agregar");
-		cp.add(btnAgregar);
+		btnCancelar = new JButton("Cancelar");
+		cp.add(btnCancelar);
 		
-		btnNewButton = new JButton("Cancelar");
-		getContentPane().add(btnNewButton);
+		btnAgregar = new JButton("Agregar");
+		getContentPane().add(btnAgregar);
+		
+		btnCancelar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+			});
 		
 		btnAgregar.addActionListener(new ActionListener() {
 			
@@ -145,11 +155,13 @@ public class VentanaAgregarRopa extends JFrame{
 				TipoSexo sexo = (TipoSexo) cbsexo.getSelectedItem();
 				String marca = tfmarca.getText();
 				String color = tfcolor.getText();
-	
-				Connection con = BaseDeDatos.initBaseDatos("Clientes.db");
-				BaseDeDatos.insertarRopa(con, codigo,tipo, talla, precio, sexo, marca, color);
-				BaseDeDatos.closeBD(con);
-				BaseDeDatos.actualizaTabla(VentanaAdmin.mRopa);
+				
+				
+//				con = BaseDeDatos.initBaseDatos("Clientes.db");
+				BaseDeDatos.insertarRopa(codigo,tipo, talla, precio, sexo, marca, color);
+				//BaseDeDatos.closeBD(con);
+				BaseDeDatos.actualizaTabla(VentanaAdminN.mRopa);
+			
 				
 			}
 			});

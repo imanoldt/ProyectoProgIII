@@ -191,7 +191,7 @@ public class VentanaMain extends JFrame {
 				
 				
 				
-				volver = new JButton(new ImageIcon(VentanaAdmin.class.getResource("/img/Inicio.png")));
+				volver = new JButton(new ImageIcon(VentanaAdminN.class.getResource("/img/Inicio.png")));
 				volver.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				volver.setBorderPainted(false);
 				volver.setBackground(Color.LIGHT_GRAY);

@@ -37,7 +37,7 @@ public class VentanaDescatalogar extends JFrame{
 		arriba.setBackground(new Color(249, 194, 4));
 		abajo.setBackground(new Color(249, 194, 4));
 		
-		insertar = new JLabel("Inserte el código de la prenda que desea borrar : ");
+		insertar = new JLabel("Inserte el cÃ³digo de la prenda que desea borrar : ");
 		tfInsertarCod = new JTextField(10);
 		arriba.add(insertar);
 		arriba.add(tfInsertarCod);
@@ -55,17 +55,12 @@ public class VentanaDescatalogar extends JFrame{
 			
 				
 				if (!tfInsertarCod.getText().isEmpty()) {
-					String com = "";
-					try {				
-						com = "delete from ropa where codigo = '"+ (tfInsertarCod.getText()) +"'";
-						BaseDeDatos.stmt.executeUpdate( com );
-					} catch (SQLException e2) {
-						
-					}
+					int codigo = Integer.parseInt((tfInsertarCod.getText()));
+					BaseDeDatos.borrarRopa(codigo);
 				} else {
 					JOptionPane.showMessageDialog( mensaje, "No hay ningun producto en la base de datos" );
 				}
-				BaseDeDatos.actualizaTabla(VentanaAdmin.mRopa);
+				BaseDeDatos.actualizaTabla(VentanaAdminN.mRopa);
 			}
 		});
 

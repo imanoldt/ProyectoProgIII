@@ -24,8 +24,12 @@ import javax.swing.SwingConstants;
 import java.awt.*;
 import java.awt.event.MouseMotionAdapter;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.logging.Level;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -61,6 +65,8 @@ public class VentanaLoginN extends JFrame {
 			}
 		});
 	}
+
+
 
 	/**
 	 * Create the frame.
@@ -122,18 +128,14 @@ public class VentanaLoginN extends JFrame {
 
 				String contrasenya = passContraseya.getText();
 
-				try {
-					BaseDeDatos.con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
-					String sentSQL = "SELECT usuario, contraseña FROM clientes where usuario = '" + usuario
-							+ "' AND contraseña = '" + contrasenya + "' ";
-					BaseDeDatos.stmt = BaseDeDatos.con.createStatement();
-					BaseDeDatos.rs = BaseDeDatos.stmt.executeQuery(sentSQL);
-
+				try  {
+					
+					BaseDeDatos.comprobarInicioSesion(usuario,contrasenya);
 					if (BaseDeDatos.rs.next()) {
 
 						if (usuario.equals("admin") && contrasenya.equals("admin")) {
 							setVisible(false);
-							VentanaAdmin admin = new VentanaAdmin();
+							VentanaAdminN admin = new VentanaAdminN();
 							admin.setVisible(true);
 						} else {
 							setVisible(false);
@@ -148,7 +150,7 @@ public class VentanaLoginN extends JFrame {
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
-
+				
 			}
 
 		});

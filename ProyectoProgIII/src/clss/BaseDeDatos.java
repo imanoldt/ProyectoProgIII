@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.TreeMap;
 import java.util.Vector;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -17,24 +18,25 @@ public static Statement stmt;
 public static ResultSet rs;
 public static char[] com;
 public static Connection con;
+public static Logger logger = Logger.getLogger( "BaseDatos" );
 
 /**
  * 
  * @param nombreBD Nombre de la base de datos
  * @return Devuelve la connection 
+ * @throws SQLException 
  */
-	public static Connection initBaseDatos(String nombreBD) {
+	public static Connection initBaseDatos(String nombreBD) throws SQLException {
 		 con = null;
 
 		try {
 			Class.forName("org.sqlite.JDBC");
 			con = DriverManager.getConnection("jdbc:sqlite:" + nombreBD);
+			logger.log( Level.INFO, "Abriendo conexión con " + nombreBD );
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log( Level.SEVERE, "Excepción", e );
 		}
 		return con;
 
@@ -47,9 +49,11 @@ public static Connection con;
 		if (con != null) {
 			try {
 				con.close();
+				logger.log( Level.INFO, "Cerrando conexión" );
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				logger.log( Level.SEVERE, "Excepción", e );
 			}
 		}
 	}
@@ -79,20 +83,56 @@ public static Connection con;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		closeBD(con);
 	}
 	
-	public static void insertarRopa(Connection con, int codigo,TipoArticulo tipo, Talla talla, int precio, TipoSexo sexo, String marca, String color) {
+	public static void insertarRopa( int codigo,TipoArticulo tipo, Talla talla, int precio, TipoSexo sexo, String marca, String color) {
 		String sentSQL = "INSERT INTO ropa VALUES('" + codigo + "', '"+ tipo + "','" + talla + "','" + precio + "','" + sexo + "','" + marca
 				+ "', '" + color + "')";
 		try {
+			con = BaseDeDatos.initBaseDatos("Clientes.db");
 			Statement stmt = con.createStatement();
+			logger.log( Level.INFO, "Statement: " + sentSQL);
 			stmt.executeUpdate(sentSQL);
-			stmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		closeBD(con);
 	}
+	
+	public static void borrarRopa( int codigo) {
+		String sentSQL = "delete from ropa where codigo = ('" + codigo + "')";
+		try {
+			
+			con = BaseDeDatos.initBaseDatos("Clientes.db");
+			Statement stmt = con.createStatement();
+			logger.log( Level.INFO, "Statement: " + sentSQL);
+			stmt.executeUpdate(sentSQL);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		closeBD(con);
+	}
+	
+	public static void comprobarInicioSesion(String usuario, String contraseña) {
+		String sentSQL = "SELECT usuario, contraseña FROM clientes where usuario = '" + usuario+ "' AND contraseña = '" + contraseña + "' ";
+		try  {
+			
+			con = BaseDeDatos.initBaseDatos("Clientes.db");
+			stmt = con.createStatement();
+			logger.log( Level.INFO, "Statement: " + sentSQL);
+			rs = stmt.executeQuery(sentSQL);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		closeBD(con);
+	}
+	
+	
 /**
  * 
  * @param con Una conexión con una base de datos específica. Las sentencias SQL se ejecutan y los resultados se devuelven dentro del contexto de una conexión. 
@@ -155,8 +195,9 @@ public static Connection con;
 		public static void actualizaTabla(DefaultTableModel tabla) {
 			
 			try {
-				con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
+				con = BaseDeDatos.initBaseDatos("Clientes.db");
 				String sentSQL = "SELECT * FROM ropa";
+				logger.log( Level.INFO, "Statement: " + sentSQL );
 				stmt = con.createStatement();
 				rs = stmt.executeQuery(sentSQL);
 			while (tabla.getRowCount()>0) tabla.removeRow(0);	
@@ -178,8 +219,9 @@ public static Connection con;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+
 			}
-		
+			closeBD(con);
 	}
 	
 	
