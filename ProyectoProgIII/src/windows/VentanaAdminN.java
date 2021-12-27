@@ -31,6 +31,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 import java.awt.Font;
 import javax.swing.JComboBox;
+import javax.swing.JTextArea;
 
 public class VentanaAdminN extends JFrame {
 
@@ -44,9 +45,11 @@ public class VentanaAdminN extends JFrame {
 	private static JScrollPane sRopa;
 	static DefaultTableModel mRopa;
 	private static Logger logger = Logger.getLogger("BaseDeDatos");
-	private static JComboBox cbtipo;
+	private static JComboBox<TipoArticulo> cbtipo;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
+	private JLabel lblPedidos;
+	private JTextArea txArea;
 
 	/**
 	 * Launch the application.
@@ -100,7 +103,7 @@ public class VentanaAdminN extends JFrame {
 		mRopa = new DefaultTableModel(new Vector<Vector<Object>>(), cabeceras);
 		
 		lblTAlmacen = new JLabel("Tabla de almacen");
-		lblTAlmacen.setFont(new Font("Monaco", Font.PLAIN, 16));
+		lblTAlmacen.setFont(new Font("Montserrat", Font.PLAIN, 16));
 		lblTAlmacen.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(0, 0, 0)));
 		lblTAlmacen.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblTAlmacen.setHorizontalAlignment(SwingConstants.CENTER);
@@ -134,6 +137,7 @@ public class VentanaAdminN extends JFrame {
 				tRopa.setRowSorter(tr);
 			}
 		});
+		
 		pnlIzquierda.add(btnNewButton_1, "cell 4 16");
 		
 		btnDescatalogar = new JButton("Descatalogar");
@@ -143,6 +147,17 @@ public class VentanaAdminN extends JFrame {
 		pnlDerecha.setBackground(new Color(249, 194, 4));
 		pnlDerecha.setBorder(new MatteBorder(0, 2, 0, 0, (Color) new Color(0, 0, 0)));
 		contentPane.add(pnlDerecha);
+		pnlDerecha.setLayout(new MigLayout("", "[552.00,grow]", "[29.00][450.00,grow]"));
+		
+		lblPedidos = new JLabel("Pedidos Realizados");
+		lblPedidos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPedidos.setFont(new Font("Montserrat", Font.PLAIN, 16));
+		lblPedidos.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
+		pnlDerecha.add(lblPedidos, "cell 0 0,grow");
+		
+		txArea = new JTextArea();
+		pnlDerecha.add(txArea, "cell 0 1,grow");
+		txArea.setEditable(false);
 		
 		try {
 			BaseDeDatos.actualizaTabla(mRopa);

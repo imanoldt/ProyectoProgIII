@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 
 import clss.BaseDeDatos;
+import clss.Cliente;
 import clss.TipoSexo;
 
 import java.awt.GridLayout;
@@ -365,6 +366,11 @@ public class VentanaRegistroN extends JFrame {
 									String contraseña = passContraseña.getText();
 
 									Connection con = BaseDeDatos.initBaseDatos("Clientes.db");
+									
+									Cliente clNuevo=new Cliente(nombre, eml, dni2, sexo, direccion, String.valueOf(codigoPostal));
+									
+								//	clNuevo.add(VentanaMainN.tmCliente);
+									
 									BaseDeDatos.insertarCliente(con, nombre, eml, dni2, direccion, codigoPostal,
 											fechanac, sexo, usuario, contraseña);
 									BaseDeDatos.closeBD(con);

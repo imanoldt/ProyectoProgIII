@@ -3,6 +3,7 @@ package windows;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,16 +24,15 @@ import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
 
 import clss.Cliente;
-import paneles.PanelCamisetas;
-import paneles.PanelPantalones;
 
-import paneles.PanelSudaderas;
-import paneles.PanelZapatillas;
+
+
 import paneles.PnlCamisetas;
 import paneles.PnlPantalones;
+import paneles.PnlPrueba;
 import paneles.PnlSudaderas;
 import paneles.PnlZapatillas;
-import windows.VentanaMain.PanelInicio;
+
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -56,7 +56,7 @@ public class VentanaMainN extends JFrame {
 
 	private JPanel panel;
 	private JPanel pnlPrincipalDerecha;
-	private JScrollPane scrollPane;
+	//private JScrollPane scrollPane;
 
 	/**
 	 * Lanza JFrame
@@ -166,9 +166,20 @@ public class VentanaMainN extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				pnlPrincipalDerecha.removeAll();
-				panel = new PnlCamisetas();
-				pnlPrincipalDerecha.add(panel);
-				pnlPrincipalDerecha.updateUI();
+				pnlPrincipalDerecha.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+				for (int i = 0; i < 10; i++) {
+					panel = new PnlPrueba();
+					pnlPrincipalDerecha.add(panel);
+					pnlPrincipalDerecha.updateUI();
+				}
+				
+//				JScrollPane sp = new JScrollPane(panel);
+//				sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+//				sp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//				pnlPrincipalDerecha.add(sp);
+//				
+//				pnlPrincipalDerecha.updateUI();
+				
 
 			}
 		});
