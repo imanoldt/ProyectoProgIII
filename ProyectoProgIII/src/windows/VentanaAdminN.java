@@ -24,10 +24,12 @@ import java.awt.event.ActionListener;
 import java.util.Vector;
 import java.util.logging.Logger;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
 import java.awt.Font;
 import javax.swing.JComboBox;
@@ -40,6 +42,7 @@ public class VentanaAdminN extends JFrame {
 	private JPanel pnlDerecha;
 	private JButton btnAgregar;
 	private JButton btnDescatalogar;
+	private JButton btnHome;
 	private static JTable tRopa;
 	private JLabel lblTAlmacen;
 	private static JScrollPane sRopa;
@@ -159,23 +162,28 @@ public class VentanaAdminN extends JFrame {
 		pnlDerecha.add(txArea, "cell 0 1,grow");
 		txArea.setEditable(false);
 		
+		btnHome = new JButton(new ImageIcon("src/img/Inicio.png"));
+		btnHome.setOpaque(true);
+		btnHome.setBorder(null);
+		btnHome.setBackground(new Color(227, 48, 73));
+		pnlIzquierda.add(btnHome,  "cell 0 0, grow");
+		
+		btnHome.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				VentanaLoginN nueva = new VentanaLoginN();
+				nueva.setVisible(true);
+			}
+		});
 		try {
 			BaseDeDatos.actualizaTabla(mRopa);
 		} catch (Exception e) {
 			System.out.println("No se puede rellenar la tabla");
 			e.printStackTrace();
 		}
-		
-//volver.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				VentanaLoginN login = new VentanaLoginN();
-//				login.setVisible(true);
-//				setVisible(false);
-//			}
-//			});
-		
+				
 		btnAgregar.addActionListener(new ActionListener() {
 			
 			@Override

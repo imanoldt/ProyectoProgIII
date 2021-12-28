@@ -56,7 +56,7 @@ public class VentanaMainN extends JFrame {
 
 	private JPanel panel;
 	private JPanel pnlPrincipalDerecha;
-	//private JScrollPane scrollPane;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Lanza JFrame
@@ -157,8 +157,9 @@ public class VentanaMainN extends JFrame {
 		pnlPrincipal.add(pnlPrincipalDerecha, BorderLayout.CENTER);
 		pnlPrincipalDerecha.setLayout(new GridLayout(0, 1, 0, 0));
 
-		// scrollPane = new JScrollPane();
-		// pnlPrincipalDerecha.add(scrollPane);
+		scrollPane = new JScrollPane();
+		pnlPrincipal.add(scrollPane);
+		scrollPane.setViewportView(pnlPrincipalDerecha);
 
 //EVENTOS________
 
