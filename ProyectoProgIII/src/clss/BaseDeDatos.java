@@ -132,6 +132,22 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 		closeBD(con);
 	}
 	
+	public static void comprobarCodigo(int codigo) {
+		String sentSQL = "SELECT codigo FROM ropa where codigo = '" + codigo+ "' ";
+		try  {
+			
+			con = BaseDeDatos.initBaseDatos("Clientes.db");
+			stmt = con.createStatement();
+			logger.log( Level.INFO, "Statement: " + sentSQL);
+			rs = stmt.executeQuery(sentSQL);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		closeBD(con);
+	}
+	
 	
 /**
  * 

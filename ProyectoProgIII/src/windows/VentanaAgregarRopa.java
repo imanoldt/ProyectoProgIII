@@ -148,20 +148,29 @@ public class VentanaAgregarRopa extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int codigo = Integer.parseInt(tfcod.getText());
-				TipoArticulo tipo = (TipoArticulo) cbtipo.getSelectedItem();
-				Talla talla = (Talla) cbtalla.getSelectedItem();
-				int precio = Integer.parseInt(tfprecio.getText());
-				TipoSexo sexo = (TipoSexo) cbsexo.getSelectedItem();
-				String marca = tfmarca.getText();
-				String color = tfcolor.getText();
 				
-				
-//				con = BaseDeDatos.initBaseDatos("Clientes.db");
-				BaseDeDatos.insertarRopa(codigo,tipo, talla, precio, sexo, marca, color);
-				//BaseDeDatos.closeBD(con);
-				BaseDeDatos.actualizaTabla(VentanaAdminN.mRopa);
-			
+				try  {
+					int codigo = Integer.parseInt(tfcod.getText());
+					BaseDeDatos.comprobarCodigo(codigo);
+					if (BaseDeDatos.rs.next()) {
+						JOptionPane.showMessageDialog(cp, "Código ya existente, introduce otro cdigo");
+					
+					} else {
+						TipoArticulo tipo = (TipoArticulo) cbtipo.getSelectedItem();
+						Talla talla = (Talla) cbtalla.getSelectedItem();
+						int precio = Integer.parseInt(tfprecio.getText());
+						TipoSexo sexo = (TipoSexo) cbsexo.getSelectedItem();
+						String marca = tfmarca.getText();
+						String color = tfcolor.getText();
+						
+						
+						BaseDeDatos.insertarRopa(codigo,tipo, talla, precio, sexo, marca, color);
+						BaseDeDatos.actualizaTabla(VentanaAdminN.mRopa);
+					}
+					
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 				
 			}
 			});
