@@ -7,8 +7,8 @@ public class Camiseta extends Articulo{
 
 	private Talla talla;
 
-	public Camiseta(int codigo,TipoArticulo tipo, int precio, TipoSexo sexo, String marca, String color, Talla talla) {
-		super(codigo, tipo, precio, sexo, marca, color);
+	public Camiseta(int codigo,TipoArticulo tipo,Talla talla, int precio, TipoSexo sexo, String marca, String color) {
+		super(codigo, tipo, talla, precio, sexo, marca, color);
 		this.talla = talla;
 	}
 	public Camiseta() {
@@ -21,6 +21,13 @@ public class Camiseta extends Articulo{
 
 	public void setTalla(Talla talla) {
 		this.talla = talla;
+	}
+	@Override
+	public String toString() {
+		return "Camiseta [talla=" + talla + ", getCodigo()=" + getCodigo() + ", getPrecio()=" + getPrecio()
+				+ ", getSexo()=" + getSexo() + ", getMarca()=" + getMarca() + ", getColor()=" + getColor()
+				+ ", getTipo()=" + getTipo() + ", toString()=" + super.toString() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + "]";
 	}
 	
 	

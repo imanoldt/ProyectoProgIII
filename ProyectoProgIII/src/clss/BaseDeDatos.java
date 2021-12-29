@@ -12,6 +12,7 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
+
 public class BaseDeDatos {
 	
 public static Statement stmt;
@@ -71,35 +72,42 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 	 * @author imanoldt
 	 */
 	
-	public static void insertarCliente(Connection con, String nombre, String email, String dni, String direccion,
-			int codigoPostal, Date fechanac, TipoSexo sexo, String usuario, String contraseña) {
-		String sentSQL = "INSERT INTO clientes VALUES('" + nombre + "','" + email + "','" + dni + "','" + direccion
-				+ "', '" + codigoPostal + "', '" + fechanac + "', '" + sexo + "', '" + usuario + "', '" + contraseña+ "')";
+	
+	public static boolean insertarCliente(Cliente cliente) {
+		String sent = "insert into clientes (nombre, email, dni, direccion,codigoPostal,fecha_nac,sexo,usuario, contraseña ) values ('" + cliente.getNombre() + "','" + cliente.getEmail() 
+		+ "','" + cliente.getDni() + "','" + cliente.getDireccion() + "','"+ cliente.getCodigoPostal() + "','" + cliente.getFechanac() + "','" + cliente.getSexo() +"','"+ cliente.getUsuario() + "','"+ cliente.getContrsenya() + "');";
 		try {
+			con = initBaseDatos("Clientes.db");
 			Statement stmt = con.createStatement();
-			stmt.executeUpdate(sentSQL);
-			stmt.close();
+			logger.log( Level.INFO, "Statement: " + sent );
+			stmt.executeUpdate(sent);
+			closeBD(con);
+			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			logger.log( Level.SEVERE, "Excepción", e );
 			e.printStackTrace();
+			return false;
 		}
-		closeBD(con);
 	}
 	
-	public static void insertarRopa( int codigo,TipoArticulo tipo, Talla talla, int precio, TipoSexo sexo, String marca, String color) {
-		String sentSQL = "INSERT INTO ropa VALUES('" + codigo + "', '"+ tipo + "','" + talla + "','" + precio + "','" + sexo + "','" + marca
-				+ "', '" + color + "')";
+	public static boolean insertarRopa( Articulo articulo) {
+		String sent = "insert into ropa (codigo, tipo, talla, precio,sexo,marca,color) values ('" + articulo.getCodigo() + "','" + articulo.getTipo() 
+		+ "','" + articulo.getTalla() + "','" + articulo.getPrecio() + "','"+ articulo.getSexo() + "','" + articulo.getMarca() + "','" + articulo.getColor() + "');";
 		try {
-			con = BaseDeDatos.initBaseDatos("Clientes.db");
+			con = initBaseDatos("Clientes.db");
 			Statement stmt = con.createStatement();
-			logger.log( Level.INFO, "Statement: " + sentSQL);
-			stmt.executeUpdate(sentSQL);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			logger.log( Level.INFO, "Statement: " + sent );
+			stmt.executeUpdate(sent);
+			closeBD(con);
+			return true;
+		} catch (Exception e) {
+			logger.log( Level.SEVERE, "Excepción", e );
 			e.printStackTrace();
+			return true;
 		}
-		closeBD(con);
+		
 	}
+	
 	
 	public static void borrarRopa( int codigo) {
 		String sentSQL = "delete from ropa where codigo = ('" + codigo + "')";
@@ -115,6 +123,7 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 		}
 		closeBD(con);
 	}
+	
 	
 	public static void comprobarInicioSesion(String usuario, String contraseña) {
 		String sentSQL = "SELECT usuario, contraseña FROM clientes where usuario = '" + usuario+ "' AND contraseña = '" + contraseña + "' ";
@@ -162,15 +171,17 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sentSQL);
 			while (rs.next()) { // Mientras no hayamos llegado al final del conjunto de resultados
-				String nom = rs.getString("dni");
-				String eml = rs.getString("nombre");
+				String nom = rs.getString("nombre");
+				String eml = rs.getString("email");
 				String dni = rs.getString("dni");
-				String dir = rs.getString("nombre");
-				String cod = rs.getString("dni");
-				String sex = rs.getString("nombre");
-
-				Cliente cl = new Cliente(nom, eml, dni, Enum.valueOf(TipoSexo.class, sex), dir, cod);
-				tmCliente.put(dni, cl);
+				String dir = rs.getString("direccion");
+				int cod = rs.getInt("codigoPostal");
+				String sex = rs.getString("sexo");
+				String usu = rs.getString("usuario");
+				String cont = rs.getString("contraseña");
+				
+//				Cliente cl = new Cliente(nom, eml, dni, dir, cod,Enum.valueOf(TipoSexo.class, sex), usu, cont);
+//				tmCliente.put(dni, cl);
 			}
 			rs.close();
 			stmt.close();

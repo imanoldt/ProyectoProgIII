@@ -52,15 +52,27 @@ public class VentanaDescatalogar extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
-				
 				if (!tfInsertarCod.getText().isEmpty()) {
 					int codigo = Integer.parseInt((tfInsertarCod.getText()));
-					BaseDeDatos.borrarRopa(codigo);
+					BaseDeDatos.comprobarCodigo(codigo);
+					try {
+						if (BaseDeDatos.rs.next()) {
+							BaseDeDatos.borrarRopa(codigo);
+							BaseDeDatos.actualizaTabla(VentanaAdminN.mRopa);
+							JOptionPane.showMessageDialog( mensaje, "Se ha borrado el articulo correctamente" );
+						}else {
+							JOptionPane.showMessageDialog(null, "No existe ningun articulo con ese código", "Error", JOptionPane.ERROR_MESSAGE);
+						}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
 				} else {
-					JOptionPane.showMessageDialog( mensaje, "No hay ningun producto en la base de datos" );
+					JOptionPane.showMessageDialog(null, "No se ha intoducido ningun código", "Error", JOptionPane.ERROR_MESSAGE);
+					
 				}
-				BaseDeDatos.actualizaTabla(VentanaAdminN.mRopa);
+				
 			}
 		});
 
@@ -73,6 +85,7 @@ public class VentanaDescatalogar extends JFrame{
 		
 			}
 			});
+		
 	}
 	public static void main(String[] args) {
 		VentanaDescatalogar ventana = new VentanaDescatalogar();

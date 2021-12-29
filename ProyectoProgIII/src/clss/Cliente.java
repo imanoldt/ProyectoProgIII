@@ -1,32 +1,43 @@
 package clss;
 
+import java.util.Date;
+
 public class Cliente {
 	
 	private String nombre;
 	private String email;
-	private String DNI;
+	private String dni;
 	private TipoSexo sexo;
 	private String direccion;
-	private String codigoPostal;
+	private int codigoPostal;
+	private String usuario;
+	private String contrsenya;
+	private Date fechanac;
 	
-	public Cliente(String nombre, String email, String dNI, TipoSexo sexo, String direccion, String cod) {
+	public Cliente(String nombre, String email,String dni, String direccion,int codigoPostal, Date fechanac, TipoSexo sexo, String usuario, String contrsenya) {
 		super();
 		this.nombre = nombre;
 		this.email = email;
-		DNI = dNI;
-		this.sexo = sexo;
+		this.dni = dni;
 		this.direccion = direccion;
-		this.codigoPostal = cod;
+		this.codigoPostal = codigoPostal;
+		this.fechanac = fechanac;
+		this.sexo = sexo;
+		this.usuario = usuario;
+		this.contrsenya = contrsenya;
 	}
 	
 	public Cliente() {
 		super();
 		this.nombre = null;
 		this.email = null;
-		DNI = null;
-		this.sexo = null;
+		this.dni = null;
 		this.direccion = null;
-		this.codigoPostal = null;
+		this.codigoPostal = 0;
+		this.fechanac = null;
+		this.sexo = null;
+		this.usuario = null;
+		this.contrsenya = null;
 	}
 
 	public String getNombre() {
@@ -45,12 +56,12 @@ public class Cliente {
 		this.email = email;
 	}
 
-	public String getDNI() {
-		return DNI;
+	public String getDni() {
+		return dni;
 	}
 
-	public void setDNI(String dNI) {
-		DNI = dNI;
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 	public TipoSexo getSexo() {
@@ -69,20 +80,45 @@ public class Cliente {
 		this.direccion = direccion;
 	}
 
-	public String getCodigoPostal() {
+	public int getCodigoPostal() {
 		return codigoPostal;
 	}
 
-	public void setCodigoPostal(String codigoPostal) {
+	public void setCodigoPostal(int codigoPostal) {
 		this.codigoPostal = codigoPostal;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getContrsenya() {
+		return contrsenya;
+	}
+
+	public void setContrsenya(String contrsenya) {
+		this.contrsenya = contrsenya;
+	}
+
+	public Date getFechanac() {
+		return fechanac;
+	}
+
+	public void setFechanac(Date fechanac) {
+		this.fechanac = fechanac;
 	}
 
 	@Override
 	public String toString() {
-		return "Cliente [nombre=" + nombre + ", email=" + email + ", DNI=" + DNI + ", sexo=" + sexo + ", direccion="
-				+ direccion + ", codigoPostal=" + codigoPostal + "]";
+		return "Cliente [nombre=" + nombre + ", email=" + email + ", dni=" + dni + ", sexo=" + sexo + ", direccion="
+				+ direccion + ", codigoPostal=" + codigoPostal + ", usuario=" + usuario + ", contrsenya=" + contrsenya
+				+ ", fechanac=" + fechanac + "]";
 	}
-	
-	
+
+
 
 }

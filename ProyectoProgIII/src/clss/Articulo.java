@@ -8,12 +8,14 @@ public abstract class Articulo {
 	private String marca;
 	private String color;
 	private TipoArticulo tipo;
+	protected static Talla talla;
 
 
-	public Articulo(int codigo,TipoArticulo tipo, int precio, TipoSexo sexo, String marca, String color) {
+	public Articulo(int codigo,TipoArticulo tipo,Talla talla, int precio, TipoSexo sexo, String marca, String color) {
 		super();
 		this.codigo = codigo;
 		this.tipo = tipo;
+		this.talla = talla;
 		this.precio = precio;
 		this.sexo = sexo;
 		this.marca = marca;
@@ -78,14 +80,18 @@ public abstract class Articulo {
 		this.tipo = tipo;
 	}
 
+	public Talla getTalla() {
+		return talla;
+	}
+
+	public void setTalla(Talla talla) {
+		this.talla = talla;
+	}
+
 	@Override
 	public String toString() {
 		return "Articulo [codigo=" + codigo + ", precio=" + precio + ", sexo=" + sexo + ", marca=" + marca + ", color="
 				+ color + ", tipo=" + tipo + "]";
 	}
-	
-	
-
-	
 
 }

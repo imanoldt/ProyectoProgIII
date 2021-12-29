@@ -4,38 +4,22 @@ import java.util.ArrayList;
 
 public class Sudadera extends Articulo{
 
-	private boolean gorro;
-	private Talla talla;
 	
-	public Sudadera(int codigo,TipoArticulo tipo, int precio, TipoSexo sexo, String marca, String color, boolean gorro, Talla talla) {
-		super(codigo,tipo, precio, sexo, marca, color);
-		this.gorro = gorro;
+	public Sudadera(int codigo,TipoArticulo tipo,Talla talla, int precio, TipoSexo sexo, String marca, String color) {
+		super(codigo,tipo, talla, precio, sexo, marca, color);
+
 		this.talla = talla;
 	}
 	public Sudadera() {
 		super();
 		
 	}
-	public boolean isGorro() {
-		return gorro;
-	}
-	public void setGorro(boolean gorro) {
-		this.gorro = gorro;
-	}
-	public Talla getTalla() {
-		return talla;
-	}
-	public void setTalla(Talla talla) {
-		this.talla = talla;
-	}
 	@Override
 	public String toString() {
-		return "Sudadera [gorro=" + gorro + ", talla=" + talla + "]";
+		return "Sudadera [getCodigo()=" + getCodigo() + ", getPrecio()=" + getPrecio() + ", getSexo()=" + getSexo()
+				+ ", getMarca()=" + getMarca() + ", getColor()=" + getColor() + ", getTipo()=" + getTipo()
+				+ ", getTalla()=" + getTalla() + ", toString()=" + super.toString() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + "]";
 	}
-	
 
-	
-	
-
-	
 }

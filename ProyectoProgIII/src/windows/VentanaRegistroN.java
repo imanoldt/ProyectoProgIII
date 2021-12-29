@@ -365,15 +365,10 @@ public class VentanaRegistroN extends JFrame {
 
 									String contraseña = passContraseña.getText();
 
-									Connection con = BaseDeDatos.initBaseDatos("Clientes.db");
 									
-									Cliente clNuevo=new Cliente(nombre, eml, dni2, sexo, direccion, String.valueOf(codigoPostal));
-									
-								//	clNuevo.add(VentanaMainN.tmCliente);
-									
-									BaseDeDatos.insertarCliente(con, nombre, eml, dni2, direccion, codigoPostal,
-											fechanac, sexo, usuario, contraseña);
-									BaseDeDatos.closeBD(con);
+									Cliente clNuevo=new Cliente(nombre, eml, dni2, direccion, codigoPostal,fechanac, sexo, usuario,contraseña );
+									BaseDeDatos.insertarCliente(clNuevo);
+								
 
 									JOptionPane.showMessageDialog(contentPane, "Registro  realizado");
 								} else {
@@ -399,19 +394,4 @@ public class VentanaRegistroN extends JFrame {
 		});
 	}
 }
-//
-//				} else if (txtEmail.getText().equals("")) {
-//					JOptionPane.showMessageDialog(null, "Campo nombre no validado", "Error", JOptionPane.ERROR_MESSAGE);
-//				} else {
-//
-//					Pattern pat = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-//							+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-//					String email = txtEmail.getText();
-//					Matcher mather = pat.matcher(email);
-//					if (mather.find() == true) {
-//						ImageIcon im = (ImageIcon) lblAvatarIcono.getIcon();
-//						String ruta = im.getDescription();
-//						int pos = ruta.lastIndexOf("/");
-//						ruta = "img/" + ruta.substring(pos + 1);
 
-// Meter todos los datos en la BBDD
