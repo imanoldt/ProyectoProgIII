@@ -168,6 +168,7 @@ public class VentanaMainN extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				pnlPrincipalDerecha.removeAll();
 				pnlPrincipalDerecha.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+				
 				for (int i = 0; i < 10; i++) {
 					panel = new PnlPrueba();
 					pnlPrincipalDerecha.add(panel);

@@ -1,34 +1,58 @@
 package paneles;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
 
-import java.awt.Button;
+import javax.swing.JPanel;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.JLabel;
+import javax.swing.JSpinner;
+
+import clss.Talla;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.SwingConstants;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.event.MouseEvent;
+import java.awt.Cursor;
 
 public class PnlPantalones extends JPanel {
+	private JLabel lblImagen;
+	private JSpinner spnCantidad;
+	private JButton btnComprar;
+	private JLabel lblNombre;
+	private JComboBox<Talla> cbTallas;
+//	private JComboBox<Talla> comboTalla;
 
+	/**
+	 * Create the panel.
+	 */
 	public PnlPantalones() {
-		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		
-		anyardirArticulos(10);
-		
+		setLayout(new MigLayout("", "[][][145.00,grow]", "[136.00][][][][][]"));
 
-	}
-	private void anyardirArticulos(int number) {
-		for (int i = 0; i < number; i++) {
-			add(getCuadroArticulo("#Pantalon  " + i));
+		lblImagen = new JLabel("*Imagen*");
+		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
+		add(lblImagen, "cell 1 0 2 1,alignx center,aligny center");
+
+		lblNombre = new JLabel("__________________________");
+		add(lblNombre, "cell 1 3 2 1,alignx left,aligny center");
+
+		spnCantidad = new JSpinner();
+		add(spnCantidad, "cell 1 4,growx");
+
+		cbTallas = new JComboBox<Talla>();
+		add(cbTallas, "cell 2 4,growx");
+
+		for (Talla t : Talla.values()) {
+			cbTallas.addItem(t);
+
 		}
-	}
+		
+		btnComprar = new JButton("Comprar");
+		btnComprar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnComprar.setBackground(Color.PINK);
+		add(btnComprar, "cell 1 5 2 1,grow");
 
-	private Button getCuadroArticulo(String text) {
-		Button button = new Button(text);
-		button.setBackground(new Color(249, 194, 4));
-		button.setPreferredSize(new Dimension(200, 200));
-		return button;
 	}
 
 }

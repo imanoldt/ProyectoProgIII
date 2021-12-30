@@ -160,6 +160,7 @@ public class VentanaLoginN extends JFrame {
 		pnlIzquierda.add(btnIniciarSession, "flowx,cell 0 8,alignx center,aligny center");
 
 		btnRegistrarse = new JButton("Registrarse");
+		btnRegistrarse.setIcon(new ImageIcon(VentanaLoginN.class.getResource("/img/icnRegistro.png")));
 		btnRegistrarse.setFont(new Font("Monaco", Font.PLAIN, 16));
 		btnRegistrarse.setPreferredSize(new Dimension(120, 50));
 		pnlIzquierda.add(btnRegistrarse, "cell 0 8,alignx center,aligny center");

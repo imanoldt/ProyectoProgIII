@@ -13,11 +13,11 @@ public class VentanaDescatalogar extends JFrame{
 	
 	protected JPanel arriba;
 	protected JPanel abajo;
-	protected JLabel insertar;
+	protected JLabel lblInsertar;
 	public JTextField tfInsertarCod;
 	
-	protected JButton aceptar;
-	protected JButton cancelar;
+	protected JButton btnAceptar;
+	protected JButton btnCancelar;
 	private static JFrame mensaje;
 	
 	static DefaultTableModel mRopa;	
@@ -37,18 +37,18 @@ public class VentanaDescatalogar extends JFrame{
 		arriba.setBackground(new Color(249, 194, 4));
 		abajo.setBackground(new Color(249, 194, 4));
 		
-		insertar = new JLabel("Inserte el código de la prenda que desea borrar : ");
+		lblInsertar = new JLabel("Inserte el código de la prenda que desea borrar : ");
 		tfInsertarCod = new JTextField(10);
-		arriba.add(insertar);
+		arriba.add(lblInsertar);
 		arriba.add(tfInsertarCod);
 		
-		aceptar = new JButton("aceptar");
-		cancelar = new JButton("cancelar");
+		btnAceptar = new JButton("Aceptar");
+		btnCancelar = new JButton("Cancelar");
 		
-		abajo.add(cancelar);
-		abajo.add(aceptar);
+		abajo.add(btnCancelar);
+		abajo.add(btnAceptar);
 		
-		aceptar.addActionListener(new ActionListener() {
+		btnAceptar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -77,7 +77,7 @@ public class VentanaDescatalogar extends JFrame{
 		});
 
 	
-		cancelar.addActionListener(new ActionListener() {
+		btnCancelar.addActionListener(new ActionListener() {
 		
 			@Override
 			public void actionPerformed(ActionEvent e) {
