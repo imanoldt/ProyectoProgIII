@@ -1,6 +1,7 @@
 package clss;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.TreeMap;
 import java.util.Vector;
@@ -20,6 +21,7 @@ public static ResultSet rs;
 public static char[] com;
 public static Connection con;
 public static Logger logger = Logger.getLogger( "BaseDatos" );
+
 
 /**
  * 
@@ -215,6 +217,30 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 					e.printStackTrace();
 				}
 			}
+		}
+	}
+	
+	public static ArrayList<Articulo> getArticulos() {
+		try (Statement statement = con.createStatement()) {
+			ArrayList<Articulo> ret = new ArrayList<>();
+			String sent = "SELECT * FROM ropa;";
+			loggerN.log( Level.INFO, "Statement: " + sent );
+			ResultSet rs = statement.executeQuery( sent );
+			while( rs.next() ) { // Leer el resultset
+				int codigo = rs.getInt("codigo");
+				int precio = rs.getInt("precio");
+				Enum sexo = Enum.valueOf(null, rs.getString("sexo"));
+				String marca = rs.getString("marca");
+				String color = rs.getString("color");
+				Enum tipo = Enum.valueOf(null, rs.getString("tipo"));
+				Enum talla = Enum.valueOf(null, rs.getString("talla"));
+
+				ret.add(new Articulo ( codigo, precio, sexo,marca,color,tipo,talla) ); //ERROR 
+			}
+			return ret;
+		} catch (Exception e) {
+			loggerN.log( Level.SEVERE, "Excepción", e );
+			return null;
 		}
 	}
 
