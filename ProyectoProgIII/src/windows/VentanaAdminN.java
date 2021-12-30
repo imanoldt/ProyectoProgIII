@@ -22,6 +22,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.Vector;
 import java.util.logging.Logger;
 
@@ -115,6 +116,7 @@ public class VentanaAdminN extends JFrame {
 		cabeceras.add("Sexo");
 		cabeceras.add("Marca");
 		cabeceras.add("Color");
+		cabeceras.add("Ruta");
 		mRopa = new DefaultTableModel(new Vector<Vector<Object>>(), cabeceras);
 
 		lblTAlmacen = new JLabel("Tabla de almacen");
@@ -210,8 +212,15 @@ public class VentanaAdminN extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaAgregarRopa agregar = new VentanaAgregarRopa();
-				agregar.setVisible(true);
+				VentanaAgregarRopaN agregar;
+				try {
+					agregar = new VentanaAgregarRopaN();
+					agregar.setVisible(true);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 
 			}
 		});

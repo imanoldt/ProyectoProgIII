@@ -1,5 +1,6 @@
 package clss;
 
+import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -77,7 +78,7 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 	
 	public static boolean insertarCliente(Cliente cliente) {
 		String sent = "insert into clientes (nombre, email, dni, direccion,codigoPostal,fecha_nac,sexo,usuario, contraseña ) values ('" + cliente.getNombre() + "','" + cliente.getEmail() 
-		+ "','" + cliente.getDni() + "','" + cliente.getDireccion() + "','"+ cliente.getCodigoPostal() + "','" + cliente.getFechanac() + "','" + cliente.getSexo() +"','"+ cliente.getUsuario() + "','"+ cliente.getContrsenya() + "');";
+		+ "','" + cliente.getDni() + "','" + cliente.getDireccion() + "','"+ cliente.getCodigoPostal() + "','" + cliente.getFechanac() + "','" + cliente.getSexo() +"','"+ cliente.getUsuario() + "','"+ cliente.getContrsenya() + "')";
 		try {
 			con = initBaseDatos("Clientes.db");
 			Statement stmt = con.createStatement();
@@ -93,8 +94,8 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 	}
 	
 	public static boolean insertarRopa( Articulo articulo) {
-		String sent = "insert into ropa (codigo, tipo, talla, precio,sexo,marca,color) values ('" + articulo.getCodigo() + "','" + articulo.getTipo() 
-		+ "','" + articulo.getTalla() + "','" + articulo.getPrecio() + "','"+ articulo.getSexo() + "','" + articulo.getMarca() + "','" + articulo.getColor() + "');";
+		String sent = "insert into ropa (codigo, tipo, talla, precio,sexo,marca,color,imagen) values ('" + articulo.getCodigo() + "','" + articulo.getTipo() 
+		+ "','" + articulo.getTalla() + "','" + articulo.getPrecio() + "','"+ articulo.getSexo() + "','" + articulo.getMarca() + "','" + articulo.getColor() + "','" + articulo.getImagen()+ "')";
 		try {
 			con = initBaseDatos("Clientes.db");
 			Statement stmt = con.createStatement();
@@ -234,14 +235,15 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 				String color = rs.getString("color");
 				TipoArticulo tipo = TipoArticulo.valueOf(TipoArticulo.class, rs.getString("tipo"));
 				Talla talla = Talla.valueOf(Talla.class, rs.getString("talla"));
+				String ruta = rs.getString("imagen");
 				if (tipo == TipoArticulo.Camiseta) {
-					ret.add(new Camiseta( codigo, tipo, talla, precio, sexo,marca,color) );
+					ret.add(new Camiseta( codigo, tipo, talla, precio, sexo,marca,color, ruta) );
 				}else if (tipo == TipoArticulo.Pantalon) {
-					ret.add(new Pantalon( codigo, tipo, talla, precio, sexo,marca,color) );
+					ret.add(new Pantalon( codigo, tipo, talla, precio, sexo,marca,color, ruta) );
 				}else if (tipo == TipoArticulo.Sudadera) {
-					ret.add(new Sudadera( codigo, tipo, talla, precio, sexo,marca,color) );
+					ret.add(new Sudadera( codigo, tipo, talla, precio, sexo,marca,color, ruta) );
 				}else if (tipo == TipoArticulo.Zapatos) {
-					ret.add(new Zapatos( codigo, tipo, talla, precio, sexo,marca,color) );
+					ret.add(new Zapatos( codigo, tipo, talla, precio, sexo,marca,color, ruta) );
 				}
 			
 				
@@ -276,8 +278,10 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 					String sexo = rs.getString("sexo");
 					String marca = rs.getString("marca");
 					String color = rs.getString("color");
+					String ruta = rs.getString("imagen");
 					
-					String tbData[] = {codigo,tipo, talla, precio, sexo, marca, color};
+					
+					String tbData[] = {codigo,tipo, talla, precio, sexo, marca, color, ruta};
 					System.out.println(tbData);
 					tabla.addRow(tbData);			
 					
@@ -296,7 +300,7 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 			
 //			con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
 //			stmt = con.createStatement();
-//			rs = stmt.executeQuery("insert into ropa values (4, 'Zapatos','S',80,'HOMBRE','Adidas','Negro')");
+//			rs = stmt.executeQuery("create table ropa(codigo integer, tipo string, talla string, precio integer, sexo string, marca string, color string, imagen string)");
 //			stmt.executeUpdate("create table clientes (nombre string, email string, dni string, direccion string, codigoPostal integer, fecha_nac date, sexo string, usuario string, contraseña string)");
 
 			initBaseDatos("Clientes.db");

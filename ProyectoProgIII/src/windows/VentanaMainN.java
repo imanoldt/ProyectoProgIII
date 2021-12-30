@@ -194,7 +194,8 @@ public class VentanaMainN extends JFrame {
 				for (int i = 0; i < camisetas.size(); i++) {
 					panel = new PnlPrueba();
 					int precio = camisetas.get(i).getPrecio();
-					PnlPrueba.rellenarPaneles(precio);
+					String imagen = camisetas.get(i).getImagen();
+					PnlPrueba.rellenarPaneles(precio, imagen);
 					pnlPrincipalDerecha.add(panel);
 					pnlPrincipalDerecha.updateUI();
 				}
@@ -221,7 +222,8 @@ public class VentanaMainN extends JFrame {
 				for (int i = 0; i < sudaderas.size(); i++) {
 					panel = new PnlPrueba();
 					int precio = sudaderas.get(i).getPrecio();
-					PnlPrueba.rellenarPaneles(precio);
+					String imagen = sudaderas.get(i).getImagen();
+					PnlPrueba.rellenarPaneles(precio, imagen);
 					pnlPrincipalDerecha.add(panel);
 					pnlPrincipalDerecha.updateUI();
 				}
@@ -240,7 +242,8 @@ public class VentanaMainN extends JFrame {
 				for (int i = 0; i < pantalones.size(); i++) {
 					panel = new PnlPrueba();
 					int precio = pantalones.get(i).getPrecio();
-					PnlPrueba.rellenarPaneles(precio);
+					String imagen = pantalones.get(i).getImagen();
+					PnlPrueba.rellenarPaneles(precio, imagen);
 					pnlPrincipalDerecha.add(panel);
 					pnlPrincipalDerecha.updateUI();
 				}
@@ -259,7 +262,8 @@ public class VentanaMainN extends JFrame {
 				for (int i = 0; i < zapatos.size(); i++) {
 					panel = new PnlPrueba();
 					int precio = zapatos.get(i).getPrecio();
-					PnlPrueba.rellenarPaneles(precio);
+					String imagen = zapatos.get(i).getImagen();
+					PnlPrueba.rellenarPaneles(precio, imagen);
 					pnlPrincipalDerecha.add(panel);
 					pnlPrincipalDerecha.updateUI();
 				}

@@ -296,8 +296,7 @@ public class VentanaRegistroN extends JFrame {
 						ImageIcon im = new ImageIcon(imgEscalada);
 						im.setDescription(rutaFoto);
 						lblAvatarIcono.setIcon(im);
-						// ImageIcon imgIcon = new ImageIcon(rutaFoto);
-						// lblAvatarIcono.setIcon(imgIcon);
+						
 
 					} else {
 
@@ -362,15 +361,12 @@ public class VentanaRegistroN extends JFrame {
 									int codigoPostal = Integer.parseInt(txtCodigoPostal.getText());
 									Date fechanac = dChooser.getDate();
 									String usuario = txtusuario.getText();
-
 									String contraseña = passContraseña.getText();
-
 									
 									Cliente clNuevo=new Cliente(nombre, eml, dni2, direccion, codigoPostal,fechanac, sexo, usuario,contraseña );
 									BaseDeDatos.insertarCliente(clNuevo);
-								
-
 									JOptionPane.showMessageDialog(contentPane, "Registro  realizado");
+									limpiar();
 								} else {
 									JOptionPane.showMessageDialog(contentPane, "Usuario o email en uso");
 								}
@@ -393,5 +389,15 @@ public class VentanaRegistroN extends JFrame {
 			}
 		});
 	}
+	public void limpiar(){
+		txtNombre.setText("");
+		txtDni.setText("");
+		txtEmail.setText("");
+		txtDir.setText("");
+		txtCodigoPostal.setText("");
+		txtusuario.setText("");
+		passContraseña.setText("");
+		passContraseña2.setText("");
+    }
 }
 

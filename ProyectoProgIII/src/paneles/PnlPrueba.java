@@ -2,11 +2,14 @@ package paneles;
 
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
+import windows.VentanaLoginN;
+
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 
 import clss.Talla;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
@@ -14,9 +17,10 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.Cursor;
+import java.awt.Image;
 
 public class PnlPrueba extends JPanel {
-	private JLabel lblImagen;
+	private static JLabel lblImagen;
 	private JSpinner spnCantidad;
 	private JButton btnComprar;
 	private JLabel lblNombre;
@@ -31,7 +35,7 @@ public class PnlPrueba extends JPanel {
 	public PnlPrueba() {
 		setLayout(new MigLayout("", "[][][145.00,grow]", "[136.00][][][][][]"));
 
-		lblImagen = new JLabel("*Imagen*");
+		lblImagen = new JLabel("");
 		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblImagen, "cell 1 0 2 1,alignx center,aligny center");
 
@@ -59,8 +63,21 @@ public class PnlPrueba extends JPanel {
 		add(btnComprar, "cell 1 5 2 1,grow");
 
 	}
-	public static void rellenarPaneles(Integer precio) {
+	public static void rellenarPaneles(int precio, String imagen) {
 		lblPrecio.setText("Precio: "+precio+"€");
+		ImageIcon imgIcon;
+		try {			
+			imgIcon = new ImageIcon(PnlPrueba.class.getResource("/img/"+imagen));
+			Image imgEscalada = imgIcon.getImage().getScaledInstance(199, 199, Image.SCALE_SMOOTH);
+			lblImagen.setIcon(new ImageIcon(imgEscalada));
+			
+
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 }

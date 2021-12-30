@@ -60,8 +60,10 @@ public class VentanaDescatalogar extends JFrame{
 							BaseDeDatos.borrarRopa(codigo);
 							BaseDeDatos.actualizaTabla(VentanaAdminN.mRopa);
 							JOptionPane.showMessageDialog( mensaje, "Se ha borrado el articulo correctamente" );
+							limpiar();
 						}else {
 							JOptionPane.showMessageDialog(null, "No existe ningun articulo con ese código", "Error", JOptionPane.ERROR_MESSAGE);
+							limpiar();
 						}
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
@@ -87,6 +89,11 @@ public class VentanaDescatalogar extends JFrame{
 			});
 		
 	}
+	public void limpiar(){
+		tfInsertarCod.setText("");
+    }
+	
+	
 	public static void main(String[] args) {
 		VentanaDescatalogar ventana = new VentanaDescatalogar();
 		 ventana.setVisible(true);

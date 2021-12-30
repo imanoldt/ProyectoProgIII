@@ -1,5 +1,7 @@
 package clss;
 
+import java.io.File;
+
 public abstract class Articulo {
 	
 	private int codigo;
@@ -8,10 +10,11 @@ public abstract class Articulo {
 	private String marca;
 	private String color;
 	private TipoArticulo tipo;
-	protected static Talla talla;
+	protected String imagen;
+	protected Talla talla;
 
 
-	public Articulo(int codigo,TipoArticulo tipo,Talla talla, int precio, TipoSexo sexo, String marca, String color) {
+	public Articulo(int codigo,TipoArticulo tipo,Talla talla, int precio, TipoSexo sexo, String marca, String color, String imagen) {
 		super();
 		this.codigo = codigo;
 		this.tipo = tipo;
@@ -20,6 +23,7 @@ public abstract class Articulo {
 		this.sexo = sexo;
 		this.marca = marca;
 		this.color = color;
+		this.imagen = imagen;
 	}
 	
 	public Articulo() {
@@ -27,9 +31,11 @@ public abstract class Articulo {
 		this.codigo = 0;
 		this.tipo = TipoArticulo.Camiseta;
 		this.precio = 0;
+		this.talla = Talla.XS;
 		this.sexo = TipoSexo.HOMBRE;
 		this.marca = null;
 		this.color = null;
+		this.imagen = null;
 	}
 
 	public int getCodigo() {
@@ -80,6 +86,14 @@ public abstract class Articulo {
 		this.tipo = tipo;
 	}
 
+	public String getImagen() {
+		return imagen;
+	}
+
+	public  void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
 	public Talla getTalla() {
 		return talla;
 	}
@@ -93,5 +107,8 @@ public abstract class Articulo {
 		return "Articulo [codigo=" + codigo + ", precio=" + precio + ", sexo=" + sexo + ", marca=" + marca + ", color="
 				+ color + ", tipo=" + tipo + "]";
 	}
+
+
+
 
 }
