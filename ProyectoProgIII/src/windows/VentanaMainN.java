@@ -14,6 +14,8 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 import javax.swing.JLabel;
@@ -23,10 +25,11 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
 
+import clss.Articulo;
+import clss.BaseDeDatos;
+import clss.Camiseta;
 import clss.Cliente;
-
-
-
+import clss.TipoArticulo;
 import paneles.PnlCamisetas;
 import paneles.PnlPantalones;
 import paneles.PnlPrueba;
@@ -83,8 +86,9 @@ public class VentanaMainN extends JFrame {
 
 	/**
 	 * Crea el JFrame
+	 * @throws SQLException 
 	 */
-	public VentanaMainN() {
+	public VentanaMainN() throws SQLException {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 950, 600);
@@ -162,15 +166,35 @@ public class VentanaMainN extends JFrame {
 		scrollPane.setViewportView(pnlPrincipalDerecha);
 
 //EVENTOS________
-
+		BaseDeDatos.initBaseDatos("Clientes.db");
+		ArrayList<Articulo> articulos = BaseDeDatos.getArticulos();
+		BaseDeDatos.closeBD(BaseDeDatos.con);
+		ArrayList<Articulo> camisetas = new ArrayList<Articulo>();
+		ArrayList<Articulo> pantalones = new ArrayList<Articulo>();
+		ArrayList<Articulo> sudaderas = new ArrayList<Articulo>();
+		ArrayList<Articulo> zapatos = new ArrayList<Articulo>();
+		for (Articulo articulo : articulos) {
+			if (articulo.getTipo() == TipoArticulo.Camiseta) {
+				camisetas.add(articulo);
+			}else if (articulo.getTipo() == TipoArticulo.Pantalon) {
+				pantalones.add(articulo);
+			}else if (articulo.getTipo() == TipoArticulo.Sudadera) {
+				sudaderas.add(articulo);
+			}else if (articulo.getTipo() == TipoArticulo.Zapatos) {
+				zapatos.add(articulo);
+			}
+		}
 		lblCamisetas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				pnlPrincipalDerecha.removeAll();
 				pnlPrincipalDerecha.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+				System.out.println("Numero de camisetas: "+ camisetas.size());
 				
-				for (int i = 0; i < 10; i++) {
+				for (int i = 0; i < camisetas.size(); i++) {
 					panel = new PnlPrueba();
+					int precio = camisetas.get(i).getPrecio();
+					PnlPrueba.rellenarPaneles(precio);
 					pnlPrincipalDerecha.add(panel);
 					pnlPrincipalDerecha.updateUI();
 				}
@@ -186,13 +210,21 @@ public class VentanaMainN extends JFrame {
 			}
 		});
 
+
 		lblSudaderas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				pnlPrincipalDerecha.removeAll();
-				panel = new PnlSudaderas();
-				pnlPrincipalDerecha.add(panel);
-				pnlPrincipalDerecha.updateUI();
+				pnlPrincipalDerecha.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+				System.out.println("Numero de sudaderas: "+ sudaderas.size());
+				
+				for (int i = 0; i < sudaderas.size(); i++) {
+					panel = new PnlPrueba();
+					int precio = sudaderas.get(i).getPrecio();
+					PnlPrueba.rellenarPaneles(precio);
+					pnlPrincipalDerecha.add(panel);
+					pnlPrincipalDerecha.updateUI();
+				}
 
 			}
 		});
@@ -202,9 +234,17 @@ public class VentanaMainN extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 
 				pnlPrincipalDerecha.removeAll();
-				panel = new PnlPantalones();
-				pnlPrincipalDerecha.add(panel);
-				pnlPrincipalDerecha.updateUI();
+				pnlPrincipalDerecha.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+				System.out.println("Numero de pantalones: "+ pantalones.size());
+				
+				for (int i = 0; i < pantalones.size(); i++) {
+					panel = new PnlPrueba();
+					int precio = pantalones.get(i).getPrecio();
+					PnlPrueba.rellenarPaneles(precio);
+					pnlPrincipalDerecha.add(panel);
+					pnlPrincipalDerecha.updateUI();
+				}
+
 
 			}
 		});
@@ -213,9 +253,17 @@ public class VentanaMainN extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				pnlPrincipalDerecha.removeAll();
-				panel = new PnlZapatillas();
-				pnlPrincipalDerecha.add(panel);
-				pnlPrincipalDerecha.updateUI();
+				pnlPrincipalDerecha.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+				System.out.println("Numero de zapatos: "+ zapatos.size());
+				
+				for (int i = 0; i < zapatos.size(); i++) {
+					panel = new PnlPrueba();
+					int precio = zapatos.get(i).getPrecio();
+					PnlPrueba.rellenarPaneles(precio);
+					pnlPrincipalDerecha.add(panel);
+					pnlPrincipalDerecha.updateUI();
+				}
+
 
 			}
 		});

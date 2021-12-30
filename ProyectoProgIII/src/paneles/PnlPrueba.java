@@ -21,6 +21,8 @@ public class PnlPrueba extends JPanel {
 	private JButton btnComprar;
 	private JLabel lblNombre;
 	private JComboBox<Talla> cbTallas;
+	static JLabel lblPrecio;
+	
 //	private JComboBox<Talla> comboTalla;
 
 	/**
@@ -46,12 +48,19 @@ public class PnlPrueba extends JPanel {
 			cbTallas.addItem(t);
 
 		}
+		lblPrecio = new JLabel("Precio");
+		add(lblPrecio, "cell 1 5 2 2,grow");
+		
+		
 		
 		btnComprar = new JButton("Comprar");
 		btnComprar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnComprar.setBackground(Color.PINK);
 		add(btnComprar, "cell 1 5 2 1,grow");
 
+	}
+	public static void rellenarPaneles(Integer precio) {
+		lblPrecio.setText("Precio: "+precio+"€");
 	}
 
 }

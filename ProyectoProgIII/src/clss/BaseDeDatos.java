@@ -224,24 +224,37 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 		try (Statement statement = con.createStatement()) {
 			ArrayList<Articulo> ret = new ArrayList<>();
 			String sent = "SELECT * FROM ropa;";
-			loggerN.log( Level.INFO, "Statement: " + sent );
+//			loggerN.log( Level.INFO, "Statement: " + sent );
 			ResultSet rs = statement.executeQuery( sent );
 			while( rs.next() ) { // Leer el resultset
 				int codigo = rs.getInt("codigo");
 				int precio = rs.getInt("precio");
-				Enum sexo = Enum.valueOf(null, rs.getString("sexo"));
+				TipoSexo sexo = TipoSexo.valueOf(TipoSexo.class, rs.getString("sexo"));
 				String marca = rs.getString("marca");
 				String color = rs.getString("color");
-				Enum tipo = Enum.valueOf(null, rs.getString("tipo"));
-				Enum talla = Enum.valueOf(null, rs.getString("talla"));
-
-				ret.add(new Articulo ( codigo, precio, sexo,marca,color,tipo,talla) ); //ERROR 
+				TipoArticulo tipo = TipoArticulo.valueOf(TipoArticulo.class, rs.getString("tipo"));
+				Talla talla = Talla.valueOf(Talla.class, rs.getString("talla"));
+				if (tipo == TipoArticulo.Camiseta) {
+					ret.add(new Camiseta( codigo, tipo, talla, precio, sexo,marca,color) );
+				}else if (tipo == TipoArticulo.Pantalon) {
+					ret.add(new Pantalon( codigo, tipo, talla, precio, sexo,marca,color) );
+				}else if (tipo == TipoArticulo.Sudadera) {
+					ret.add(new Sudadera( codigo, tipo, talla, precio, sexo,marca,color) );
+				}else if (tipo == TipoArticulo.Zapatos) {
+					ret.add(new Zapatos( codigo, tipo, talla, precio, sexo,marca,color) );
+				}
+			
+				
+				
+				
 			}
 			return ret;
 		} catch (Exception e) {
-			loggerN.log( Level.SEVERE, "Excepción", e );
+//			loggerN.log( Level.SEVERE, "Excepción", e );
+			System.out.println(e);
 			return null;
 		}
+		
 	}
 
 		
@@ -281,15 +294,17 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 	public static void main(String[] args) {
 		try {
 			
-			con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
-			stmt = con.createStatement();
-			rs = stmt.executeQuery("insert into ropa values (4, 'Zapatos','S',80,'HOMBRE','Adidas','Negro')");
+//			con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
+//			stmt = con.createStatement();
+//			rs = stmt.executeQuery("insert into ropa values (4, 'Zapatos','S',80,'HOMBRE','Adidas','Negro')");
+//			stmt.executeUpdate("create table clientes (nombre string, email string, dni string, direccion string, codigoPostal integer, fecha_nac date, sexo string, usuario string, contraseña string)");
 
-			
-
-
-			stmt.executeUpdate("create table clientes (nombre string, email string, dni string, direccion string, codigoPostal integer, fecha_nac date, sexo string, usuario string, contraseña string)");
-
+			initBaseDatos("Clientes.db");
+			ArrayList<Articulo> articulos = getArticulos();
+			System.out.println(articulos.size());
+			for (Articulo articulo : articulos) {
+				System.out.println(articulo);
+			}
 		
 			
 	
