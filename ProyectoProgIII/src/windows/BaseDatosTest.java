@@ -29,7 +29,7 @@ public class BaseDatosTest {
 	@Test
 	public void testInsertarClienteIncorrecto() {
 		// Cliente incorrecto por sintaxis inadecuada de nombre de cliente
-		Cliente c1 = new Cliente("O'Neil", "joseba@opendeusto.es", "79002", "Calle a",4444, new Date(21/12/2021), TipoSexo.HOMBRE, "Josebaaa", "joseba");
+		Cliente c1 = new Cliente("O'Neil", "joseba@opendeusto.es", "79002", "Calle a",4444, new Date(21/12/2021), TipoSexo.HOMBRE, "Josebaaa", "joseba", "avt1.png");
 		assertFalse( BaseDeDatos.insertarCliente(c1));
 	}
 

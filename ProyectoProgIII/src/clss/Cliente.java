@@ -13,8 +13,9 @@ public class Cliente {
 	private String usuario;
 	private String contrsenya;
 	private Date fechanac;
+	private String imagen;
 	
-	public Cliente(String nombre, String email,String dni, String direccion,int codigoPostal, Date fechanac, TipoSexo sexo, String usuario, String contrsenya) {
+	public Cliente(String nombre, String email,String dni, String direccion,int codigoPostal, Date fechanac, TipoSexo sexo, String usuario, String contrsenya, String imagen) {
 		super();
 		this.nombre = nombre;
 		this.email = email;
@@ -25,6 +26,7 @@ public class Cliente {
 		this.sexo = sexo;
 		this.usuario = usuario;
 		this.contrsenya = contrsenya;
+		this.imagen = imagen;
 	}
 	
 	public Cliente() {
@@ -38,6 +40,7 @@ public class Cliente {
 		this.sexo = null;
 		this.usuario = null;
 		this.contrsenya = null;
+		this.imagen = null;
 	}
 
 	public String getNombre() {
@@ -112,13 +115,19 @@ public class Cliente {
 		this.fechanac = fechanac;
 	}
 
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
 	@Override
 	public String toString() {
 		return "Cliente [nombre=" + nombre + ", email=" + email + ", dni=" + dni + ", sexo=" + sexo + ", direccion="
 				+ direccion + ", codigoPostal=" + codigoPostal + ", usuario=" + usuario + ", contrsenya=" + contrsenya
-				+ ", fechanac=" + fechanac + "]";
+				+ ", fechanac=" + fechanac + ", imagen=" + imagen + "]";
 	}
-
-
 
 }

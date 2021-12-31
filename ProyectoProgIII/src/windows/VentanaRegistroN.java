@@ -31,6 +31,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -63,6 +64,7 @@ public class VentanaRegistroN extends JFrame {
 	private JPasswordField passContraseña, passContraseña2;
 	private JSeparator separator, separator_1, separator_2, separator_3;
 	private JButton btnCerrar;
+	private JTextField txtruta;
 
 	/**
 	 * Create the frame.
@@ -236,6 +238,12 @@ public class VentanaRegistroN extends JFrame {
 		btnSeleccionar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		pnlCentralIzq.add(btnSeleccionar);
+		
+        txtruta = new JTextField();
+		pnlCentralIzq.add(txtruta);
+		txtruta.setColumns(10);
+		txtruta.setEditable(false);
+        txtruta.setBackground(new java.awt.Color(204, 204, 255));
 
 		pnlCentralDerecha = new JPanel();
 		pnlCentralDerecha.setBackground(new Color(227, 48, 73));
@@ -267,11 +275,10 @@ public class VentanaRegistroN extends JFrame {
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				System.out.println("HOLAAAAA");
 				int opcion = JOptionPane.showConfirmDialog(null, "Seguro que desea salir OutFitShop?",
 						"Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if (opcion == 0) {
-					setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dispose();
 				}
 
 			}
@@ -290,14 +297,16 @@ public class VentanaRegistroN extends JFrame {
 							"Confirmacion", JOptionPane.YES_NO_CANCEL_OPTION);
 					if (input == JOptionPane.YES_OPTION) {
 						String rutaFoto = fSeleccionado.getAbsolutePath();
-						System.out.println(rutaFoto);
 						ImageIcon imgIcon = new ImageIcon(rutaFoto);
 						Image imgEscalada = imgIcon.getImage().getScaledInstance(199, 199, Image.SCALE_SMOOTH);
 						ImageIcon im = new ImageIcon(imgEscalada);
 						im.setDescription(rutaFoto);
 						lblAvatarIcono.setIcon(im);
+			            String[] parts = rutaFoto.split("\\\\");
+			            String ultimo = parts[parts.length - 1];
+			            txtruta.setText(ultimo);
 						
-
+						
 					} else {
 
 					}
@@ -362,8 +371,8 @@ public class VentanaRegistroN extends JFrame {
 									Date fechanac = dChooser.getDate();
 									String usuario = txtusuario.getText();
 									String contraseña = passContraseña.getText();
-									
-									Cliente clNuevo=new Cliente(nombre, eml, dni2, direccion, codigoPostal,fechanac, sexo, usuario,contraseña );
+									String ruta = txtruta.getText();
+									Cliente clNuevo=new Cliente(nombre, eml, dni2, direccion, codigoPostal,fechanac, sexo, usuario,contraseña, ruta);
 									BaseDeDatos.insertarCliente(clNuevo);
 									JOptionPane.showMessageDialog(contentPane, "Registro  realizado");
 									limpiar();
@@ -398,6 +407,8 @@ public class VentanaRegistroN extends JFrame {
 		txtusuario.setText("");
 		passContraseña.setText("");
 		passContraseña2.setText("");
+		txtruta.setText("");
+		
     }
 }
 

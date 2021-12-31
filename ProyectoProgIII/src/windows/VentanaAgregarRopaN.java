@@ -216,16 +216,12 @@ public class VentanaAgregarRopaN extends JFrame {
 													"Confirmacion", JOptionPane.YES_NO_CANCEL_OPTION);
 											if (input == JOptionPane.YES_OPTION) {
 												String rutaFoto = fSeleccionado.getAbsolutePath();
-												System.out.println(rutaFoto);
 												ImageIcon imgIcon = new ImageIcon(rutaFoto);
 												Image imgEscalada = imgIcon.getImage().getScaledInstance(199, 199, Image.SCALE_SMOOTH);
 												ImageIcon im = new ImageIcon(imgEscalada);
 												im.setDescription(rutaFoto);
 												lblImagen.setIcon(im);
-
-									            String cadena = rutaFoto;
-									            String[] parts = cadena.split("\\\\");
-									            System.out.println(Arrays.asList(parts));
+									            String[] parts = rutaFoto.split("\\\\");
 									            String ultimo = parts[parts.length - 1];
 									            System.out.println(ultimo);
 									            txtruta.setText(ultimo);

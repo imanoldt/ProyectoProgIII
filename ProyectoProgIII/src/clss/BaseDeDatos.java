@@ -77,8 +77,8 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 	
 	
 	public static boolean insertarCliente(Cliente cliente) {
-		String sent = "insert into clientes (nombre, email, dni, direccion,codigoPostal,fecha_nac,sexo,usuario, contraseña ) values ('" + cliente.getNombre() + "','" + cliente.getEmail() 
-		+ "','" + cliente.getDni() + "','" + cliente.getDireccion() + "','"+ cliente.getCodigoPostal() + "','" + cliente.getFechanac() + "','" + cliente.getSexo() +"','"+ cliente.getUsuario() + "','"+ cliente.getContrsenya() + "')";
+		String sent = "insert into clientes (nombre, email, dni, direccion,codigoPostal,fecha_nac,sexo,usuario, contraseña, ruta) values ('" + cliente.getNombre() + "','" + cliente.getEmail() 
+		+ "','" + cliente.getDni() + "','" + cliente.getDireccion() + "','"+ cliente.getCodigoPostal() + "','" + cliente.getFechanac() + "','" + cliente.getSexo() +"','"+ cliente.getUsuario() + "','"+ cliente.getContrsenya() + "','"+ cliente.getImagen() + "')";
 		try {
 			con = initBaseDatos("Clientes.db");
 			Statement stmt = con.createStatement();
@@ -300,7 +300,7 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 			
 //			con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
 //			stmt = con.createStatement();
-//			rs = stmt.executeQuery("create table ropa(codigo integer, tipo string, talla string, precio integer, sexo string, marca string, color string, imagen string)");
+//			rs = stmt.executeQuery("create table clientes (nombre string, email string, dni string, direccion string, codigoPostal integer, fecha_nac date, sexo string, usuario string, contraseña string, ruta string)");
 //			stmt.executeUpdate("create table clientes (nombre string, email string, dni string, direccion string, codigoPostal integer, fecha_nac date, sexo string, usuario string, contraseña string)");
 
 			initBaseDatos("Clientes.db");
