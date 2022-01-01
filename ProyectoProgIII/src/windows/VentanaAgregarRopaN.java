@@ -101,7 +101,7 @@ public class VentanaAgregarRopaN extends JFrame {
 		
 		labelcod = new JLabel("Codigo: ");
 		labelcod.setForeground(Color.WHITE);
-		labelcod.setFont(new Font("Monaco", Font.PLAIN, 14));
+		labelcod.setFont(new Font("Montserrat", Font.PLAIN, 14));
 		
 		pnlCentralIzq.add(labelcod);
 		tfcod = new JTextField();
@@ -110,7 +110,7 @@ public class VentanaAgregarRopaN extends JFrame {
 
 		labeltalla = new JLabel("Talla: ");
 		labeltalla.setForeground(Color.WHITE);
-		labeltalla.setFont(new Font("Monaco", Font.PLAIN, 14));
+		labeltalla.setFont(new Font("Montserrat", Font.PLAIN, 14));
 		pnlCentralIzq.add(labeltalla);
 
 		cbtalla = new JComboBox<Talla>();
@@ -121,7 +121,7 @@ public class VentanaAgregarRopaN extends JFrame {
 
 		labelprecio = new JLabel("Precio:");
 		labelprecio.setForeground(Color.WHITE);
-		labelprecio.setFont(new Font("Monaco", Font.PLAIN, 14));
+		labelprecio.setFont(new Font("Montserrat", Font.PLAIN, 14));
 		pnlCentralIzq.add(labelprecio);
 
 		tfprecio = new JTextField();
@@ -137,7 +137,7 @@ public class VentanaAgregarRopaN extends JFrame {
 	
 		tipo = new JLabel("Tipo de articulo:");
 		tipo.setForeground(Color.WHITE);
-		tipo.setFont(new Font("Monaco", Font.PLAIN, 14));
+		tipo.setFont(new Font("Montserrat", Font.PLAIN, 14));
 		pnlCentralIzq.add(tipo);
 
 		cbtipo = new JComboBox();
@@ -149,7 +149,7 @@ public class VentanaAgregarRopaN extends JFrame {
 
 		labelmarca = new JLabel("Marca: ");
 		labelmarca.setForeground(Color.WHITE);
-		labelmarca.setFont(new Font("Monaco", Font.PLAIN, 14));
+		labelmarca.setFont(new Font("Montserrat", Font.PLAIN, 14));
 		pnlCentralIzq.add(labelmarca);
 
 		tfmarca = new JTextField();
@@ -166,7 +166,7 @@ public class VentanaAgregarRopaN extends JFrame {
 		
 		labelsexo = new JLabel("Sexo:");
 		labelsexo.setForeground(Color.WHITE);
-		labelsexo.setFont(new Font("Monaco", Font.PLAIN, 14));
+		labelsexo.setFont(new Font("Montserrat", Font.PLAIN, 14));
 		pnlCentralIzq.add(labelsexo);
 
 		
@@ -179,7 +179,7 @@ public class VentanaAgregarRopaN extends JFrame {
 		
 		labelcolor = new JLabel("Color:");
 		labelcolor.setForeground(Color.WHITE);
-		labelcolor.setFont(new Font("Monaco", Font.PLAIN, 14));
+		labelcolor.setFont(new Font("Montserrat", Font.PLAIN, 14));
 		pnlCentralIzq.add(labelcolor);
 		
 		tfcolor = new JTextField();
@@ -195,10 +195,11 @@ public class VentanaAgregarRopaN extends JFrame {
 		
 				lblImagen = new JLabel("Buscar Imagen:");
 				lblImagen.setForeground(Color.WHITE);
-				lblImagen.setFont(new Font("Monaco", Font.PLAIN, 14));
+				lblImagen.setFont(new Font("Montserrat", Font.PLAIN, 14));
 				pnlCentralIzq.add(lblImagen);
 		
 				btnBuscar = new JButton("Buscar");
+				btnBuscar.setFont(new Font("Montserrat", Font.PLAIN, 13));
 				btnBuscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				
 						pnlCentralIzq.add(btnBuscar);
@@ -289,11 +290,13 @@ public class VentanaAgregarRopaN extends JFrame {
 		
 
 		btnAgregar = new JButton("Agregar");
+		btnAgregar.setFont(new Font("Montserrat", Font.PLAIN, 13));
 		btnAgregar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		pnlCentralDerecha.add(btnAgregar, "cell 0 3,grow");
 
 		btnCerrar = new JButton("Cancelar");
+		btnCerrar.setFont(new Font("Montserrat", Font.PLAIN, 13));
 	
 		pnlCentralDerecha.add(btnCerrar, "cell 0 4,growx,aligny center");
 
