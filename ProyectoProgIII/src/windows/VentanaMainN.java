@@ -184,6 +184,8 @@ public class VentanaMainN extends JFrame {
 				zapatos.add(articulo);
 			}
 		}
+		
+		
 		lblCamisetas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

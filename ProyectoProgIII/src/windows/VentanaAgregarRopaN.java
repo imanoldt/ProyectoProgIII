@@ -208,7 +208,7 @@ public class VentanaAgregarRopaN extends JFrame {
 									public void actionPerformed(ActionEvent e) {
 						
 										JFileChooser fc = new JFileChooser("src/img");
-										FileFilter filter = new FileNameExtensionFilter("PNG file", new String[] { "png" });
+										FileFilter filter = new FileNameExtensionFilter("JPG file", new String[] { "jpg" });
 										fc.setFileFilter(filter);
 										int seleccion = fc.showOpenDialog(null);
 										if (seleccion == JFileChooser.APPROVE_OPTION) {
@@ -223,6 +223,7 @@ public class VentanaAgregarRopaN extends JFrame {
 												im.setDescription(rutaFoto);
 												lblImagen.setIcon(im);
 									            String[] parts = rutaFoto.split("\\\\");
+									            System.out.println(parts);
 									            String ultimo = parts[parts.length - 1];
 									            System.out.println(ultimo);
 									            txtruta.setText(ultimo);

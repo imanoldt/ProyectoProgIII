@@ -287,7 +287,7 @@ public class VentanaRegistroN extends JFrame {
 		btnSeleccionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				JFileChooser fc = new JFileChooser("src/img");
+				JFileChooser fc = new JFileChooser("src/img/avt");
 				FileFilter filter = new FileNameExtensionFilter("PNG file", new String[] { "png" });
 				fc.setFileFilter(filter);
 				int seleccion = fc.showOpenDialog(null);
