@@ -109,6 +109,7 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 			return true;
 		}
 		
+		
 	}
 	
 	
@@ -288,11 +289,12 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 					
 					
 				}
+				closeBD(con);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 
-			}closeBD(con);
+			}
 			
 	}
 	
@@ -300,8 +302,9 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 	public static void main(String[] args) {
 		try {
 			
-//			con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
-//			stmt = con.createStatement();
+			con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("delete from clientes where nombre = ('Alberto')");
 //			rs = stmt.executeQuery("create table clientes (nombre string, email string, dni string, direccion string, codigoPostal integer, fecha_nac date, sexo string, usuario string, contraseña string, ruta string)");
 //			stmt.executeUpdate("create table clientes (nombre string, email string, dni string, direccion string, codigoPostal integer, fecha_nac date, sexo string, usuario string, contraseña string)");
 

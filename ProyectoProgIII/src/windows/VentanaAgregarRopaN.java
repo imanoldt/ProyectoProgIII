@@ -217,6 +217,7 @@ public class VentanaAgregarRopaN extends JFrame {
 													"Confirmacion", JOptionPane.YES_NO_CANCEL_OPTION);
 											if (input == JOptionPane.YES_OPTION) {
 												String nombreFoto = fSeleccionado.getName();
+												System.out.println(nombreFoto);
 												String rutaFoto = "src/img/";
 												if (cbtipo.getSelectedItem() == TipoArticulo.Camiseta) {
 													rutaFoto = rutaFoto + "camisetas/" +nombreFoto;
@@ -336,8 +337,7 @@ public class VentanaAgregarRopaN extends JFrame {
 							TipoSexo sexo = (TipoSexo) cbsexo.getSelectedItem();
 							String marca = tfmarca.getText();
 							String color = tfcolor.getText();
-							String ruta = txtruta.getText();
-//							File ruta1 = new File(txtruta.getText());					        
+							String ruta = txtruta.getText();					        
 						        if(ruta!=null){
 									if (tipo == TipoArticulo.Camiseta) {
 										Articulo a1 = new Camiseta(codigo,tipo, talla, precio, sexo, marca, color, ruta);

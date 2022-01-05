@@ -14,6 +14,7 @@ import com.toedter.calendar.JDateChooser;
 
 import clss.BaseDeDatos;
 import clss.Cliente;
+import clss.TipoArticulo;
 import clss.TipoSexo;
 
 import java.awt.GridLayout;
@@ -296,17 +297,15 @@ public class VentanaRegistroN extends JFrame {
 					int input = JOptionPane.showConfirmDialog(null, "¿Seguro que este es el archivo correcto?",
 							"Confirmacion", JOptionPane.YES_NO_CANCEL_OPTION);
 					if (input == JOptionPane.YES_OPTION) {
-						String rutaFoto = fSeleccionado.getAbsolutePath();
+						String nombreFoto = fSeleccionado.getName();
+						String rutaFoto = "src/img/";	
+						rutaFoto = rutaFoto +"avt/" +nombreFoto;
 						ImageIcon imgIcon = new ImageIcon(rutaFoto);
 						Image imgEscalada = imgIcon.getImage().getScaledInstance(199, 199, Image.SCALE_SMOOTH);
 						ImageIcon im = new ImageIcon(imgEscalada);
 						im.setDescription(rutaFoto);
-						lblAvatarIcono.setIcon(im);
-			            String[] parts = rutaFoto.split("\\\\");
-			            String ultimo = parts[parts.length - 1];
-			            txtruta.setText(ultimo);
-						
-						
+						lblAvatarIcono.setIcon(im);	  
+			            txtruta.setText(rutaFoto);
 					} else {
 
 					}
