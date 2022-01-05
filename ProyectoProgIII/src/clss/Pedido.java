@@ -3,7 +3,7 @@ package clss;
 import java.util.ArrayList;
 
 public class Pedido {
-	public static int contador;
+	public static int contador = 1;
 	private int numero_pedido;
 	private ArrayList<Articulo> articulos;
 	
