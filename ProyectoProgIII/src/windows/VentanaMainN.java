@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -60,6 +61,10 @@ public class VentanaMainN extends JFrame {
 	private JPanel panel;
 	private JPanel pnlPrincipalDerecha;
 	private JScrollPane scrollPane;
+	
+	private JButton carrito;
+	private JButton btnHome;
+	
 
 	/**
 	 * Lanza JFrame
@@ -114,6 +119,47 @@ public class VentanaMainN extends JFrame {
 		lblNewLabel_1.setFont(new Font("Monaco", Font.PLAIN, 16));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		pnlNorte.add(lblNewLabel_1);
+		
+		
+		carrito = new JButton();
+		String imagen = "src/img/IconoCesta.png";
+		ImageIcon imgIcon = new ImageIcon(imagen);
+		Image imgEscalada = imgIcon.getImage().getScaledInstance(45, 38, Image.SCALE_SMOOTH);
+		ImageIcon im = new ImageIcon(imgEscalada);
+		im.setDescription(imagen);
+		carrito.setIcon(im);
+		carrito.setOpaque(true);
+		carrito.setBorder(null);
+		carrito.setBackground(new Color(227, 48, 73));
+		pnlNorte.add(carrito, BorderLayout.WEST);
+		
+		carrito.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaCarrito nueva = new VentanaCarrito();
+				nueva.setVisible(true);
+			}
+		});
+		pnlNorte.add(carrito, BorderLayout.EAST);
+		
+		
+		btnHome = new JButton(new ImageIcon("src/img/Inicio.png"));
+		btnHome.setOpaque(true);
+		btnHome.setBorder(null);
+		btnHome.setBackground(new Color(227, 48, 73));
+		pnlNorte.add(btnHome, BorderLayout.WEST);
+		
+		btnHome.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				VentanaLoginN nueva = new VentanaLoginN();
+				nueva.setVisible(true);
+			}
+		});
+		
 
 		pnlIzquierda = new JPanel();
 		pnlIzquierda.setBackground(Color.DARK_GRAY);

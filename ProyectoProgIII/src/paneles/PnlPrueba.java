@@ -7,6 +7,7 @@ import windows.VentanaLoginN;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 
+import clss.Articulo;
 import clss.Talla;
 
 import javax.swing.ImageIcon;
@@ -14,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseMotionAdapter;
+import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.Cursor;
@@ -26,6 +28,8 @@ public class PnlPrueba extends JPanel {
 	private JLabel lblNombre;
 	private JComboBox<Talla> cbTallas;
 	static JLabel lblPrecio;
+
+	
 	
 //	private JComboBox<Talla> comboTalla;
 
@@ -80,5 +84,6 @@ public class PnlPrueba extends JPanel {
 		}
 
 	}
+	
 
 }
