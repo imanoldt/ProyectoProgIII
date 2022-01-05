@@ -216,17 +216,25 @@ public class VentanaAgregarRopaN extends JFrame {
 											int input = JOptionPane.showConfirmDialog(null, "¿Seguro que este es el archivo correcto?",
 													"Confirmacion", JOptionPane.YES_NO_CANCEL_OPTION);
 											if (input == JOptionPane.YES_OPTION) {
-												String rutaFoto = fSeleccionado.getAbsolutePath();
+												String nombreFoto = fSeleccionado.getName();
+												String rutaFoto = "src/img/";
+												if (cbtipo.getSelectedItem() == TipoArticulo.Camiseta) {
+													rutaFoto = rutaFoto + "camisetas/" +nombreFoto;
+												}else if (cbtipo.getSelectedItem() == TipoArticulo.Pantalon) {
+													rutaFoto = rutaFoto + "pantalones/" +nombreFoto;
+												}else if (cbtipo.getSelectedItem() == TipoArticulo.Sudadera) {
+													rutaFoto = rutaFoto + "sudaderas/" +nombreFoto;
+												}else if (cbtipo.getSelectedItem() == TipoArticulo.Zapatos) {
+													rutaFoto = rutaFoto + "zapatos/" +nombreFoto;
+												}
+												System.out.println(rutaFoto);
+												
 												ImageIcon imgIcon = new ImageIcon(rutaFoto);
 												Image imgEscalada = imgIcon.getImage().getScaledInstance(199, 199, Image.SCALE_SMOOTH);
 												ImageIcon im = new ImageIcon(imgEscalada);
 												im.setDescription(rutaFoto);
 												lblImagen.setIcon(im);
-									            String[] parts = rutaFoto.split("\\\\");
-									            System.out.println(parts);
-									            String ultimo = parts[parts.length - 1];
-									            System.out.println(ultimo);
-									            txtruta.setText(ultimo);
+									            txtruta.setText(rutaFoto);
 											} else {
 						
 											}

@@ -65,12 +65,13 @@ public class PnlPrueba extends JPanel {
 	}
 	public static void rellenarPaneles(int precio, String imagen) {
 		lblPrecio.setText("Precio: "+precio+"€");
-		ImageIcon imgIcon;
-		try {			
-			imgIcon = new ImageIcon(PnlPrueba.class.getResource("/img/"+imagen));
+	
+		try {
+			ImageIcon imgIcon = new ImageIcon(imagen);
 			Image imgEscalada = imgIcon.getImage().getScaledInstance(199, 199, Image.SCALE_SMOOTH);
-			lblImagen.setIcon(new ImageIcon(imgEscalada));
-			
+			ImageIcon im = new ImageIcon(imgEscalada);
+			im.setDescription(imagen);
+			lblImagen.setIcon(im);		
 
 			
 		} catch (Exception e) {

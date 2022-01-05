@@ -283,15 +283,17 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 					
 					String tbData[] = {codigo,tipo, talla, precio, sexo, marca, color, ruta};
 					System.out.println(tbData);
-					tabla.addRow(tbData);			
+					tabla.addRow(tbData);
+					
+					
 					
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 
-			}
-			closeBD(con);
+			}closeBD(con);
+			
 	}
 	
 	

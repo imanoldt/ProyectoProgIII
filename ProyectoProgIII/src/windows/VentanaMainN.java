@@ -197,6 +197,7 @@ public class VentanaMainN extends JFrame {
 					panel = new PnlPrueba();
 					int precio = camisetas.get(i).getPrecio();
 					String imagen = camisetas.get(i).getImagen();
+					System.out.println(imagen);
 					PnlPrueba.rellenarPaneles(precio, imagen);
 					pnlPrincipalDerecha.add(panel);
 					pnlPrincipalDerecha.updateUI();
