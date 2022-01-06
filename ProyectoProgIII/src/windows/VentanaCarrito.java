@@ -34,8 +34,7 @@ public class VentanaCarrito extends JFrame{
 		txt_prueba = new JTextArea(70, 70);
 		String productos = "";
 		for (Articulo articulo : articulos_carrito) {
-			productos = productos + articulo + "\n";
-			
+			productos = productos + articulo + "\n";		
 		}
 		txt_prueba.setText(productos);
 		contentPane.add(txt_prueba);
