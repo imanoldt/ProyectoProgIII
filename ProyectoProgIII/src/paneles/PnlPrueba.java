@@ -2,6 +2,7 @@ package paneles;
 
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
+import windows.VentanaCarrito;
 import windows.VentanaLoginN;
 
 import javax.swing.JLabel;
@@ -17,6 +18,8 @@ import javax.swing.SwingConstants;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.Cursor;
 import java.awt.Image;
@@ -28,6 +31,8 @@ public class PnlPrueba extends JPanel {
 	private JLabel lblNombre;
 	private JComboBox<Talla> cbTallas;
 	static JLabel lblPrecio;
+	static Articulo articulo_asignado;
+//	static ArrayList<Articulo> articulos_carrito = VentanaCarrito.getArticulos_carrito();
 
 	
 	
@@ -65,9 +70,18 @@ public class PnlPrueba extends JPanel {
 		btnComprar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnComprar.setBackground(Color.PINK);
 		add(btnComprar, "cell 1 5 2 1,grow");
+		
+		btnComprar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Articulo compra = getArticulo_asignado();
+				VentanaCarrito.articulos_carrito.add(compra);
+			}
+		});
 
 	}
-	public static void rellenarPaneles(int precio, String imagen) {
+	public static void rellenarPaneles(int precio, String imagen, Articulo articulo) {
 		lblPrecio.setText("Precio: "+precio+"€");
 	
 		try {
@@ -75,7 +89,8 @@ public class PnlPrueba extends JPanel {
 			Image imgEscalada = imgIcon.getImage().getScaledInstance(199, 199, Image.SCALE_SMOOTH);
 			ImageIcon im = new ImageIcon(imgEscalada);
 			im.setDescription(imagen);
-			lblImagen.setIcon(im);		
+			lblImagen.setIcon(im);
+			setArticulo_asignado(articulo);
 
 			
 		} catch (Exception e) {
@@ -83,6 +98,12 @@ public class PnlPrueba extends JPanel {
 			e.printStackTrace();
 		}
 
+	}
+	public static Articulo getArticulo_asignado() {
+		return articulo_asignado;
+	}
+	public static void setArticulo_asignado(Articulo articulo_asignado) {
+		PnlPrueba.articulo_asignado = articulo_asignado;
 	}
 	
 
