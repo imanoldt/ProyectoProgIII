@@ -80,6 +80,8 @@ public class VentanaRegistroN extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setTitle("Registro Usuarios");
 		setContentPane(contentPane);
+		setIconImage(new ImageIcon(getClass().getResource("/img/iconoPass.png")).getImage());
+
 
 		pnlSuperior = new JPanel();
 		pnlSuperior.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(0, 0, 0)));

@@ -12,6 +12,7 @@ import javax.swing.table.TableRowSorter;
 import javax.swing.text.AttributeSet.ColorAttribute;
 
 import clss.BaseDeDatos;
+import clss.OutFitShopException;
 import clss.TipoArticulo;
 
 import javax.swing.JTable;
@@ -26,17 +27,20 @@ import java.text.ParseException;
 import java.util.Vector;
 import java.util.logging.Logger;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 
+@SuppressWarnings("serial")
 public class VentanaAdminN extends JFrame {
 
 	private JPanel contentPane;
@@ -58,16 +62,38 @@ public class VentanaAdminN extends JFrame {
 	private JButton btnExportar;
 	private JButton btnBorrar;
 	private JButton btnInicio;
+	private Icon icono = new ImageIcon(getClass().getResource("/img/IconoAplicacion.png"));
+	private static Boolean vr=true;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws OutFitShopException {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaAdminN frame = new VentanaAdminN();
-					frame.setVisible(true);
+					try {
+						while(vr) {
+							String tx = (String) JOptionPane.showInputDialog(null, "Usuario:", "Ingrese los credenciales de admin", JOptionPane.INFORMATION_MESSAGE, null, null, null);					
+							if (tx.isEmpty()) {
+						        JOptionPane.showMessageDialog(null, "!! No Ha Ingresado Ningun Valor !!");
+						        throw new OutFitShopException("No se ha introducido ningun texto");
+						    }else if(tx.equals("admin")){
+						    	vr=false;
+								VentanaAdminN frame = new VentanaAdminN();
+								frame.setVisible(true);
+								
+							}
+							
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						//e.printStackTrace();
+				        throw new OutFitShopException("No se ha introducido ningun texto");
+
+					}
+
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -100,6 +126,8 @@ public class VentanaAdminN extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		setTitle("Admin");
+		setIconImage(new ImageIcon(getClass().getResource("/img/IconoAplicacion.png")).getImage());
+
 		contentPane.setLayout(new GridLayout(0, 2, 0, 0));
 
 		pnlIzquierda = new JPanel();

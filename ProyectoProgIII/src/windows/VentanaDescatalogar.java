@@ -26,6 +26,8 @@ public class VentanaDescatalogar extends JFrame{
 		this.setSize(450, 100);
 		this.setUndecorated (false);
 		setLocationRelativeTo(null);
+		setIconImage(new ImageIcon(getClass().getResource("/img/icnDescatalogar.png")).getImage());
+
 		Container cp = this.getContentPane();
 		cp.setLayout(new GridLayout(2, 1));
 		

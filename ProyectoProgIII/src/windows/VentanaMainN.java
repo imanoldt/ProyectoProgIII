@@ -99,6 +99,8 @@ public class VentanaMainN extends JFrame {
 		setBounds(100, 100, 1200, 700);
 		setLocationRelativeTo(null);
 		setTitle("OutFitShop");
+		setIconImage(new ImageIcon(getClass().getResource("/img/IconoAplicacion.png")).getImage());
+
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
