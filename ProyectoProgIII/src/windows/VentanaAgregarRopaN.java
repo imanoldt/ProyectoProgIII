@@ -325,8 +325,9 @@ public class VentanaAgregarRopaN extends JFrame {
 						&& !txtruta.getText().isEmpty()) {
 					try  {
 						int codigo = Integer.parseInt(tfcod.getText());
-						
+						BaseDeDatos.initBaseDatos("Clientes.db");
 						BaseDeDatos.comprobarCodigo(codigo);
+						BaseDeDatos.closeBD(BaseDeDatos.con);
 						if (BaseDeDatos.rs.next()) {
 							JOptionPane.showMessageDialog(null, "Código ya existente, introduce otro código", "Error", JOptionPane.ERROR_MESSAGE);
 						
@@ -341,26 +342,34 @@ public class VentanaAgregarRopaN extends JFrame {
 						        if(ruta!=null){
 									if (tipo == TipoArticulo.Camiseta) {
 										Articulo a1 = new Camiseta(codigo,tipo, talla, precio, sexo, marca, color, ruta);
+										BaseDeDatos.initBaseDatos("Clientes.db");
 										BaseDeDatos.insertarRopa(a1);
+										BaseDeDatos.closeBD(BaseDeDatos.con);
 										BaseDeDatos.actualizaTabla(VentanaAdminN.mRopa);
 										JOptionPane.showMessageDialog( contentPane, "Se ha agregado el articulo correctamente" );
 										limpiar();
 										
 									}else if (tipo == TipoArticulo.Sudadera){
 										Articulo a1 = new Sudadera(codigo,tipo, talla, precio, sexo, marca, color, ruta);
+										BaseDeDatos.initBaseDatos("Clientes.db");
 										BaseDeDatos.insertarRopa(a1);
+										BaseDeDatos.closeBD(BaseDeDatos.con);
 										BaseDeDatos.actualizaTabla(VentanaAdminN.mRopa);
 										JOptionPane.showMessageDialog( contentPane, "Se ha agregado el articulo correctamente" );
 										limpiar();
 									}else if (tipo == TipoArticulo.Pantalon){
 										Articulo a1 = new Pantalon(codigo,tipo, talla, precio, sexo, marca, color, ruta);
+										BaseDeDatos.initBaseDatos("Clientes.db");
 										BaseDeDatos.insertarRopa(a1);
+										BaseDeDatos.closeBD(BaseDeDatos.con);
 										BaseDeDatos.actualizaTabla(VentanaAdminN.mRopa);
 										JOptionPane.showMessageDialog( contentPane, "Se ha agregado el articulo correctamente" );
 										limpiar();
 									}else if (tipo == TipoArticulo.Zapatos){
 										Articulo a1 = new Zapatos(codigo,tipo, talla, precio, sexo, marca, color, ruta);
+										BaseDeDatos.initBaseDatos("Clientes.db");
 										BaseDeDatos.insertarRopa(a1);
+										BaseDeDatos.closeBD(BaseDeDatos.con);
 										BaseDeDatos.actualizaTabla(VentanaAdminN.mRopa);
 										JOptionPane.showMessageDialog( contentPane, "Se ha agregado el articulo correctamente" );
 										limpiar();

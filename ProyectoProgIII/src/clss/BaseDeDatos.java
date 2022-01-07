@@ -80,11 +80,9 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 		String sent = "insert into clientes (nombre, email, dni, direccion,codigoPostal,fecha_nac,sexo,usuario, contraseña, ruta) values ('" + cliente.getNombre() + "','" + cliente.getEmail() 
 		+ "','" + cliente.getDni() + "','" + cliente.getDireccion() + "','"+ cliente.getCodigoPostal() + "','" + cliente.getFechanac() + "','" + cliente.getSexo() +"','"+ cliente.getUsuario() + "','"+ cliente.getContrsenya() + "','"+ cliente.getImagen() + "')";
 		try {
-			con = initBaseDatos("Clientes.db");
 			Statement stmt = con.createStatement();
 			logger.log( Level.INFO, "Statement: " + sent );
 			stmt.executeUpdate(sent);
-			closeBD(con);
 			return true;
 		} catch (SQLException e) {
 			logger.log( Level.SEVERE, "Excepción", e );
@@ -97,11 +95,9 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 		String sent = "insert into ropa (codigo, tipo, talla, precio,sexo,marca,color,imagen) values ('" + articulo.getCodigo() + "','" + articulo.getTipo() 
 		+ "','" + articulo.getTalla() + "','" + articulo.getPrecio() + "','"+ articulo.getSexo() + "','" + articulo.getMarca() + "','" + articulo.getColor() + "','" + articulo.getImagen()+ "')";
 		try {
-			con = initBaseDatos("Clientes.db");
 			Statement stmt = con.createStatement();
 			logger.log( Level.INFO, "Statement: " + sent );
 			stmt.executeUpdate(sent);
-			closeBD(con);
 			return true;
 		} catch (Exception e) {
 			logger.log( Level.SEVERE, "Excepción", e );
@@ -115,9 +111,7 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 	
 	public static void borrarRopa( int codigo) {
 		String sentSQL = "delete from ropa where codigo = ('" + codigo + "')";
-		try {
-			
-			con = BaseDeDatos.initBaseDatos("Clientes.db");
+		try {		
 			Statement stmt = con.createStatement();
 			logger.log( Level.INFO, "Statement: " + sentSQL);
 			stmt.executeUpdate(sentSQL);
@@ -125,15 +119,12 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		closeBD(con);
 	}
 	
 	
 	public static void comprobarInicioSesion(String usuario, String contraseña) {
 		String sentSQL = "SELECT usuario, contraseña FROM clientes where usuario = '" + usuario+ "' AND contraseña = '" + contraseña + "' ";
 		try  {
-			
-			con = BaseDeDatos.initBaseDatos("Clientes.db");
 			stmt = con.createStatement();
 			logger.log( Level.INFO, "Statement: " + sentSQL);
 			rs = stmt.executeQuery(sentSQL);
@@ -142,14 +133,11 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		closeBD(con);
 	}
 	
 	public static void comprobarCodigo(int codigo) {
 		String sentSQL = "SELECT codigo FROM ropa where codigo = '" + codigo+ "' ";
 		try  {
-			
-			con = BaseDeDatos.initBaseDatos("Clientes.db");
 			stmt = con.createStatement();
 			logger.log( Level.INFO, "Statement: " + sentSQL);
 			rs = stmt.executeQuery(sentSQL);
@@ -158,7 +146,7 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		closeBD(con);
+
 	}
 	
 	
@@ -197,36 +185,36 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 		return tmCliente;
 	}
 	
-	public static void crearTablas(Connection con) {
-		String sent1 = "create table clientes (nombre string, email string, dni string, direccion string, codigoPostal integer, fecha nacimiento date, sexo string, usuario string, contraseña string)";
-		
-		
-		Statement st = null;
-		
+	public static boolean crearTablas(String nombreBD) {
 		try {
-			st = con.createStatement();
-			st.executeUpdate(sent1);
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			if(st!=null) {
-				try {
-					st.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+			con = DriverManager.getConnection("jdbc:sqlite:" + nombreBD);
+			stmt = con.createStatement();
+			String sent = "DROP TABLE IF EXISTS clientes";
+			logger.log( Level.INFO, "Statement: " + sent );
+			stmt.executeUpdate( sent );
+			String sent2 = "CREATE TABLE clientes (nombre string, email string, dni string, direccion string, codigoPostal integer, fecha_nac date, sexo string, usuario string, contraseña string, ruta string)";
+			logger.log( Level.INFO, "Statement: " + sent2 );
+			stmt.executeUpdate( sent2 );
+			String sent3 = "DROP TABLE IF EXISTS ropa";
+			logger.log( Level.INFO, "Statement: " + sent3 );
+			stmt.executeUpdate( sent3 );
+			String sent4 = "CREATE TABLE ropa (codigo integer,tipo string, talla string, precio double, sexo string, marca string, color string, imagen string )";
+			logger.log( Level.INFO, "Statement: " + sent4 );
+			stmt.executeUpdate( sent4 );
+			return true;
+			
+		} catch(Exception e) {
+			logger.log( Level.SEVERE, "Excepción", e );
+			return false;
 		}
-	}
+		
+		}
 	
 	public static ArrayList<Articulo> getArticulos() {
 		try (Statement statement = con.createStatement()) {
 			ArrayList<Articulo> ret = new ArrayList<>();
 			String sent = "SELECT * FROM ropa;";
-//			loggerN.log( Level.INFO, "Statement: " + sent );
+			logger.log( Level.INFO, "Statement: " + sent );
 			ResultSet rs = statement.executeQuery( sent );
 			while( rs.next() ) { // Leer el resultset
 				int codigo = rs.getInt("codigo");
@@ -246,10 +234,6 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 				}else if (tipo == TipoArticulo.Zapatos) {
 					ret.add(new Zapatos( codigo, tipo, talla, precio, sexo,marca,color, ruta) );
 				}
-			
-				
-				
-				
 			}
 			return ret;
 		} catch (Exception e) {
@@ -284,10 +268,7 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 					
 					String tbData[] = {codigo,tipo, talla, precio, sexo, marca, color, ruta};
 					System.out.println(tbData);
-					tabla.addRow(tbData);
-					
-					
-					
+					tabla.addRow(tbData);	
 				}
 				closeBD(con);
 			} catch (SQLException e) {

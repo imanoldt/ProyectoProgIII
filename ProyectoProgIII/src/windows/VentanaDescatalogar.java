@@ -57,7 +57,9 @@ public class VentanaDescatalogar extends JFrame{
 					BaseDeDatos.comprobarCodigo(codigo);
 					try {
 						if (BaseDeDatos.rs.next()) {
+							BaseDeDatos.initBaseDatos("Clientes.db");
 							BaseDeDatos.borrarRopa(codigo);
+							BaseDeDatos.closeBD(BaseDeDatos.con);
 							BaseDeDatos.actualizaTabla(VentanaAdminN.mRopa);
 							JOptionPane.showMessageDialog( mensaje, "Se ha borrado el articulo correctamente" );
 							limpiar();

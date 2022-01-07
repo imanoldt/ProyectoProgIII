@@ -350,7 +350,7 @@ public class VentanaRegistroN extends JFrame {
 
 						if (passContraseña.getText().equals(passContraseña2.getText())) {
 							try {
-								BaseDeDatos.con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
+								BaseDeDatos.initBaseDatos("Clientes.db");
 								String com = "";
 								com = "select * from clientes where usuario = '" + txtusuario.getText() + "'";
 								BaseDeDatos.stmt = BaseDeDatos.con.createStatement();
@@ -378,6 +378,7 @@ public class VentanaRegistroN extends JFrame {
 								} else {
 									JOptionPane.showMessageDialog(contentPane, "Usuario o email en uso");
 								}
+								BaseDeDatos.closeBD(BaseDeDatos.con);
 							} catch (SQLException e1) {
 								e1.printStackTrace();
 							}
