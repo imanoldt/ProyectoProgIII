@@ -26,7 +26,7 @@ public class VentanaCarrito extends JFrame{
 	
 	public VentanaCarrito() {
 		this.setSize(600, 400);
-		setIconImage(new ImageIcon(getClass().getResource("/img/icnCesta2.png")).getImage());
+		setIconImage(new ImageIcon(getClass().getResource("/img/icnCesta2.jpg")).getImage());
 
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel contentPane = new JPanel();

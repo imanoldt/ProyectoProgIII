@@ -283,7 +283,7 @@ public class VentanaAdminN extends JFrame {
 		Image imgEscalada4 = imgIcon4.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 		btnAgregar.setIcon(new ImageIcon(imgEscalada4));
 		
-		ImageIcon imgIcon5 = new ImageIcon(getClass().getResource("/img/ icnDescatalogar.png"));
+		ImageIcon imgIcon5 = new ImageIcon(getClass().getResource("/img/icnDescatalogar.png"));
 		Image imgEscalada5 = imgIcon5.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 		btnDescatalogar.setIcon(new ImageIcon(imgEscalada5));
 		
