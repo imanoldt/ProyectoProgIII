@@ -202,7 +202,9 @@ public class VentanaAdminN extends JFrame {
 			}
 		});
 		try {
+			BaseDeDatos.initBaseDatos("Clientes.db");
 			BaseDeDatos.actualizaTabla(mRopa);
+			BaseDeDatos.closeBD(BaseDeDatos.con);
 		} catch (Exception e) {
 			System.out.println("No se puede rellenar la tabla");
 			e.printStackTrace();

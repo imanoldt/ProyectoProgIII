@@ -248,7 +248,6 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 		public static void actualizaTabla(DefaultTableModel tabla) {
 			
 			try {
-				con = BaseDeDatos.initBaseDatos("Clientes.db");
 				String sentSQL = "SELECT * FROM ropa";
 				logger.log( Level.INFO, "Statement: " + sentSQL );
 				stmt = con.createStatement();
@@ -270,7 +269,6 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 					System.out.println(tbData);
 					tabla.addRow(tbData);	
 				}
-				closeBD(con);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -283,9 +281,9 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 	public static void main(String[] args) {
 		try {
 			
-			con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
-			stmt = con.createStatement();
-			rs = stmt.executeQuery("delete from clientes where nombre = ('Alberto')");
+//			con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
+//			stmt = con.createStatement();
+//			rs = stmt.executeQuery("delete from clientes where nombre = ('Alberto')");
 //			rs = stmt.executeQuery("create table clientes (nombre string, email string, dni string, direccion string, codigoPostal integer, fecha_nac date, sexo string, usuario string, contraseña string, ruta string)");
 //			stmt.executeUpdate("create table clientes (nombre string, email string, dni string, direccion string, codigoPostal integer, fecha_nac date, sexo string, usuario string, contraseña string)");
 

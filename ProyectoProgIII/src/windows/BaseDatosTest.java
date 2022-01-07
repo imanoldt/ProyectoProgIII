@@ -38,16 +38,6 @@ public class BaseDatosTest {
 	public void tearDown() throws Exception {
 		BaseDeDatos.closeBD(BaseDeDatos.con);
 	}
-
-//	@Test
-//	public void testGetClientes() {
-//		ArrayList<Cliente> clientes = BaseDeDatos.getClientes();
-//		String dni = null;
-//		for (Cliente cliente : clientes) {
-//			assertTrue( cliente.getDni() != dni );
-//			dni = cliente.getDni();
-//		}
-//	}
 	
 	@Test
 	public void iniciarBD() throws SQLException {
@@ -60,7 +50,6 @@ public class BaseDatosTest {
 	
 @Test
 public void testInsertarClienteIncorrecto() throws SQLException {
-	// Cliente incorrecto por sintaxis inadecuada de nombre de cliente
 	Cliente c1 = new Cliente("J'oseba", "joseba@opendeusto.es", "79002", "Calle a",4444, new Date(21/12/2021), TipoSexo.HOMBRE, "Josebaaa", "joseba", "avt1.png");
 	assertFalse( BaseDeDatos.insertarCliente(c1));
 

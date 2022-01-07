@@ -54,17 +54,15 @@ public class VentanaDescatalogar extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				if (!tfInsertarCod.getText().isEmpty()) {
 					int codigo = Integer.parseInt((tfInsertarCod.getText()));
-					BaseDeDatos.comprobarCodigo(codigo);
+					
 					try {
-						if (BaseDeDatos.rs.next()) {
-							BaseDeDatos.initBaseDatos("Clientes.db");
+						BaseDeDatos.initBaseDatos("Clientes.db");
+						BaseDeDatos.comprobarCodigo(codigo);
+						if (BaseDeDatos.rs.next()) {							
 							BaseDeDatos.borrarRopa(codigo);
-							BaseDeDatos.closeBD(BaseDeDatos.con);
 							BaseDeDatos.actualizaTabla(VentanaAdminN.mRopa);
+							BaseDeDatos.closeBD(BaseDeDatos.con);
 							JOptionPane.showMessageDialog( mensaje, "Se ha borrado el articulo correctamente" );
-							limpiar();
-						}else {
-							JOptionPane.showMessageDialog(null, "No existe ningun articulo con ese código", "Error", JOptionPane.ERROR_MESSAGE);
 							limpiar();
 						}
 					} catch (SQLException e1) {
