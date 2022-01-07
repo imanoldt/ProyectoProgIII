@@ -14,6 +14,7 @@ import com.toedter.calendar.JDateChooser;
 
 import clss.BaseDeDatos;
 import clss.Cliente;
+import clss.OutFitShopException;
 import clss.TipoArticulo;
 import clss.TipoSexo;
 
@@ -70,7 +71,7 @@ public class VentanaRegistroN extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaRegistroN() throws ParseException {
+	public VentanaRegistroN() throws ParseException, OutFitShopException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1087, 590);
 		this.setLocationRelativeTo(null);
@@ -311,7 +312,7 @@ public class VentanaRegistroN extends JFrame {
 					}
 
 				} else {
-					JOptionPane.showMessageDialog(fc, "No se ha encontrado el archivo");
+					JOptionPane.showMessageDialog(fc, "No se ha encontrado el archivo o el archivo puede estar dañado");
 				}
 
 			}

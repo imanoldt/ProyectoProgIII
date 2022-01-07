@@ -400,10 +400,10 @@ public class VentanaAgregarRopaN extends JFrame {
     }
 	
 	
-	public static void main(String[] args) throws ParseException {
-		VentanaAgregarRopaN ventana = new VentanaAgregarRopaN();
-		ventana.setVisible(true);
-	}
+//	public static void main(String[] args) throws ParseException {
+//		VentanaAgregarRopaN ventana = new VentanaAgregarRopaN();
+//		ventana.setVisible(true);
+//	}
 	
 	
 	

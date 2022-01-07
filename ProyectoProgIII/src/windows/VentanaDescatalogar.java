@@ -96,10 +96,10 @@ public class VentanaDescatalogar extends JFrame{
     }
 	
 	
-	public static void main(String[] args) {
-		VentanaDescatalogar ventana = new VentanaDescatalogar();
-		 ventana.setVisible(true);
-		
-	}
+//	public static void main(String[] args) {
+//		VentanaDescatalogar ventana = new VentanaDescatalogar();
+//		 ventana.setVisible(true);
+//		
+//	}
 
 }

@@ -57,9 +57,9 @@ public class VentanaCarrito extends JFrame{
 		
 		
 	}
-	public static void main(String[] args) {
-		VentanaCarrito carrito = new VentanaCarrito();
-		carrito.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		VentanaCarrito carrito = new VentanaCarrito();
+//		carrito.setVisible(true);
+//	}
 
 }

@@ -69,25 +69,25 @@ public class VentanaMainN extends JFrame {
 	/**
 	 * Lanza JFrame
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-
-					VentanaMainN frame = new VentanaMainN();
-					frame.setVisible(true);
-//					if(login.getTfUsuario().getText()=="admin"){
-//						VentanaMain frame = new VentanaMain();
-//						frame.setVisible(true);
-//						login.setVisible(false);
-//					}
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//
+//					VentanaMainN frame = new VentanaMainN();
+//					frame.setVisible(true);
+////					if(login.getTfUsuario().getText()=="admin"){
+////						VentanaMain frame = new VentanaMain();
+////						frame.setVisible(true);
+////						login.setVisible(false);
+////					}
+//
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Crea el JFrame
@@ -96,7 +96,7 @@ public class VentanaMainN extends JFrame {
 	public VentanaMainN() throws SQLException {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 950, 600);
+		setBounds(100, 100, 1200, 700);
 		setLocationRelativeTo(null);
 		setTitle("OutFitShop");
 
@@ -145,6 +145,7 @@ public class VentanaMainN extends JFrame {
 		
 		
 		btnHome = new JButton(new ImageIcon("src/img/Inicio.png"));
+		
 		btnHome.setOpaque(true);
 		btnHome.setBorder(null);
 		btnHome.setBackground(new Color(227, 48, 73));
@@ -202,7 +203,7 @@ public class VentanaMainN extends JFrame {
 		pnlIzquierda.add(lblZapatillas);
 
 		pnlPrincipalDerecha = new JPanel();
-		pnlPrincipalDerecha.setBackground(Color.YELLOW);
+		pnlPrincipalDerecha.setBackground(new Color(249, 194, 4));
 
 		pnlPrincipal.add(pnlPrincipalDerecha, BorderLayout.CENTER);
 		pnlPrincipalDerecha.setLayout(new GridLayout(0, 1, 0, 0));

@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import net.miginfocom.swing.MigLayout;
 import clss.BaseDeDatos;
+import clss.OutFitShopException;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,13 +24,8 @@ import java.awt.Dimension;
 import javax.swing.SwingConstants;
 import java.awt.*;
 import java.awt.event.MouseMotionAdapter;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.logging.Level;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -76,6 +72,7 @@ public class VentanaLoginN extends JFrame {
 		setTitle("LogIn");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1470, 830);
+		setIconImage(new ImageIcon(getClass().getResource("/img/IconoAplicacion.png")).getImage());
 		this.setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -258,9 +255,10 @@ public class VentanaLoginN extends JFrame {
 					registro = new VentanaRegistroN();
 					registro.setVisible(true);
 					setVisible(false);
-				} catch (ParseException e1) {
+				} catch (ParseException | OutFitShopException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					
 				}
 
 			}
