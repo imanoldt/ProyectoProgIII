@@ -241,13 +241,17 @@ public class VentanaMainN extends JFrame {
 				
 				for (int i = 0; i < camisetas.size(); i++) {
 					panel = new PnlPrueba();
+					System.out.println(camisetas.get(i));
 					int precio = camisetas.get(i).getPrecio();
 					String imagen = camisetas.get(i).getImagen();
+					Articulo asignado = camisetas.get(i);
+					System.out.println(asignado);
 					System.out.println(imagen);
-					PnlPrueba.rellenarPaneles(precio, imagen, camisetas.get(i));
+					PnlPrueba.rellenarPaneles(precio, imagen, asignado);
 					pnlPrincipalDerecha.add(panel);
 					pnlPrincipalDerecha.updateUI();
 				}
+				
 				
 //				JScrollPane sp = new JScrollPane(panel);
 //				sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);

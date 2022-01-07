@@ -1,6 +1,7 @@
 package windows;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
@@ -8,6 +9,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import clss.Articulo;
+import paneles.PnlCarrito;
 import paneles.PnlPrueba;
 
 
@@ -30,14 +32,28 @@ public class VentanaCarrito extends JFrame{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		setTitle("Carrito");
-		contentPane.setLayout(new GridLayout(0, 2));
-		txt_prueba = new JTextArea(70, 70);
-		String productos = "";
-		for (Articulo articulo : articulos_carrito) {
-			productos = productos + articulo + "\n";		
+		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+//		txt_prueba = new JTextArea(70, 70);
+//		String productos = "";
+//		for (Articulo articulo : articulos_carrito) {
+//			productos = productos + articulo + "\n";		
+//		}
+//		txt_prueba.setText(productos);
+//		contentPane.add(txt_prueba);
+		
+//		JScrollPane scrollPane = new JScrollPane();
+//		this.add(scrollPane);
+//		scrollPane.setViewportView(contentPane);
+		
+		for (int i = 0; i < articulos_carrito.size(); i++) {
+			JPanel panel = new PnlCarrito();
+			int precio = articulos_carrito.get(i).getPrecio();
+			String imagen = articulos_carrito.get(i).getImagen();
+			System.out.println(imagen);
+			PnlCarrito.rellenarPanelesCarrito(precio, imagen, articulos_carrito.get(i));
+			contentPane.add(panel);
+			contentPane.updateUI();
 		}
-		txt_prueba.setText(productos);
-		contentPane.add(txt_prueba);
 		
 		
 	}
