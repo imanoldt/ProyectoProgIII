@@ -13,6 +13,7 @@ import javax.swing.text.AttributeSet.ColorAttribute;
 
 import clss.BaseDeDatos;
 import clss.OutFitShopException;
+import clss.Pedido;
 import clss.TipoArticulo;
 
 import javax.swing.JTable;
@@ -24,6 +25,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Logger;
 
@@ -64,6 +66,8 @@ public class VentanaAdminN extends JFrame {
 	private JButton btnInicio;
 	private Icon icono = new ImageIcon(getClass().getResource("/img/IconoAplicacion.png"));
 	private static Boolean vr=true;
+	public static ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+	
 
 	/**
 	 * Launch the application.

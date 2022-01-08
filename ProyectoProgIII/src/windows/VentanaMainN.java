@@ -69,25 +69,25 @@ public class VentanaMainN extends JFrame {
 	/**
 	 * Lanza JFrame
 	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//
-//					VentanaMainN frame = new VentanaMainN();
-//					frame.setVisible(true);
-////					if(login.getTfUsuario().getText()=="admin"){
-////						VentanaMain frame = new VentanaMain();
-////						frame.setVisible(true);
-////						login.setVisible(false);
-////					}
-//
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+
+					VentanaMainN frame = new VentanaMainN();
+					frame.setVisible(true);
+//					if(login.getTfUsuario().getText()=="admin"){
+//						VentanaMain frame = new VentanaMain();
+//						frame.setVisible(true);
+//						login.setVisible(false);
+//					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	/**
 	 * Crea el JFrame

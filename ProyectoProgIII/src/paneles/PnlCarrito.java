@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 import clss.Articulo;
 import clss.Talla;
@@ -60,7 +61,10 @@ public class PnlCarrito extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Articulo compra = getArticulo_asignado();
-				VentanaCarrito.articulos_carrito.add(compra);
+				VentanaCarrito.articulos_carrito.remove(compra);
+				
+				
+				
 			}
 		});
 
@@ -94,5 +98,6 @@ public class PnlCarrito extends JPanel{
 		}
 
 	}
+
 
 }
