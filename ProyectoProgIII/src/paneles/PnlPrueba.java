@@ -78,6 +78,7 @@ public class PnlPrueba extends JPanel {
 				Articulo compra = getArticulo_asignado();
 				System.out.println(compra);
 				VentanaCarrito.articulos_carrito.add(compra);
+				updateUI();
 			}
 		});
 

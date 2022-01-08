@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.text.AttributeSet.ColorAttribute;
 
+import clss.Articulo;
 import clss.BaseDeDatos;
 import clss.OutFitShopException;
 import clss.Pedido;
@@ -104,6 +105,7 @@ public class VentanaAdminN extends JFrame {
 			}
 		});
 	}
+	
 
 	public static void FiltrarTabla(DefaultTableModel tabla) {
 
@@ -203,8 +205,17 @@ public class VentanaAdminN extends JFrame {
 		lblPedidos.setFont(new Font("Montserrat", Font.PLAIN, 16));
 		lblPedidos.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
 		pnlDerecha.add(lblPedidos, "cell 0 0,grow");
-
+		
+		String pedidosStr = "";
+		for (Pedido pedido : pedidos) {
+			
+				pedidosStr = pedidosStr + pedido + "\n";
+			
+			
+		}
+		
 		taPedidos = new JTextArea();
+		taPedidos.setText(pedidosStr);
 		pnlDerecha.add(taPedidos, "cell 0 1,grow");
 		taPedidos.setEditable(false);
 		
@@ -218,11 +229,7 @@ public class VentanaAdminN extends JFrame {
 		//btnInicio.setIcon(new ImageIcon(VentanaAdminN.class.getResource("/img/Inicio.png")));
 		pnlDerecha.add(btnInicio, "cell 0 2,grow");
 
-//		btnHome = new JButton(new ImageIcon("src/img/Inicio.png"));
-//		btnHome.setOpaque(true);
-//		btnHome.setBorder(null);
-//		btnHome.setBackground(new Color(227, 48, 73));
-//		pnlIzquierda.add(btnHome, "cell 0 0, grow");
+		
 
 		btnInicio.addActionListener(new ActionListener() {
 
@@ -287,9 +294,9 @@ public class VentanaAdminN extends JFrame {
 		Image imgEscalada4 = imgIcon4.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 		btnAgregar.setIcon(new ImageIcon(imgEscalada4));
 		
-		ImageIcon imgIcon5 = new ImageIcon(getClass().getResource("/img/icnDescatalogar.png"));
-		Image imgEscalada5 = imgIcon5.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-		btnDescatalogar.setIcon(new ImageIcon(imgEscalada5));
+//		ImageIcon imgIcon5 = new ImageIcon(getClass().getResource("/img/icnDescatalogar.png"));
+//		Image imgEscalada5 = imgIcon5.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+//		btnDescatalogar.setIcon(new ImageIcon(imgEscalada5));
 		
 
 	}

@@ -77,6 +77,7 @@ public class VentanaCarrito extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				Pedido pedidonuevo = new Pedido(articulos_carrito);
 				VentanaAdminN.pedidos.add(pedidonuevo);
+				System.out.println(pedidonuevo);
 				dispose();
 				articulos_carrito.clear();
 				JOptionPane.showMessageDialog(null, "Compra realizada con exito");
@@ -109,7 +110,8 @@ public class VentanaCarrito extends JFrame{
 		for (Articulo articulo : articulos) {
 			total = total + articulo.getPrecio();
 		}
-		return total;	
+		return total;
+		
 		
 	}
 

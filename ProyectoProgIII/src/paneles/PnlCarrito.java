@@ -62,7 +62,7 @@ public class PnlCarrito extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				Articulo compra = getArticulo_asignado();
 				VentanaCarrito.articulos_carrito.remove(compra);
-				
+				updateUI();
 				
 				
 			}
