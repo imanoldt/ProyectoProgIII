@@ -79,7 +79,7 @@ public class VentanaCarrito extends JFrame{
 				VentanaAdminN.pedidos.add(pedidonuevo);
 				System.out.println(pedidonuevo);
 				dispose();
-				articulos_carrito.clear();
+//				articulos_carrito.clear();
 				JOptionPane.showMessageDialog(null, "Compra realizada con exito");
 			}
 		});

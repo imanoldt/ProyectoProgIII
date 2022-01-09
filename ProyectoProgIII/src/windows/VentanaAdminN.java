@@ -210,8 +210,6 @@ public class VentanaAdminN extends JFrame {
 		for (Pedido pedido : pedidos) {
 			
 				pedidosStr = pedidosStr + pedido + "\n";
-			
-			
 		}
 		
 		taPedidos = new JTextArea();

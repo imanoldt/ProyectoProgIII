@@ -200,7 +200,7 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 			stmt.executeUpdate( sent3 );
 			String sent4 = "CREATE TABLE ropa (codigo integer,tipo string, talla string, precio double, sexo string, marca string, color string, imagen string )";
 			logger.log( Level.INFO, "Statement: " + sent4 );
-			stmt.executeUpdate( sent4 );
+			stmt.executeUpdate( sent4 );			
 			return true;
 			
 		} catch(Exception e) {
