@@ -1,13 +1,10 @@
 package windows;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
@@ -18,32 +15,23 @@ import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.TreeMap;
-
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
 import java.awt.Font;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.border.MatteBorder;
-
 import clss.Articulo;
 import clss.BaseDeDatos;
-import clss.Camiseta;
 import clss.Cliente;
 import clss.TipoArticulo;
-import paneles.PnlCamisetas;
-import paneles.PnlPantalones;
 import paneles.PnlPrueba;
-import paneles.PnlSudaderas;
-import paneles.PnlZapatillas;
-
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class VentanaMainN extends JFrame {
 
 	private JPanel contentPane;
@@ -58,7 +46,7 @@ public class VentanaMainN extends JFrame {
 	private JLabel lblNewLabel_1;
 	public static TreeMap<String, Cliente> tmCliente = new TreeMap<>();
 
-	private JPanel panel;
+	private PnlPrueba panel;
 	private JPanel pnlPrincipalDerecha;
 	private JScrollPane scrollPane;
 	
@@ -250,7 +238,7 @@ public class VentanaMainN extends JFrame {
 					Articulo asignado = camisetas.get(i);
 					System.out.println(asignado);
 					System.out.println(imagen);
-					PnlPrueba.rellenarPaneles(precio, imagen, asignado);
+					panel.rellenarPaneles(precio, imagen, asignado);
 					pnlPrincipalDerecha.add(panel);
 					pnlPrincipalDerecha.updateUI();
 				}
@@ -279,7 +267,7 @@ public class VentanaMainN extends JFrame {
 					panel = new PnlPrueba();
 					int precio = sudaderas.get(i).getPrecio();
 					String imagen = sudaderas.get(i).getImagen();
-					PnlPrueba.rellenarPaneles(precio, imagen, sudaderas.get(i));
+					panel.rellenarPaneles(precio, imagen, sudaderas.get(i));
 					pnlPrincipalDerecha.add(panel);
 					pnlPrincipalDerecha.updateUI();
 				}
@@ -299,7 +287,7 @@ public class VentanaMainN extends JFrame {
 					panel = new PnlPrueba();
 					int precio = pantalones.get(i).getPrecio();
 					String imagen = pantalones.get(i).getImagen();
-					PnlPrueba.rellenarPaneles(precio, imagen, pantalones.get(i));
+					panel.rellenarPaneles(precio, imagen, pantalones.get(i));
 					pnlPrincipalDerecha.add(panel);
 					pnlPrincipalDerecha.updateUI();
 				}
@@ -319,7 +307,7 @@ public class VentanaMainN extends JFrame {
 					panel = new PnlPrueba();
 					int precio = zapatos.get(i).getPrecio();
 					String imagen = zapatos.get(i).getImagen();
-					PnlPrueba.rellenarPaneles(precio, imagen, zapatos.get(i));
+					panel.rellenarPaneles(precio, imagen, zapatos.get(i));
 					pnlPrincipalDerecha.add(panel);
 					pnlPrincipalDerecha.updateUI();
 				}

@@ -25,6 +25,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -41,6 +43,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 import java.awt.Font;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
@@ -66,9 +69,8 @@ public class VentanaAdminN extends JFrame {
 	private JButton btnBorrar;
 	private JButton btnInicio;
 	private Icon icono = new ImageIcon(getClass().getResource("/img/IconoAplicacion.png"));
-	private static Boolean vr=true;
+	private static Boolean vr = true;
 	public static ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
-	
 
 	/**
 	 * Launch the application.
@@ -78,34 +80,34 @@ public class VentanaAdminN extends JFrame {
 			public void run() {
 				try {
 					try {
-						while(vr) {
-							String tx = (String) JOptionPane.showInputDialog(null, "Usuario:", "Ingrese los credenciales de admin", JOptionPane.INFORMATION_MESSAGE, null, null, null);					
+						while (vr) {
+							String tx = (String) JOptionPane.showInputDialog(null, "Usuario:",
+									"Ingrese los credenciales de admin", JOptionPane.INFORMATION_MESSAGE, null, null,
+									null);
 							if (tx.isEmpty()) {
-						        JOptionPane.showMessageDialog(null, "!! No Ha Ingresado Ningun Valor !!");
-						        throw new OutFitShopException("No se ha introducido ningun texto");
-						    }else if(tx.equals("admin")){
-						    	vr=false;
+								JOptionPane.showMessageDialog(null, "!! No Ha Ingresado Ningun Valor !!");
+								throw new OutFitShopException("No se ha introducido ningun texto");
+							} else if (tx.equals("admin")) {
+								vr = false;
 								VentanaAdminN frame = new VentanaAdminN();
 								frame.setVisible(true);
-								
+
 							}
-							
+
 						}
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
-						//e.printStackTrace();
-				        throw new OutFitShopException("No se ha introducido ningun texto");
+						// e.printStackTrace();
+						throw new OutFitShopException("No se ha introducido ningun texto");
 
 					}
 
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-	
 
 	public static void FiltrarTabla(DefaultTableModel tabla) {
 
@@ -205,39 +207,34 @@ public class VentanaAdminN extends JFrame {
 		lblPedidos.setFont(new Font("Montserrat", Font.PLAIN, 16));
 		lblPedidos.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
 		pnlDerecha.add(lblPedidos, "cell 0 0,grow");
-		
+
 		String pedidosStr = "";
 		for (Pedido pedido : pedidos) {
-			
-				pedidosStr = pedidosStr + pedido + "\n";
+
+			pedidosStr = pedidosStr + pedido + "\n";
 		}
-		
+
 		taPedidos = new JTextArea();
 		taPedidos.setText(pedidosStr);
-		pnlDerecha.add(taPedidos, "cell 0 1,grow");
+		JScrollPane scrollTAPedidos = new JScrollPane(taPedidos);
+		scrollTAPedidos.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		pnlDerecha.add(scrollTAPedidos, "cell 0 1,grow");
 		taPedidos.setEditable(false);
-		
+
 		btnExportar = new JButton("Exportar Pedidos");
-		pnlDerecha.add(btnExportar, "flowx,cell 0 2");
 		
+
+		pnlDerecha.add(btnExportar, "flowx,cell 0 2");
+
 		btnBorrar = new JButton("Borrar Pedidos");
 		pnlDerecha.add(btnBorrar, "cell 0 2");
-		
+
 		btnInicio = new JButton("HOME");
-		//btnInicio.setIcon(new ImageIcon(VentanaAdminN.class.getResource("/img/Inicio.png")));
+		// btnInicio.setIcon(new
+		// ImageIcon(VentanaAdminN.class.getResource("/img/Inicio.png")));
 		pnlDerecha.add(btnInicio, "cell 0 2,grow");
 
 		
-
-		btnInicio.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				VentanaLoginN nueva = new VentanaLoginN();
-				nueva.setVisible(true);
-			}
-		});
 		try {
 			BaseDeDatos.initBaseDatos("Clientes.db");
 			BaseDeDatos.actualizaTabla(mRopa);
@@ -259,7 +256,6 @@ public class VentanaAdminN extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
 
 			}
 		});
@@ -272,30 +268,78 @@ public class VentanaAdminN extends JFrame {
 
 			}
 		});
+		btnBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				borrar();
+			}
+		});
 		
+		btnInicio.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				VentanaLoginN nueva = new VentanaLoginN();
+				nueva.setVisible(true);
+			}
+		});
 		
+		btnExportar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ExportarPedidos();
+			}
+		});
+
 //IMAGENES
-		
+
 		ImageIcon imgIcon = new ImageIcon(getClass().getResource("/img/Inicio.png"));
 		Image imgEscalada = imgIcon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 		btnInicio.setIcon(new ImageIcon(imgEscalada));
-		
+
 		ImageIcon imgIcon2 = new ImageIcon(getClass().getResource("/img/icnExportar.png"));
 		Image imgEscalada2 = imgIcon2.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 		btnExportar.setIcon(new ImageIcon(imgEscalada2));
-		
+
 		ImageIcon imgIcon3 = new ImageIcon(getClass().getResource("/img/icnBorrar.png"));
 		Image imgEscalada3 = imgIcon3.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 		btnBorrar.setIcon(new ImageIcon(imgEscalada3));
-		
+
 		ImageIcon imgIcon4 = new ImageIcon(getClass().getResource("/img/icnAnyadir.png"));
 		Image imgEscalada4 = imgIcon4.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 		btnAgregar.setIcon(new ImageIcon(imgEscalada4));
-		
+
 //		ImageIcon imgIcon5 = new ImageIcon(getClass().getResource("/img/icnDescatalogar.png"));
 //		Image imgEscalada5 = imgIcon5.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 //		btnDescatalogar.setIcon(new ImageIcon(imgEscalada5));
-		
+
+	}
+
+	private void ExportarPedidos() {
+		try {
+			JFileChooser arch = new JFileChooser(System.getProperty("user.dir"));
+			arch.showSaveDialog(this);
+			if (arch.getSelectedFile() != null) {
+				try (FileWriter guardado = new FileWriter(arch.getSelectedFile())) {
+					guardado.write(taPedidos.getText());
+					JOptionPane.showMessageDialog(rootPane, "El archivo fue guardado con éxito en la ruta seleccionada");
+				}
+			}
+		} catch (IOException ex) {
+			JOptionPane.showMessageDialog(this, ex.getMessage());
+		}
+	}
+	private void borrar() {
+		int input1 = JOptionPane.showConfirmDialog(null, "Estas seguro que desea borrar todos los pedidos?", "Borrar",
+				JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+		if (input1==0) {
+			taPedidos.setText("");
+			pedidos.clear();
+			JOptionPane.showMessageDialog(rootPane, "Se ha borrado");
+		}else if (input1==1) {
+			assert true;
+				
+			
+		}
 
 	}
 

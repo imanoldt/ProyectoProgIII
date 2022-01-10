@@ -41,13 +41,15 @@ public class VentanaLoginN extends JFrame {
 	private JPasswordField passContraseya;
 	private JButton btnIniciarSession, btnRegistrarse, btnSalir,btnVisualizar,btnOcultar;
 	private JProgressBar progressBar;
+	
+	@SuppressWarnings("unused")
 	private int num;
 	
 
 
 
 	/**
-	 * Launch the application.
+	 * Lanza Aplicacion
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -65,7 +67,7 @@ public class VentanaLoginN extends JFrame {
 
 
 	/**
-	 * Create the frame.
+	 * Creacion del frame
 	 */
 
 	public VentanaLoginN() {
@@ -86,8 +88,7 @@ public class VentanaLoginN extends JFrame {
 		pnlIzquierda = new JPanel();
 		pnlIzquierda.setBackground(new Color(249, 194, 4));
 		pnlPrincipal.add(pnlIzquierda);
-		pnlIzquierda.setLayout(new MigLayout("", "[grow]",
-				"[59.00][46.00][36.00,top][][3.00][41.00][][fill][46.00][47.00][][][][][][][]"));
+		pnlIzquierda.setLayout(new MigLayout("", "[grow]", "[59.00][46.00][36.00,top][][3.00][41.00][][fill][46.00][47.00][][][][][][][]"));
 
 		lblIniciarSesion = new JLabel("Iniciar Sesion");
 		lblIniciarSesion.setHorizontalAlignment(SwingConstants.CENTER);
@@ -130,17 +131,43 @@ public class VentanaLoginN extends JFrame {
 					BaseDeDatos.comprobarInicioSesion(usuario,contrasenya);
 					BaseDeDatos.closeBD(BaseDeDatos.con);
 					if (BaseDeDatos.rs.next()) {
-
-						if (usuario.equals("admin") && contrasenya.equals("admin")) {
-							setVisible(false);
-							VentanaAdminN admin = new VentanaAdminN();
-							admin.setVisible(true);
-						} else {
-							setVisible(false);
-							VentanaMainN main = new VentanaMainN();
-							main.setVisible(true);
-						}
-
+						Runnable r = new Runnable() {
+							
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								lblRegistrate.setText("Cargando datos... ");
+								for(int i=1;i<100;i++) {
+									try {
+										Thread.sleep(39);
+									} catch (InterruptedException ex) {
+										ex.printStackTrace();
+									}
+									progressBar.setValue(i);
+									//progressBar.updateUI();
+									System.out.println("El valor de la pb: "+progressBar.getValue());
+								}
+								if (usuario.equals("admin") && contrasenya.equals("admin")) {
+									setVisible(false);
+									VentanaAdminN admin = new VentanaAdminN();
+									admin.setVisible(true);
+								} else {
+									setVisible(false);
+									VentanaMainN main;
+									try {
+										main = new VentanaMainN();
+										main.setVisible(true);
+									} catch (SQLException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									
+								}
+								lblRegistrate.setText("¡¡ Registrate que es gratis !!");
+							}
+						};
+						Thread t = new Thread(r);
+						t.start();
 					} else {
 						JOptionPane.showMessageDialog(contentPane, "Usuario o contraseña incorrectos");
 					}
@@ -212,7 +239,8 @@ public class VentanaLoginN extends JFrame {
 		pnlIzquierda.add(btnVisualizar, "cell 0 6");
 		
 		
-		progressBar = new JProgressBar();
+		progressBar = new JProgressBar(0,100);
+		progressBar.setValue(0);
 		pnlIzquierda.add(progressBar, "cell 0 14,growx,aligny center");
 		progressBar.setVisible(true);
 		
@@ -326,7 +354,7 @@ public class VentanaLoginN extends JFrame {
 		
 		
 		
-		Runnable r2 =new Runnable() {
+		/*Runnable r2 =new Runnable() {
 
 			@Override
 			public void run() {
@@ -346,7 +374,7 @@ public class VentanaLoginN extends JFrame {
 				
 			};
 		Thread t2 = new Thread(r2);
-		t2.start();
+		t2.start();*/
 
 	}
 	public void CentrarJFrame(JFrame v){

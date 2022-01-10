@@ -31,7 +31,7 @@ public class PnlPrueba extends JPanel {
 	private JLabel lblNombre;
 	private JComboBox<Talla> cbTallas;
 	static JLabel lblPrecio;
-	private static Articulo articulo_asignado;
+	private Articulo articulo_asignado;
 //	static ArrayList<Articulo> articulos_carrito = VentanaCarrito.getArticulos_carrito();
 
 	
@@ -83,7 +83,7 @@ public class PnlPrueba extends JPanel {
 		});
 
 	}
-	public static void rellenarPaneles(int precio, String imagen, Articulo articulo) {
+	public void rellenarPaneles(int precio, String imagen, Articulo articulo) {
 		lblPrecio.setText("Precio: "+precio+"€");
 	
 		try {
@@ -101,11 +101,11 @@ public class PnlPrueba extends JPanel {
 		}
 
 	}
-	public static Articulo getArticulo_asignado() {
+	public  Articulo getArticulo_asignado() {
 		return articulo_asignado;
 	}
-	public static void setArticulo_asignado(Articulo articulo_asignado) {
-		PnlPrueba.articulo_asignado = articulo_asignado;
+	public  void setArticulo_asignado(Articulo articulo_asignado) {
+		this.articulo_asignado = articulo_asignado;
 	}
 	
 

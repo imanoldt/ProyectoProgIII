@@ -19,7 +19,7 @@ import paneles.PnlPrueba;
 
 public class VentanaCarrito extends JFrame{
 	public static ArrayList<Articulo> articulos_carrito = new ArrayList<Articulo>();
-	public static JPanel panelarriba;
+	public static JPanel panelarriba = new JPanel();
 	
 	public static ArrayList<Articulo> getArticulos_carrito() {
 		return articulos_carrito;
@@ -33,7 +33,7 @@ public class VentanaCarrito extends JFrame{
 	private JLabel importe;
 	
 	public VentanaCarrito() {
-		this.setSize(600, 600);
+		this.setSize(900, 600);
 		setIconImage(new ImageIcon(getClass().getResource("/img/icnCesta2.jpg")).getImage());
 
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,7 +43,6 @@ public class VentanaCarrito extends JFrame{
 		setContentPane(contentPane);
 		setTitle("Carrito");
 		contentPane.setLayout(new GridLayout(2, 1));
-		JPanel panelarriba = new JPanel();
 //		panelarriba.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panelarriba.setBackground(new Color(227, 48, 73));
 		
@@ -61,6 +60,7 @@ public class VentanaCarrito extends JFrame{
 		panelabajo.add(btnActualizar);
 		panelabajo.add(btnConfirmarCompra);
 		
+		btnActualizar.setEnabled(false);
 		btnActualizar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -88,17 +88,31 @@ public class VentanaCarrito extends JFrame{
 		contentPane.add(scrollPane);
 		scrollPane.setViewportView(panelarriba);
 		
-		for (int i = 0; i < articulos_carrito.size(); i++) {
-			JPanel panel = new PnlCarrito();
+		/*for (int i = 0; i < articulos_carrito.size(); i++) {
+			PnlCarrito panel = new PnlCarrito();
 			int precio = articulos_carrito.get(i).getPrecio();
 			String imagen = articulos_carrito.get(i).getImagen();
 			System.out.println(imagen);
-			PnlCarrito.rellenarPanelesCarrito(precio, imagen, articulos_carrito.get(i));
+			panel.rellenarPanelesCarrito(precio, imagen, articulos_carrito.get(i));
+			panelarriba.add(panel);
+			panelarriba.updateUI();
+		}*/
+		
+		cargarPaneles();
+	}
+	
+	public static void cargarPaneles() {
+		if(panelarriba!=null)
+			panelarriba.removeAll();
+		for (int i = 0; i < articulos_carrito.size(); i++) {
+			PnlCarrito panel = new PnlCarrito();
+			int precio = articulos_carrito.get(i).getPrecio();
+			String imagen = articulos_carrito.get(i).getImagen();
+			System.out.println(imagen);
+			panel.rellenarPanelesCarrito(precio, imagen, articulos_carrito.get(i));
 			panelarriba.add(panel);
 			panelarriba.updateUI();
 		}
-		
-		
 	}
 	public static void main(String[] args) {
 		VentanaCarrito carrito = new VentanaCarrito();

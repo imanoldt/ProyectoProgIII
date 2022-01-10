@@ -25,7 +25,7 @@ public class PnlCarrito extends JPanel{
 	private JButton btnComprar;
 	private JLabel lblNombre;
 	static JLabel lblPrecio;
-	private static Articulo articulo_asignado;
+	private Articulo articulo_asignado;
 //	static ArrayList<Articulo> articulos_carrito = VentanaCarrito.getArticulos_carrito();
 
 	
@@ -62,7 +62,8 @@ public class PnlCarrito extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				Articulo compra = getArticulo_asignado();
 				VentanaCarrito.articulos_carrito.remove(compra);
-				updateUI();
+				VentanaCarrito.cargarPaneles();
+				VentanaCarrito.panelarriba.updateUI();
 				
 				
 			}
@@ -70,17 +71,17 @@ public class PnlCarrito extends JPanel{
 
 	}
 	
-	public static Articulo getArticulo_asignado() {
+	public  Articulo getArticulo_asignado() {
 		return articulo_asignado;
 	}
 
 
-	public static void setArticulo_asignado(Articulo articulo_asignado) {
-		PnlCarrito.articulo_asignado = articulo_asignado;
+	public void setArticulo_asignado(Articulo articulo_asignado) {
+		this.articulo_asignado = articulo_asignado;
 	}
 
 
-	public static void rellenarPanelesCarrito(int precio, String imagen, Articulo articulo) {
+	public  void rellenarPanelesCarrito(int precio, String imagen, Articulo articulo) {
 		lblPrecio.setText("Precio: "+precio+"€");
 	
 		try {

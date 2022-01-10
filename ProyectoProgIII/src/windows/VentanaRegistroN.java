@@ -2,7 +2,7 @@ package windows;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
+
 import java.awt.Font;
 
 import javax.swing.JFrame;
@@ -15,11 +15,11 @@ import com.toedter.calendar.JDateChooser;
 import clss.BaseDeDatos;
 import clss.Cliente;
 import clss.OutFitShopException;
-import clss.TipoArticulo;
+
 import clss.TipoSexo;
 
 import java.awt.GridLayout;
-import java.awt.HeadlessException;
+
 import java.awt.Image;
 
 import javax.swing.JLabel;
@@ -27,13 +27,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
+
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.Arrays;
+
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -48,11 +47,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseEvent;
+
 import javax.swing.JSeparator;
 import java.awt.Cursor;
 
+@SuppressWarnings("serial")
 public class VentanaRegistroN extends JFrame {
 
 	private JPanel contentPane, pnlSuperior, pnlCentral, pnlCentralIzq, pnlCentralDerecha;
