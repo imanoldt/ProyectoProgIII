@@ -4,6 +4,7 @@ import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.TreeMap;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -243,6 +244,143 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 		}
 		
 	}
+	public static List<Articulo> getCamiseta() throws SQLException {
+		List<Articulo> camisetas = new ArrayList<>();
+		try (Statement stmt = con.createStatement()) {
+			String sent = "SELECT * FROM ropa where tipo='Camiseta';";
+			ResultSet rs = stmt.executeQuery(sent);
+			logger.log( Level.INFO, "Statement: " + sent );
+				while(rs.next()) {
+						int codigo = rs.getInt("codigo");
+						int precio = rs.getInt("precio");
+						TipoSexo sexo = TipoSexo.valueOf(TipoSexo.class, rs.getString("sexo"));
+						String marca = rs.getString("marca");
+						String color = rs.getString("color");
+						TipoArticulo tipo = TipoArticulo.valueOf(TipoArticulo.class, rs.getString("tipo"));
+						Talla talla = Talla.valueOf(Talla.class, rs.getString("talla"));
+						String ruta = rs.getString("imagen");
+						Camiseta camiseta =new Camiseta( codigo, tipo, talla, precio, sexo,marca,color, ruta);
+						camisetas.add(camiseta);
+				}
+				return camisetas;
+				
+		} catch (Exception e) {
+			logger.log( Level.SEVERE, "Excepción", e );
+			return null;
+}
+}
+	public static List<Articulo> getSudadera() throws SQLException {
+		List<Articulo> sudaderas = new ArrayList<>();
+		try (Statement stmt = con.createStatement()) {
+			String sent = "SELECT * FROM ropa where tipo='Sudadera';";
+			ResultSet rs = stmt.executeQuery(sent);
+			logger.log( Level.INFO, "Statement: " + sent );
+				while(rs.next()) {
+						int codigo = rs.getInt("codigo");
+						int precio = rs.getInt("precio");
+						TipoSexo sexo = TipoSexo.valueOf(TipoSexo.class, rs.getString("sexo"));
+						String marca = rs.getString("marca");
+						String color = rs.getString("color");
+						TipoArticulo tipo = TipoArticulo.valueOf(TipoArticulo.class, rs.getString("tipo"));
+						Talla talla = Talla.valueOf(Talla.class, rs.getString("talla"));
+						String ruta = rs.getString("imagen");
+						Sudadera sudadera =new Sudadera( codigo, tipo, talla, precio, sexo,marca,color, ruta);
+						sudaderas.add(sudadera);
+				}
+				return sudaderas;
+				
+		} catch (Exception e) {
+			logger.log( Level.SEVERE, "Excepción", e );
+			return null;
+}
+}
+	public static List<Articulo> getPantalon() throws SQLException {
+		List<Articulo> pantalones = new ArrayList<>();
+		try (Statement stmt = con.createStatement()) {
+			String sent = "SELECT * FROM ropa where tipo='Pantalon';";
+			ResultSet rs = stmt.executeQuery(sent);
+			logger.log( Level.INFO, "Statement: " + sent );
+				while(rs.next()) {
+						int codigo = rs.getInt("codigo");
+						int precio = rs.getInt("precio");
+						TipoSexo sexo = TipoSexo.valueOf(TipoSexo.class, rs.getString("sexo"));
+						String marca = rs.getString("marca");
+						String color = rs.getString("color");
+						TipoArticulo tipo = TipoArticulo.valueOf(TipoArticulo.class, rs.getString("tipo"));
+						Talla talla = Talla.valueOf(Talla.class, rs.getString("talla"));
+						String ruta = rs.getString("imagen");
+						Pantalon pantalon =new Pantalon( codigo, tipo, talla, precio, sexo,marca,color, ruta);
+						pantalones.add(pantalon);
+				}
+				return pantalones;
+				
+		} catch (Exception e) {
+			logger.log( Level.SEVERE, "Excepción", e );
+			return null;
+}
+}
+	public static List<Articulo> getZapatos() throws SQLException {
+		List<Articulo> zapatos = new ArrayList<>();
+		try (Statement stmt = con.createStatement()) {
+			String sent = "SELECT * FROM ropa where tipo='Zapatos';";
+			ResultSet rs = stmt.executeQuery(sent);
+			logger.log( Level.INFO, "Statement: " + sent );
+				while(rs.next()) {
+						int codigo = rs.getInt("codigo");
+						int precio = rs.getInt("precio");
+						TipoSexo sexo = TipoSexo.valueOf(TipoSexo.class, rs.getString("sexo"));
+						String marca = rs.getString("marca");
+						String color = rs.getString("color");
+						TipoArticulo tipo = TipoArticulo.valueOf(TipoArticulo.class, rs.getString("tipo"));
+						Talla talla = Talla.valueOf(Talla.class, rs.getString("talla"));
+						String ruta = rs.getString("imagen");
+						Zapatos zapato =new Zapatos( codigo, tipo, talla, precio, sexo,marca,color, ruta);
+						zapatos.add(zapato);
+				}
+				return zapatos;
+				
+		} catch (Exception e) {
+			logger.log( Level.SEVERE, "Excepción", e );
+			return null;
+}
+}
+	public static List<Articulo> getMarca(String str) throws SQLException {
+			List<Articulo> articulos = new ArrayList<>();
+			try (Statement stmt = con.createStatement()) {
+			String sent = "SELECT * FROM ropa  where marca LIKE'%"+str+"%';";
+			ResultSet rs = stmt.executeQuery(sent);
+			logger.log( Level.INFO, "Statement: " + sent );
+				while(rs.next()) {
+					int codigo = rs.getInt("codigo");
+					int precio = rs.getInt("precio");
+					TipoSexo sexo = TipoSexo.valueOf(TipoSexo.class, rs.getString("sexo"));
+					String marca = rs.getString("marca");
+					String color = rs.getString("color");
+					TipoArticulo tipo = TipoArticulo.valueOf(TipoArticulo.class, rs.getString("tipo"));
+					Talla talla = Talla.valueOf(Talla.class, rs.getString("talla"));
+					String ruta = rs.getString("imagen");
+					if (tipo == TipoArticulo.Camiseta) {
+						Camiseta camiseta =new Camiseta( codigo, tipo, talla, precio, sexo,marca,color, ruta);
+						articulos.add(camiseta);
+					}else if (tipo == TipoArticulo.Pantalon) {
+						Pantalon pantalon =new Pantalon( codigo, tipo, talla, precio, sexo,marca,color, ruta);
+						articulos.add(pantalon);
+					}else if (tipo == TipoArticulo.Sudadera) {
+						Sudadera sudadera =new Sudadera( codigo, tipo, talla, precio, sexo,marca,color, ruta);
+						articulos.add(sudadera);
+					}else if (tipo == TipoArticulo.Zapatos) {
+						Zapatos zapato =new Zapatos( codigo, tipo, talla, precio, sexo,marca,color, ruta);
+						articulos.add(zapato);
+					}
+				}
+				return articulos;
+				
+			} catch (Exception e) {
+				logger.log( Level.SEVERE, "Excepción", e );
+				return null;
+			}
+			
+			}
 
 		
 		public static void actualizaTabla(DefaultTableModel tabla) {

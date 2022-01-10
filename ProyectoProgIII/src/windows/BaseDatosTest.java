@@ -40,13 +40,11 @@ public class BaseDatosTest {
 	}
 	
 	@Test
-	public void iniciarBD() throws SQLException {
-		BaseDeDatos.initBaseDatos( "test.db");
-	}
-	@Test
 	public void CrearTablas() throws SQLException {
 		BaseDeDatos.crearTablas("test.db");
-	}
+	}	
+	
+	
 	
 @Test
 public void testInsertarClienteIncorrecto() throws SQLException {

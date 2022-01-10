@@ -27,8 +27,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import java.util.logging.Logger;
 
@@ -45,6 +47,7 @@ import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class VentanaAdminN extends JFrame {
@@ -60,9 +63,8 @@ public class VentanaAdminN extends JFrame {
 	private static JScrollPane sRopa;
 	static DefaultTableModel mRopa;
 	private static Logger logger = Logger.getLogger("BaseDeDatos");
-	private static JComboBox<TipoArticulo> cbTipo;
+	private static JComboBox<String> cbTipo;
 	private JButton btnFiltrar;
-	private JButton btnQFiltro;
 	private JLabel lblPedidos;
 	private JTextArea taPedidos;
 	private JButton btnExportar;
@@ -71,6 +73,7 @@ public class VentanaAdminN extends JFrame {
 	private Icon icono = new ImageIcon(getClass().getResource("/img/IconoAplicacion.png"));
 	private static Boolean vr = true;
 	public static ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+	private static JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -109,20 +112,6 @@ public class VentanaAdminN extends JFrame {
 		});
 	}
 
-	public static void FiltrarTabla(DefaultTableModel tabla) {
-
-		String query = cbTipo.getSelectedItem().toString();
-		TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(tabla);
-		tRopa.setRowSorter(tr);
-
-		if (query != " ") {
-			tr.setRowFilter(RowFilter.regexFilter(query));
-
-		} else {
-			tRopa.setRowSorter(tr);
-		}
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -141,8 +130,7 @@ public class VentanaAdminN extends JFrame {
 		pnlIzquierda = new JPanel();
 		pnlIzquierda.setBackground(new Color(227, 48, 73));
 		contentPane.add(pnlIzquierda);
-		pnlIzquierda.setLayout(new MigLayout("", "[][183.00,grow][grow][][][grow][189.00][][]",
-				"[36.00][grow][][][][][][][][][][][][][][][]"));
+		pnlIzquierda.setLayout(new MigLayout("", "[][183.00,grow][grow][grow][][grow][189.00][][]", "[36.00][grow][][][][][][][][][][][][][][][]"));
 
 		Vector<String> cabeceras = new Vector<String>();
 		cabeceras.add("Codigo");
@@ -170,28 +158,70 @@ public class VentanaAdminN extends JFrame {
 		pnlIzquierda.add(btnAgregar, "cell 1 16,growx,aligny center");
 
 		cbTipo = new JComboBox();
-		for (TipoArticulo ta : TipoArticulo.values()) {
-			cbTipo.addItem(ta);
-		}
+		cbTipo.addItem("Sin Filtro");
+		cbTipo.addItem("Camiseta");
+		cbTipo.addItem("Sudadera");
+		cbTipo.addItem("Pantalon");
+		cbTipo.addItem("Zapatos");
+		
+		
+		cbTipo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					BaseDeDatos.initBaseDatos("Clientes.db");
+					if (cbTipo.getSelectedItem() == "Camiseta") {
+						ArrayList<Articulo> camisetas = (ArrayList<Articulo>) BaseDeDatos.getCamiseta();
+						tRopa.removeAll();
+						updateUI(camisetas);
+					}
+					else if (cbTipo.getSelectedItem() == "Sudadera") {
+						ArrayList<Articulo> sudaderas = (ArrayList<Articulo>) BaseDeDatos.getSudadera();
+						tRopa.removeAll();
+						updateUI(sudaderas);
+					}
+					else if (cbTipo.getSelectedItem() == "Pantalon") {
+						ArrayList<Articulo> pantalones = (ArrayList<Articulo>) BaseDeDatos.getPantalon();
+						tRopa.removeAll();
+						updateUI(pantalones);
+					}
+					else if (cbTipo.getSelectedItem() == "Zapatos") {
+						ArrayList<Articulo> zapatos = (ArrayList<Articulo>) BaseDeDatos.getZapatos();
+						tRopa.removeAll();
+						updateUI(zapatos);
+					}
+					else {
+						ArrayList<Articulo> articulos = BaseDeDatos.getArticulos();
+						tRopa.removeAll();
+						updateUI(articulos);
+					}
+					BaseDeDatos.closeBD(BaseDeDatos.con);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		
 		pnlIzquierda.add(cbTipo, "cell 2 16,grow");
-
-		btnFiltrar = new JButton("Filtrar");
+		btnFiltrar = new JButton("Filtrar por Marca");
 		btnFiltrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FiltrarTabla(mRopa);
+				if (textField.getText().isEmpty()){
+					JOptionPane.showMessageDialog(contentPane, "Introduce la el nombre de la marca que deseas filtrar");
+				}else {
+					FiltrarTabla(mRopa);
+					textField.setText("");
+				}
 			}
 		});
-		pnlIzquierda.add(btnFiltrar, "cell 3 16,grow");
+		
+		textField = new JTextField();
+		pnlIzquierda.add(textField, "cell 3 16,growx");
+		textField.setColumns(10);
 
-		btnQFiltro = new JButton("Quitar filtro");
-		btnQFiltro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TableRowSorter<DefaultTableModel> tr = null;
-				tRopa.setRowSorter(tr);
-			}
-		});
-
-		pnlIzquierda.add(btnQFiltro, "cell 4 16,grow");
+		pnlIzquierda.add(btnFiltrar, "cell 4 16,grow");
 
 		btnDescatalogar = new JButton("Descatalogar");
 		pnlIzquierda.add(btnDescatalogar, "cell 5 16 2 1,grow");
@@ -308,9 +338,9 @@ public class VentanaAdminN extends JFrame {
 		Image imgEscalada4 = imgIcon4.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 		btnAgregar.setIcon(new ImageIcon(imgEscalada4));
 
-//		ImageIcon imgIcon5 = new ImageIcon(getClass().getResource("/img/icnDescatalogar.png"));
-//		Image imgEscalada5 = imgIcon5.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-//		btnDescatalogar.setIcon(new ImageIcon(imgEscalada5));
+		ImageIcon imgIcon5 = new ImageIcon(getClass().getResource("/img/icnDescatalogar.png"));
+		Image imgEscalada5 = imgIcon5.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		btnDescatalogar.setIcon(new ImageIcon(imgEscalada5));
 
 	}
 
@@ -337,10 +367,23 @@ public class VentanaAdminN extends JFrame {
 			JOptionPane.showMessageDialog(rootPane, "Se ha borrado");
 		}else if (input1==1) {
 			assert true;
-				
-			
 		}
 
 	}
+	public static void FiltrarTabla(DefaultTableModel tabla) {
+		try {
+			BaseDeDatos.initBaseDatos("Clientes.db");
+			List<Articulo> lista = BaseDeDatos.getMarca(textField.getText());
+			tRopa.removeAll();
+			updateUI(lista);
+			BaseDeDatos.closeBD(BaseDeDatos.con);
+		} catch (SQLException e1) {
 
+			e1.printStackTrace();
+		}
+		
+	}
+	private static void updateUI(List<Articulo> articulos) {
+		tRopa.setModel(new ArticulosTableModel(articulos));
+	}
 }
