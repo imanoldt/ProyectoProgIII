@@ -19,15 +19,23 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.border.MatteBorder;
+import javax.swing.event.MenuKeyEvent;
+import javax.swing.event.MenuKeyListener;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.SwingConstants;
 import java.awt.*;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JProgressBar;
@@ -121,15 +129,13 @@ public class VentanaLoginN extends JFrame {
 		btnIniciarSession.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e1) {
 				String usuario = txtUsuario.getText();
-
+				
 				String contrasenya = passContraseya.getText();
 
 				try  {
-					BaseDeDatos.initBaseDatos("Clientes.db");
 					BaseDeDatos.comprobarInicioSesion(usuario,contrasenya);
-					BaseDeDatos.closeBD(BaseDeDatos.con);
 					if (BaseDeDatos.rs.next()) {
 						Runnable r = new Runnable() {
 							
@@ -172,8 +178,8 @@ public class VentanaLoginN extends JFrame {
 						JOptionPane.showMessageDialog(contentPane, "Usuario o contraseña incorrectos");
 					}
 
-				} catch (SQLException e1) {
-					e1.printStackTrace();
+				} catch (SQLException e2) {
+					e2.printStackTrace();
 				}
 				
 			}
@@ -268,10 +274,47 @@ public class VentanaLoginN extends JFrame {
 		btnOcultar.setIcon(new ImageIcon(imgEscaladaOcu));
 		
 		
+		addWindowListener( new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+					try {
+						BaseDeDatos.initBaseDatos("Clientes.db");
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}  
+			};
+			@Override
+			public void windowClosed(WindowEvent e) {
+				BaseDeDatos.closeBD(BaseDeDatos.con);
+			}
+		});
 		
-		
-		
+		txtUsuario.addKeyListener( new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {}
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER){		
+					btnIniciarSession.doClick();
+				}
+			}
+			@Override
+			public void keyReleased(KeyEvent e) {}
+		});
 
+		passContraseya.addKeyListener( new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER){
+					btnIniciarSession.doClick();
+				}
+			}
+			@Override
+			public void keyReleased(KeyEvent e) {}
+		});
 // EVENTOS
 
 		btnRegistrarse.addMouseListener(new MouseAdapter() {

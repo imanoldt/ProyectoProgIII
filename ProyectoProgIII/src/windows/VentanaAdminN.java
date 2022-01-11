@@ -25,6 +25,10 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -192,9 +196,8 @@ public class VentanaAdminN extends JFrame {
 						updateUI(zapatos);
 					}
 					else {
-						ArrayList<Articulo> articulos = BaseDeDatos.getArticulos();
-						tRopa.removeAll();
-						updateUI(articulos);
+						BaseDeDatos.actualizaTabla(VentanaAdminN.mRopa);
+						tRopa.setModel(mRopa);
 					}
 					BaseDeDatos.closeBD(BaseDeDatos.con);
 				} catch (SQLException e1) {
@@ -211,8 +214,15 @@ public class VentanaAdminN extends JFrame {
 				if (textField.getText().isEmpty()){
 					JOptionPane.showMessageDialog(contentPane, "Introduce la el nombre de la marca que deseas filtrar");
 				}else {
-					FiltrarTabla(mRopa);
-					textField.setText("");
+					try {
+						BaseDeDatos.initBaseDatos("Clientes.db");
+						FiltrarTabla(mRopa);
+						BaseDeDatos.closeBD(BaseDeDatos.con);
+						textField.setText("");
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+					
 				}
 			}
 		});
@@ -221,6 +231,21 @@ public class VentanaAdminN extends JFrame {
 		pnlIzquierda.add(textField, "cell 3 16,growx");
 		textField.setColumns(10);
 
+		
+		
+		textField.addKeyListener( new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {}
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER){		
+					btnFiltrar.doClick();
+				}
+			}
+			@Override
+			public void keyReleased(KeyEvent e) {}
+		});
+		
 		pnlIzquierda.add(btnFiltrar, "cell 4 16,grow");
 
 		btnDescatalogar = new JButton("Descatalogar");
@@ -283,7 +308,6 @@ public class VentanaAdminN extends JFrame {
 					agregar = new VentanaAgregarRopaN();
 					agregar.setVisible(true);
 				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -319,7 +343,6 @@ public class VentanaAdminN extends JFrame {
 				ExportarPedidos();
 			}
 		});
-
 //IMAGENES
 
 		ImageIcon imgIcon = new ImageIcon(getClass().getResource("/img/Inicio.png"));
@@ -372,11 +395,9 @@ public class VentanaAdminN extends JFrame {
 	}
 	public static void FiltrarTabla(DefaultTableModel tabla) {
 		try {
-			BaseDeDatos.initBaseDatos("Clientes.db");
 			List<Articulo> lista = BaseDeDatos.getMarca(textField.getText());
 			tRopa.removeAll();
 			updateUI(lista);
-			BaseDeDatos.closeBD(BaseDeDatos.con);
 		} catch (SQLException e1) {
 
 			e1.printStackTrace();

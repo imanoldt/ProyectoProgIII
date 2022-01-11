@@ -27,7 +27,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 
 import java.sql.SQLException;
@@ -327,6 +328,7 @@ public class VentanaRegistroN extends JFrame {
 				setVisible(false);
 			}
 		});
+		
 
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -352,7 +354,7 @@ public class VentanaRegistroN extends JFrame {
 
 						if (passContraseña.getText().equals(passContraseña2.getText())) {
 							try {
-								BaseDeDatos.initBaseDatos("Clientes.db");
+//								BaseDeDatos.initBaseDatos("Clientes.db");
 								String com = "";
 								com = "select * from clientes where usuario = '" + txtusuario.getText() + "'";
 								BaseDeDatos.stmt = BaseDeDatos.con.createStatement();
@@ -380,7 +382,7 @@ public class VentanaRegistroN extends JFrame {
 								} else {
 									JOptionPane.showMessageDialog(contentPane, "Usuario o email en uso");
 								}
-								BaseDeDatos.closeBD(BaseDeDatos.con);
+//								BaseDeDatos.closeBD(BaseDeDatos.con);
 							} catch (SQLException e1) {
 								e1.printStackTrace();
 							}
@@ -397,6 +399,21 @@ public class VentanaRegistroN extends JFrame {
 				} else {
 					JOptionPane.showMessageDialog(contentPane, "Debes rellenar todos campos");
 				}
+			}
+		});
+		addWindowListener( new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+					try {
+						BaseDeDatos.initBaseDatos("Clientes.db");
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}  // Crear base de datos con datos iniciales
+			};
+			@Override
+			public void windowClosed(WindowEvent e) {
+				BaseDeDatos.closeBD(BaseDeDatos.con);
 			}
 		});
 	}

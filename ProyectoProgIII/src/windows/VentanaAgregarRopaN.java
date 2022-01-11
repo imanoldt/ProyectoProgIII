@@ -38,6 +38,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -54,6 +55,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.MouseEvent;
 import javax.swing.JSeparator;
 import java.awt.Cursor;
@@ -204,51 +207,38 @@ public class VentanaAgregarRopaN extends JFrame {
 				btnBuscar.setFont(new Font("Montserrat", Font.PLAIN, 13));
 				btnBuscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				
-						pnlCentralIzq.add(btnBuscar);
+				pnlCentralIzq.add(btnBuscar);
 						
-						btnBuscar.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent e) {
+				btnBuscar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					if (cbtipo.getSelectedItem() == TipoArticulo.Camiseta) {
+						int input2 = JOptionPane.showConfirmDialog(null, "¿Estas seguro de querer añadir una camiseta?","Confirmacion", JOptionPane.YES_NO_CANCEL_OPTION);
+						if (input2 == JOptionPane.YES_OPTION) {
+							BuscarImg();
+								}
+									
+					}else if (cbtipo.getSelectedItem() == TipoArticulo.Pantalon){
+						int input3 = JOptionPane.showConfirmDialog(null, "¿Estas seguro de querer añadir un pantalon?","Confirmacion", JOptionPane.YES_NO_CANCEL_OPTION);
+						if (input3 == JOptionPane.YES_OPTION) {
+							BuscarImg();
+						}
+					}else if (cbtipo.getSelectedItem() == TipoArticulo.Sudadera){
+						int input4 = JOptionPane.showConfirmDialog(null, "¿Estas seguro de querer añadir una sudadera?","Confirmacion", JOptionPane.YES_NO_CANCEL_OPTION);
+						if (input4 == JOptionPane.YES_OPTION) {
+							BuscarImg();
+								}
 						
-										JFileChooser fc = new JFileChooser("src/img");
-										FileFilter filter = new FileNameExtensionFilter("JPG file", new String[] { "jpg" });
-										fc.setFileFilter(filter);
-										int seleccion = fc.showOpenDialog(null);
-										if (seleccion == JFileChooser.APPROVE_OPTION) {
-											File fSeleccionado = fc.getSelectedFile();
-											int input = JOptionPane.showConfirmDialog(null, "¿Seguro que este es el archivo correcto?",
-													"Confirmacion", JOptionPane.YES_NO_CANCEL_OPTION);
-											if (input == JOptionPane.YES_OPTION) {
-												String nombreFoto = fSeleccionado.getName();
-												System.out.println(nombreFoto);
-												String rutaFoto = "src/img/";
-												if (cbtipo.getSelectedItem() == TipoArticulo.Camiseta) {
-													rutaFoto = rutaFoto + "camisetas/" +nombreFoto;
-												}else if (cbtipo.getSelectedItem() == TipoArticulo.Pantalon) {
-													rutaFoto = rutaFoto + "pantalones/" +nombreFoto;
-												}else if (cbtipo.getSelectedItem() == TipoArticulo.Sudadera) {
-													rutaFoto = rutaFoto + "sudaderas/" +nombreFoto;
-												}else if (cbtipo.getSelectedItem() == TipoArticulo.Zapatos) {
-													rutaFoto = rutaFoto + "zapatos/" +nombreFoto;
-												}
-												System.out.println(rutaFoto);
-												
-												ImageIcon imgIcon = new ImageIcon(rutaFoto);
-												Image imgEscalada = imgIcon.getImage().getScaledInstance(199, 199, Image.SCALE_SMOOTH);
-												ImageIcon im = new ImageIcon(imgEscalada);
-												im.setDescription(rutaFoto);
-												lblImagen.setIcon(im);
-									            txtruta.setText(rutaFoto);
-											} else {
-						
-											}
-						
-										} else {
-											JOptionPane.showMessageDialog(fc, "No se ha encontrado el archivo");
-										}
-						
-									}
-						
-								});
+					}else if (cbtipo.getSelectedItem() == TipoArticulo.Zapatos){
+					int input5 = JOptionPane.showConfirmDialog(null, "¿Estas seguro de querer añadir unos zapatos?","Confirmacion", JOptionPane.YES_NO_CANCEL_OPTION);
+					if (input5 == JOptionPane.YES_OPTION) {
+						BuscarImg();
+								}
+							}
+	}
+	});
+				
+				
 		
 		txtruta = new JTextField();
 		pnlCentralIzq.add(txtruta);
@@ -329,9 +319,10 @@ public class VentanaAgregarRopaN extends JFrame {
 						int codigo = Integer.parseInt(tfcod.getText());
 						BaseDeDatos.initBaseDatos("Clientes.db");
 						BaseDeDatos.comprobarCodigo(codigo);
+						
 						if (BaseDeDatos.rs.next()) {
 							JOptionPane.showMessageDialog(null, "Código ya existente, introduce otro código", "Error", JOptionPane.ERROR_MESSAGE);
-						
+							BaseDeDatos.closeBD(BaseDeDatos.con);
 						} else {
 							TipoArticulo tipo = (TipoArticulo) cbtipo.getSelectedItem();
 							Talla talla = (Talla) cbtalla.getSelectedItem();
@@ -396,7 +387,46 @@ public class VentanaAgregarRopaN extends JFrame {
         txtruta.setText("");
     }
 	
-	
+	private void BuscarImg() {
+		JFileChooser fc = new JFileChooser("src/img");
+		FileFilter filter = new FileNameExtensionFilter("JPG file", new String[] { "jpg" });
+		fc.setFileFilter(filter);
+		int seleccion = fc.showOpenDialog(null);
+		if (seleccion == JFileChooser.APPROVE_OPTION) {
+			File fSeleccionado = fc.getSelectedFile();
+			int input = JOptionPane.showConfirmDialog(null, "¿Seguro que este es el archivo correcto?",
+					"Confirmacion", JOptionPane.YES_NO_CANCEL_OPTION);
+			if (input == JOptionPane.YES_OPTION) {
+				String nombreFoto = fSeleccionado.getName();
+				System.out.println(nombreFoto);
+				String rutaFoto = "src/img/";
+				if (cbtipo.getSelectedItem() == TipoArticulo.Camiseta) {
+					rutaFoto = rutaFoto + "camisetas/" +nombreFoto;
+				}else if (cbtipo.getSelectedItem() == TipoArticulo.Pantalon) {
+					rutaFoto = rutaFoto + "pantalones/" +nombreFoto;
+				}else if (cbtipo.getSelectedItem() == TipoArticulo.Sudadera) {
+					rutaFoto = rutaFoto + "sudaderas/" +nombreFoto;
+				}else if (cbtipo.getSelectedItem() == TipoArticulo.Zapatos) {
+					rutaFoto = rutaFoto + "zapatos/" +nombreFoto;
+				}
+				System.out.println(rutaFoto);
+				
+				ImageIcon imgIcon = new ImageIcon(rutaFoto);
+				Image imgEscalada = imgIcon.getImage().getScaledInstance(199, 199, Image.SCALE_SMOOTH);
+				ImageIcon im = new ImageIcon(imgEscalada);
+				im.setDescription(rutaFoto);
+				lblImagen.setIcon(im);
+	            txtruta.setText(rutaFoto);
+			} else {
+
+			}
+
+		} else {
+			JOptionPane.showMessageDialog(fc, "No se ha encontrado el archivo");
+		}
+
+	}
+	}
 //	public static void main(String[] args) throws ParseException {
 //		VentanaAgregarRopaN ventana = new VentanaAgregarRopaN();
 //		ventana.setVisible(true);
@@ -404,4 +434,3 @@ public class VentanaAgregarRopaN extends JFrame {
 	
 	
 	
-}

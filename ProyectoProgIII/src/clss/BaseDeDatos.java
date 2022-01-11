@@ -421,7 +421,7 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 			
 //			con = DriverManager.getConnection("jdbc:sqlite:Clientes.db");
 //			stmt = con.createStatement();
-//			rs = stmt.executeQuery("delete from clientes where nombre = ('Alberto')");
+//			rs = stmt.executeQuery("delete from clientes where usuario = ('cc')");
 //			rs = stmt.executeQuery("create table clientes (nombre string, email string, dni string, direccion string, codigoPostal integer, fecha_nac date, sexo string, usuario string, contraseña string, ruta string)");
 //			stmt.executeUpdate("create table clientes (nombre string, email string, dni string, direccion string, codigoPostal integer, fecha_nac date, sexo string, usuario string, contraseña string)");
 
