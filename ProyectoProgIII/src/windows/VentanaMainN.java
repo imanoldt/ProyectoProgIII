@@ -30,6 +30,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import net.miginfocom.swing.MigLayout;
 
 @SuppressWarnings("serial")
 public class VentanaMainN extends JFrame {
@@ -52,6 +53,8 @@ public class VentanaMainN extends JFrame {
 	
 	private JButton carrito;
 	private JButton btnHome;
+	private JLabel lblUsuario;
+	private JLabel lblIconoUsuario;
 	
 
 	/**
@@ -196,7 +199,16 @@ public class VentanaMainN extends JFrame {
 		pnlPrincipalDerecha.setBackground(new Color(249, 194, 4));
 
 		pnlPrincipal.add(pnlPrincipalDerecha, BorderLayout.CENTER);
-		pnlPrincipalDerecha.setLayout(new GridLayout(0, 1, 0, 0));
+		pnlPrincipalDerecha.setLayout(new BorderLayout(0, 0));
+		
+		lblUsuario = new JLabel("Que bueno tenerte de vuelta, @\"USUARIO\"");
+		lblUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+		pnlPrincipalDerecha.add(lblUsuario, BorderLayout.NORTH);
+		
+		lblIconoUsuario = new JLabel("");
+		lblIconoUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIconoUsuario.setIcon(new ImageIcon(VentanaMainN.class.getResource("/img/avt/avt6.png")));
+		pnlPrincipalDerecha.add(lblIconoUsuario, BorderLayout.CENTER);
 
 		scrollPane = new JScrollPane();
 		pnlPrincipal.add(scrollPane);
