@@ -21,11 +21,11 @@ public class VentanaCarrito extends JFrame{
 	public static ArrayList<Articulo> articulos_carrito = new ArrayList<Articulo>();
 	public static JPanel panelarriba = new JPanel();
 	
-	public static ArrayList<Articulo> getArticulos_carrito() {
+	public  ArrayList<Articulo> getArticulos_carrito() {
 		return articulos_carrito;
 	}
-	public static void setArticulos_carrito(ArrayList<Articulo> articulos_carrito) {
-		VentanaCarrito.articulos_carrito = articulos_carrito;
+	public  void setArticulos_carrito(ArrayList<Articulo> articulos_carrito) {
+		this.articulos_carrito = articulos_carrito;
 	}
 	private JTextArea txt_prueba;
 	private JButton btnActualizar;

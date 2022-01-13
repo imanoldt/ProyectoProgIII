@@ -257,7 +257,7 @@ public class VentanaLoginN extends JFrame {
 								lblRegistrate.setText("Cargando datos... ");
 								for (int i = 1; i < 100; i++) {
 									try {
-										Thread.sleep(39);
+										Thread.sleep(5);
 									} catch (InterruptedException ex) {
 										ex.printStackTrace();
 									}

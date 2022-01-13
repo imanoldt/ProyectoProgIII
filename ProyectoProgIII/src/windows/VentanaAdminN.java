@@ -81,6 +81,7 @@ public class VentanaAdminN extends JFrame implements WindowListener {
 	private Icon icono = new ImageIcon(getClass().getResource("/img/IconoAplicacion.png"));
 	private static Boolean vr = true;
 	private static ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+	
 	private static JTextField textField;
 
 	/**
@@ -378,7 +379,7 @@ public class VentanaAdminN extends JFrame implements WindowListener {
 		ImageIcon imgIcon5 = new ImageIcon(getClass().getResource("/img/icnDescatalogar.png"));
 		Image imgEscalada5 = imgIcon5.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 		btnDescatalogar.setIcon(new ImageIcon(imgEscalada5));
-
+		cargarDatosBinario();
 	}
 
 	private void ExportarPedidos() {
@@ -480,7 +481,7 @@ public class VentanaAdminN extends JFrame implements WindowListener {
 		tRopa.setModel(new ArticulosTableModel(articulos));
 	}
 
-	public static ArrayList<Pedido> getPedidos() {
+	public static  ArrayList<Pedido> getPedidos() {
 		return pedidos;
 	}
 
@@ -504,6 +505,7 @@ public class VentanaAdminN extends JFrame implements WindowListener {
 
 	@Override
 	public void windowClosed(WindowEvent e) {
+		System.out.println("kscjkdjcvsd");
 		guardarDatosBinario(pedidos);
 		
 		
