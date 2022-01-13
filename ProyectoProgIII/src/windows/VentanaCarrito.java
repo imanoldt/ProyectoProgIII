@@ -60,7 +60,7 @@ public class VentanaCarrito extends JFrame{
 		panelabajo.add(btnActualizar);
 		panelabajo.add(btnConfirmarCompra);
 		
-		btnActualizar.setEnabled(false);
+//		btnActualizar.setEnabled(false);
 		btnActualizar.addActionListener(new ActionListener() {
 			
 			@Override

@@ -247,6 +247,7 @@ public class VentanaLoginN extends JFrame {
 				String contrasenya = passContraseya.getText();
 
 				try {
+					BaseDeDatos.initBaseDatos("Clientes.db");
 					BaseDeDatos.comprobarInicioSesion(usuario, contrasenya);
 					if (BaseDeDatos.rs.next()) {
 						Runnable r = new Runnable() {

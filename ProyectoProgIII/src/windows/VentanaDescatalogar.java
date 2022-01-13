@@ -83,8 +83,6 @@ public class VentanaDescatalogar extends JFrame{
 				
 			}
 		});
-
-	
 		btnCancelar.addActionListener(new ActionListener() {
 		
 			@Override
@@ -98,12 +96,4 @@ public class VentanaDescatalogar extends JFrame{
 	public void limpiar(){
 		tfInsertarCod.setText("");
     }
-	
-	
-//	public static void main(String[] args) {
-//		VentanaDescatalogar ventana = new VentanaDescatalogar();
-//		 ventana.setVisible(true);
-//		
-//	}
-
 }
