@@ -81,6 +81,7 @@ public class VentanaCarrito extends JFrame{
 				dispose();
 //				articulos_carrito.clear();
 				JOptionPane.showMessageDialog(null, "Compra realizada con exito");
+				
 			}
 		});
 		

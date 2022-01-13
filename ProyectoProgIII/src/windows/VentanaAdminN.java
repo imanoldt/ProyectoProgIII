@@ -119,6 +119,7 @@ public class VentanaAdminN extends JFrame {
 				}
 			}
 		});
+		cargarDatosBinario();
 		
 	}
 	
@@ -363,7 +364,7 @@ public class VentanaAdminN extends JFrame {
 			@Override
 			public void windowOpened(WindowEvent e) {
 				System.out.println("Ventana abierta");
-				cargarDatosBinario();
+				
 			};
 
 			@Override
@@ -394,7 +395,7 @@ public class VentanaAdminN extends JFrame {
 		ImageIcon imgIcon5 = new ImageIcon(getClass().getResource("/img/icnDescatalogar.png"));
 		Image imgEscalada5 = imgIcon5.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 		btnDescatalogar.setIcon(new ImageIcon(imgEscalada5));
-		cargarDatosBinario();
+		
 	}
 
 	private void ExportarPedidos() {
@@ -415,7 +416,8 @@ public class VentanaAdminN extends JFrame {
 		int input1 = JOptionPane.showConfirmDialog(null, "Estas seguro que desea borrar todos los pedidos?", "Borrar",
 				JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 		if (input1==0) {
-			taPedidos.setText("");
+			
+//			taPedidos.setText("");
 			getPedidos().clear();
 			JOptionPane.showMessageDialog(rootPane, "Se ha borrado");
 		}else if (input1==1) {
@@ -483,9 +485,17 @@ public class VentanaAdminN extends JFrame {
 	}
 	public static void cargarDatosBinario() {
 		try {
+			ArrayList<Pedido> leidas = new ArrayList<Pedido>();
 			FileInputStream fis = new FileInputStream("Pedidos.txt");
-			ObjectInputStream ois = new ObjectInputStream(fis); 
-			pedidos=(ArrayList<Pedido>) ois.readObject();
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			while (fis.available()>0) {
+				Pedido pedido = (Pedido)ois.readObject();
+				System.out.println(pedido);
+			}
+			
+				
+			
+			
 			System.out.println("Datos cargados");
 		} catch (Exception e) {
 			System.out.println("No se ha podido leer el fichero");
