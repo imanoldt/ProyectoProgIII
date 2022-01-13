@@ -265,7 +265,10 @@ public class VentanaAdminN extends JFrame {
 
 			pedidosStr = pedidosStr + pedido + "\n" + precioPedido(pedido)+"€ \n";
 		}
-		pedidosStr = pedidosStr +"Pedido más caro: "+ pedidoCaroRecursivamente(getPedidos(), 0, getPedidos().get(0));
+		if (pedidos.size() > 0) {
+			pedidosStr = pedidosStr +"Pedido más caro: "+ pedidoCaroRecursivamente(getPedidos(), 0, getPedidos().get(0));
+		}
+		
 
 		taPedidos = new JTextArea();
 		taPedidos.setText(pedidosStr);
