@@ -160,9 +160,18 @@ public class VentanaMainN extends JFrame {
 
 		pnlPrincipalDerecha = new JPanel();
 		pnlPrincipalDerecha.setBackground(new Color(249, 194, 4));
+		pnlPrincipalDerecha.setLayout(new GridLayout(0,2));
+		
 
 		pnlPrincipal.add(pnlPrincipalDerecha, BorderLayout.CENTER);
-		pnlPrincipalDerecha.setLayout(new BorderLayout(0, 0));
+		GridLayout h=new GridLayout(0, 4);
+		h.setHgap(0);
+		h.setHgap (3);
+		
+		h.setVgap(0);
+		h.setVgap (5);
+	
+		pnlPrincipalDerecha.setLayout(h);
 
 		lblUsuario = new JLabel("Que bueno tenerte de vuelta, @\"USUARIO\"");
 		lblUsuario.setHorizontalAlignment(SwingConstants.CENTER);
@@ -202,7 +211,8 @@ public class VentanaMainN extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				pnlPrincipalDerecha.removeAll();
-				pnlPrincipalDerecha.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+				//pnlPrincipalDerecha.setLayout(new FlowLayout( 5));
+				pnlPrincipalDerecha.setBackground(new Color(77,77,77));
 				System.out.println("Numero de camisetas: " + camisetas.size());
 
 				for (int i = 0; i < camisetas.size(); i++) {
@@ -232,7 +242,8 @@ public class VentanaMainN extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				pnlPrincipalDerecha.removeAll();
-				pnlPrincipalDerecha.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+			//	pnlPrincipalDerecha.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+				pnlPrincipalDerecha.setBackground(new Color(77,77,77));
 				System.out.println("Numero de sudaderas: " + sudaderas.size());
 
 				for (int i = 0; i < sudaderas.size(); i++) {
@@ -252,7 +263,8 @@ public class VentanaMainN extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 
 				pnlPrincipalDerecha.removeAll();
-				pnlPrincipalDerecha.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+			//	pnlPrincipalDerecha.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+				pnlPrincipalDerecha.setBackground(new Color(77,77,77));
 				System.out.println("Numero de pantalones: " + pantalones.size());
 
 				for (int i = 0; i < pantalones.size(); i++) {
@@ -271,7 +283,8 @@ public class VentanaMainN extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				pnlPrincipalDerecha.removeAll();
-				pnlPrincipalDerecha.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+			//	pnlPrincipalDerecha.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+				pnlPrincipalDerecha.setBackground(new Color(77,77,77));
 				System.out.println("Numero de zapatos: " + zapatos.size());
 
 				for (int i = 0; i < zapatos.size(); i++) {
