@@ -288,7 +288,7 @@ public class VentanaLoginN extends JFrame {
 					} else {
 						JOptionPane.showMessageDialog(contentPane, "Usuario o contraseña incorrectos");
 					}
-
+					BaseDeDatos.closeBD(BaseDeDatos.con);
 				} catch (SQLException e2) {
 					e2.printStackTrace();
 				}
