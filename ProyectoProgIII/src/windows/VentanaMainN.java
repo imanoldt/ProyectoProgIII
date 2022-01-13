@@ -1,7 +1,7 @@
 package windows;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
+
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -30,59 +30,44 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import net.miginfocom.swing.MigLayout;
 
 @SuppressWarnings("serial")
 public class VentanaMainN extends JFrame {
 
-	private JPanel contentPane;
-	private JPanel pnlPrincipal;
-	private JPanel pnlNorte;
-	public static JPanel pnlIzquierda;
-
-	private JLabel lblCamisetas;
-	private JLabel lblPantalones;
-	private JLabel lblZapatillas;
-	private JLabel lblSudaderas;
-	private JLabel lblNewLabel_1;
-	public static TreeMap<String, Cliente> tmCliente = new TreeMap<>();
-
+	private JPanel contentPane, pnlPrincipal, pnlNorte, pnlIzquierda, pnlPrincipalDerecha;
+	private JLabel lblCamisetas, lblNewLabel_1, lblPantalones, lblZapatillas, lblSudaderas, lblIconoUsuario, lblUsuario;
 	private PnlPrueba panel;
-	private JPanel pnlPrincipalDerecha;
 	private JScrollPane scrollPane;
-	
-	private JButton carrito;
-	private JButton btnHome;
-	private JLabel lblUsuario;
-	private JLabel lblIconoUsuario;
-	
+	private JButton carrito, btnHome;
+	public static TreeMap<String, Cliente> tmCliente = new TreeMap<>();
 
 	/**
 	 * Lanza JFrame
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-
-					VentanaMainN frame = new VentanaMainN();
-					frame.setVisible(true);
-//					if(login.getTfUsuario().getText()=="admin"){
-//						VentanaMain frame = new VentanaMain();
-//						frame.setVisible(true);
-//						login.setVisible(false);
-//					}
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//
+//					VentanaMainN frame = new VentanaMainN();
+//					frame.setVisible(true);
+////					if(login.getTfUsuario().getText()=="admin"){
+////						VentanaMain frame = new VentanaMain();
+////						frame.setVisible(true);
+////						login.setVisible(false);
+////					}
+//
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
-	 * Crea el JFrame
-	 * @throws SQLException 
+	 * Crear el JFrame
+	 * 
+	 * @throws SQLException
 	 */
 	public VentanaMainN() throws SQLException {
 
@@ -91,7 +76,6 @@ public class VentanaMainN extends JFrame {
 		setLocationRelativeTo(null);
 		setTitle("OutFitShop");
 		setIconImage(new ImageIcon(getClass().getResource("/img/IconoAplicacion.png")).getImage());
-
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -112,8 +96,7 @@ public class VentanaMainN extends JFrame {
 		lblNewLabel_1.setFont(new Font("Monaco", Font.PLAIN, 16));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		pnlNorte.add(lblNewLabel_1);
-		
-		
+
 		carrito = new JButton();
 		String imagen = "src/img/IconoCesta.png";
 		ImageIcon imgIcon = new ImageIcon(imagen);
@@ -125,35 +108,15 @@ public class VentanaMainN extends JFrame {
 		carrito.setBorder(null);
 		carrito.setBackground(new Color(227, 48, 73));
 		pnlNorte.add(carrito, BorderLayout.WEST);
-		
-		carrito.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				VentanaCarrito nueva = new VentanaCarrito();
-				nueva.setVisible(true);
-			}
-		});
 		pnlNorte.add(carrito, BorderLayout.EAST);
-		
-		
+
 		btnHome = new JButton(new ImageIcon("src/img/Inicio.png"));
-		
+
 		btnHome.setOpaque(true);
 		btnHome.setBorder(null);
 		btnHome.setBackground(new Color(227, 48, 73));
 		pnlNorte.add(btnHome, BorderLayout.WEST);
-		
-		btnHome.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				VentanaLoginN nueva = new VentanaLoginN();
-				nueva.setVisible(true);
-			}
-		});
-		
 
 		pnlIzquierda = new JPanel();
 		pnlIzquierda.setBackground(Color.DARK_GRAY);
@@ -200,11 +163,11 @@ public class VentanaMainN extends JFrame {
 
 		pnlPrincipal.add(pnlPrincipalDerecha, BorderLayout.CENTER);
 		pnlPrincipalDerecha.setLayout(new BorderLayout(0, 0));
-		
+
 		lblUsuario = new JLabel("Que bueno tenerte de vuelta, @\"USUARIO\"");
 		lblUsuario.setHorizontalAlignment(SwingConstants.CENTER);
 		pnlPrincipalDerecha.add(lblUsuario, BorderLayout.NORTH);
-		
+
 		lblIconoUsuario = new JLabel("");
 		lblIconoUsuario.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIconoUsuario.setIcon(new ImageIcon(VentanaMainN.class.getResource("/img/avt/avt6.png")));
@@ -214,7 +177,6 @@ public class VentanaMainN extends JFrame {
 		pnlPrincipal.add(scrollPane);
 		scrollPane.setViewportView(pnlPrincipalDerecha);
 
-//EVENTOS________
 		BaseDeDatos.initBaseDatos("Clientes.db");
 		ArrayList<Articulo> articulos = BaseDeDatos.getArticulos();
 		BaseDeDatos.closeBD(BaseDeDatos.con);
@@ -225,23 +187,24 @@ public class VentanaMainN extends JFrame {
 		for (Articulo articulo : articulos) {
 			if (articulo.getTipo() == TipoArticulo.Camiseta) {
 				camisetas.add(articulo);
-			}else if (articulo.getTipo() == TipoArticulo.Pantalon) {
+			} else if (articulo.getTipo() == TipoArticulo.Pantalon) {
 				pantalones.add(articulo);
-			}else if (articulo.getTipo() == TipoArticulo.Sudadera) {
+			} else if (articulo.getTipo() == TipoArticulo.Sudadera) {
 				sudaderas.add(articulo);
-			}else if (articulo.getTipo() == TipoArticulo.Zapatos) {
+			} else if (articulo.getTipo() == TipoArticulo.Zapatos) {
 				zapatos.add(articulo);
 			}
 		}
-		
-		
+
+//EVENTOS________		
+
 		lblCamisetas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				pnlPrincipalDerecha.removeAll();
 				pnlPrincipalDerecha.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-				System.out.println("Numero de camisetas: "+ camisetas.size());
-				
+				System.out.println("Numero de camisetas: " + camisetas.size());
+
 				for (int i = 0; i < camisetas.size(); i++) {
 					panel = new PnlPrueba();
 					System.out.println(camisetas.get(i));
@@ -254,27 +217,24 @@ public class VentanaMainN extends JFrame {
 					pnlPrincipalDerecha.add(panel);
 					pnlPrincipalDerecha.updateUI();
 				}
-				
-				
+
 //				JScrollPane sp = new JScrollPane(panel);
 //				sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 //				sp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 //				pnlPrincipalDerecha.add(sp);
 //				
 //				pnlPrincipalDerecha.updateUI();
-				
 
 			}
 		});
-
 
 		lblSudaderas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				pnlPrincipalDerecha.removeAll();
 				pnlPrincipalDerecha.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-				System.out.println("Numero de sudaderas: "+ sudaderas.size());
-				
+				System.out.println("Numero de sudaderas: " + sudaderas.size());
+
 				for (int i = 0; i < sudaderas.size(); i++) {
 					panel = new PnlPrueba();
 					int precio = sudaderas.get(i).getPrecio();
@@ -293,8 +253,8 @@ public class VentanaMainN extends JFrame {
 
 				pnlPrincipalDerecha.removeAll();
 				pnlPrincipalDerecha.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-				System.out.println("Numero de pantalones: "+ pantalones.size());
-				
+				System.out.println("Numero de pantalones: " + pantalones.size());
+
 				for (int i = 0; i < pantalones.size(); i++) {
 					panel = new PnlPrueba();
 					int precio = pantalones.get(i).getPrecio();
@@ -304,7 +264,6 @@ public class VentanaMainN extends JFrame {
 					pnlPrincipalDerecha.updateUI();
 				}
 
-
 			}
 		});
 
@@ -313,8 +272,8 @@ public class VentanaMainN extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				pnlPrincipalDerecha.removeAll();
 				pnlPrincipalDerecha.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-				System.out.println("Numero de zapatos: "+ zapatos.size());
-				
+				System.out.println("Numero de zapatos: " + zapatos.size());
+
 				for (int i = 0; i < zapatos.size(); i++) {
 					panel = new PnlPrueba();
 					int precio = zapatos.get(i).getPrecio();
@@ -324,7 +283,23 @@ public class VentanaMainN extends JFrame {
 					pnlPrincipalDerecha.updateUI();
 				}
 
+			}
+		});
+		btnHome.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				VentanaLoginN nueva = new VentanaLoginN();
+				nueva.setVisible(true);
+			}
+		});
+		carrito.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaCarrito nueva = new VentanaCarrito();
+				nueva.setVisible(true);
 			}
 		});
 

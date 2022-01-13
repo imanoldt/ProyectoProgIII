@@ -8,6 +8,7 @@ import javax.swing.table.AbstractTableModel;
 
 import clss.Articulo;
 
+@SuppressWarnings("serial")
 public class ArticulosTableModel extends AbstractTableModel {
 
 	/**

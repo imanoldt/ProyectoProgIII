@@ -19,8 +19,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.border.MatteBorder;
-import javax.swing.event.MenuKeyEvent;
-import javax.swing.event.MenuKeyListener;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -29,7 +27,7 @@ import java.awt.*;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
+
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.awt.event.ActionEvent;
@@ -44,17 +42,14 @@ import javax.swing.JProgressBar;
 public class VentanaLoginN extends JFrame {
 
 	private JPanel contentPane, pnlPrincipal, pnlIzquierda, pnlDerechaa;
-	private JLabel lblIniciarSesion, lblIconoAplicacion, lblOutfitshop, lblCopyright, lblUsuario, lblIconoUsu, lblContraseya,lblRegistrate;
+	private JLabel lblIniciarSesion, lblIconoAplicacion, lblOutfitshop, lblCopyright, lblUsuario, lblIconoUsu,
+			lblContraseya, lblRegistrate;
 	private JTextField txtUsuario;
 	private JPasswordField passContraseya;
-	private JButton btnIniciarSession, btnRegistrarse, btnSalir,btnVisualizar,btnOcultar;
+	private JButton btnIniciarSession, btnRegistrarse, btnSalir, btnVisualizar, btnOcultar;
 	private JProgressBar progressBar;
-	
 	@SuppressWarnings("unused")
 	private int num;
-	
-
-
 
 	/**
 	 * Lanza Aplicacion
@@ -71,8 +66,6 @@ public class VentanaLoginN extends JFrame {
 			}
 		});
 	}
-
-
 
 	/**
 	 * Creacion del frame
@@ -96,7 +89,8 @@ public class VentanaLoginN extends JFrame {
 		pnlIzquierda = new JPanel();
 		pnlIzquierda.setBackground(new Color(249, 194, 4));
 		pnlPrincipal.add(pnlIzquierda);
-		pnlIzquierda.setLayout(new MigLayout("", "[grow]", "[59.00][46.00][36.00,top][][3.00][41.00][][fill][46.00][47.00][][][][][][][]"));
+		pnlIzquierda.setLayout(new MigLayout("", "[grow]",
+				"[59.00][46.00][36.00,top][][3.00][41.00][][fill][46.00][47.00][][][][][][][]"));
 
 		lblIniciarSesion = new JLabel("Iniciar Sesion");
 		lblIniciarSesion.setHorizontalAlignment(SwingConstants.CENTER);
@@ -126,66 +120,6 @@ public class VentanaLoginN extends JFrame {
 
 		btnIniciarSession = new JButton("Iniciar Sesion");
 
-		btnIniciarSession.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e1) {
-				String usuario = txtUsuario.getText();
-				
-				String contrasenya = passContraseya.getText();
-
-				try  {
-					BaseDeDatos.comprobarInicioSesion(usuario,contrasenya);
-					if (BaseDeDatos.rs.next()) {
-						Runnable r = new Runnable() {
-							
-							@Override
-							public void run() {
-								// TODO Auto-generated method stub
-								lblRegistrate.setText("Cargando datos... ");
-								for(int i=1;i<100;i++) {
-									try {
-										Thread.sleep(39);
-									} catch (InterruptedException ex) {
-										ex.printStackTrace();
-									}
-									progressBar.setValue(i);
-									//progressBar.updateUI();
-									System.out.println("El valor de la pb: "+progressBar.getValue());
-								}
-								if (usuario.equals("admin") && contrasenya.equals("admin")) {
-									setVisible(false);
-									VentanaAdminN admin = new VentanaAdminN();
-									admin.setVisible(true);
-								} else {
-									setVisible(false);
-									VentanaMainN main;
-									try {
-										main = new VentanaMainN();
-										main.setVisible(true);
-									} catch (SQLException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									
-								}
-								lblRegistrate.setText("¡¡ Registrate que es gratis !!");
-							}
-						};
-						Thread t = new Thread(r);
-						t.start();
-					} else {
-						JOptionPane.showMessageDialog(contentPane, "Usuario o contraseña incorrectos");
-					}
-
-				} catch (SQLException e2) {
-					e2.printStackTrace();
-				}
-				
-			}
-
-		});
-
 		btnIniciarSession.setFont(new Font("Monaco", Font.PLAIN, 16));
 		btnIniciarSession.setPreferredSize(new Dimension(5000, 50));
 		pnlIzquierda.add(btnIniciarSession, "flowx,cell 0 8,alignx center,aligny center");
@@ -198,13 +132,6 @@ public class VentanaLoginN extends JFrame {
 
 		btnSalir = new JButton();
 		btnSalir.setOpaque(false);
-		btnSalir.addMouseMotionListener(new MouseMotionAdapter() {
-			@Override
-			public void mouseMoved(MouseEvent e) {
-				System.out.println("Prueba");
-				btnSalir.setBackground(new Color(0, 0, 0));
-			}
-		});
 		btnSalir.setText(" Salir");
 		btnSalir.setRolloverIcon(new ImageIcon(VentanaLoginN.class.getResource("/img/xEncendida.png")));
 		// btnSalir.setIcon(new
@@ -240,18 +167,14 @@ public class VentanaLoginN extends JFrame {
 
 		btnVisualizar = new JButton("");
 		btnOcultar = new JButton("");
-	
+
 		pnlIzquierda.add(btnOcultar, "cell 0 6");
 		pnlIzquierda.add(btnVisualizar, "cell 0 6");
-		
-		
-		progressBar = new JProgressBar(0,100);
+
+		progressBar = new JProgressBar(0, 100);
 		progressBar.setValue(0);
 		pnlIzquierda.add(progressBar, "cell 0 14,growx,aligny center");
 		progressBar.setVisible(true);
-		
-		
-		
 
 // IMAGENES
 
@@ -268,53 +191,11 @@ public class VentanaLoginN extends JFrame {
 		ImageIcon imgIconVis = new ImageIcon(getClass().getResource("/img/icnVisualizar.png"));
 		Image imgEscaladaVis = imgIconVis.getImage().getScaledInstance(23, 19, Image.SCALE_SMOOTH);
 		btnVisualizar.setIcon(new ImageIcon(imgEscaladaVis));
-		
+
 		ImageIcon imgIconOcu = new ImageIcon(getClass().getResource("/img/icnOcultar.png"));
 		Image imgEscaladaOcu = imgIconOcu.getImage().getScaledInstance(23, 19, Image.SCALE_SMOOTH);
 		btnOcultar.setIcon(new ImageIcon(imgEscaladaOcu));
-		
-		
-		addWindowListener( new WindowAdapter() {
-			@Override
-			public void windowOpened(WindowEvent e) {
-					try {
-						BaseDeDatos.initBaseDatos("Clientes.db");
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}  
-			};
-			@Override
-			public void windowClosed(WindowEvent e) {
-				BaseDeDatos.closeBD(BaseDeDatos.con);
-			}
-		});
-		
-		txtUsuario.addKeyListener( new KeyListener() {
-			@Override
-			public void keyTyped(KeyEvent e) {}
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode()==KeyEvent.VK_ENTER){		
-					btnIniciarSession.doClick();
-				}
-			}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-		});
 
-		passContraseya.addKeyListener( new KeyListener() {
-			@Override
-			public void keyTyped(KeyEvent e) {}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode()==KeyEvent.VK_ENTER){
-					btnIniciarSession.doClick();
-				}
-			}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-		});
 // EVENTOS
 
 		btnRegistrarse.addMouseListener(new MouseAdapter() {
@@ -327,9 +208,8 @@ public class VentanaLoginN extends JFrame {
 					registro.setVisible(true);
 					setVisible(false);
 				} catch (ParseException | OutFitShopException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
-					
+
 				}
 
 			}
@@ -345,24 +225,135 @@ public class VentanaLoginN extends JFrame {
 		btnVisualizar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getSource() ==btnVisualizar)
-					passContraseya.setEchoChar((char)0);
-				
-			
+				if (e.getSource() == btnVisualizar)
+					passContraseya.setEchoChar((char) 0);
+
 			}
-			
+
 		});
 		btnOcultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				passContraseya.setEchoChar('*');
 			}
 		});
-		
-		
-		
-		
-		
-		
+
+		btnIniciarSession.addActionListener(new ActionListener() {
+
+			@SuppressWarnings("deprecation")
+			@Override
+			public void actionPerformed(ActionEvent e1) {
+				String usuario = txtUsuario.getText();
+
+				String contrasenya = passContraseya.getText();
+
+				try {
+					BaseDeDatos.comprobarInicioSesion(usuario, contrasenya);
+					if (BaseDeDatos.rs.next()) {
+						Runnable r = new Runnable() {
+
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								lblRegistrate.setText("Cargando datos... ");
+								for (int i = 1; i < 100; i++) {
+									try {
+										Thread.sleep(39);
+									} catch (InterruptedException ex) {
+										ex.printStackTrace();
+									}
+									progressBar.setValue(i);
+									// progressBar.updateUI();
+									System.out.println("El valor de la pb: " + progressBar.getValue());
+								}
+								if (usuario.equals("admin") && contrasenya.equals("admin")) {
+									setVisible(false);
+									VentanaAdminN admin = new VentanaAdminN();
+									admin.setVisible(true);
+								} else {
+									setVisible(false);
+									VentanaMainN main;
+									try {
+										main = new VentanaMainN();
+										main.setVisible(true);
+									} catch (SQLException e) {
+										e.printStackTrace();
+									}
+
+								}
+								lblRegistrate.setText("¡¡ Registrate que es gratis !!");
+							}
+						};
+						Thread t = new Thread(r);
+						t.start();
+					} else {
+						JOptionPane.showMessageDialog(contentPane, "Usuario o contraseña incorrectos");
+					}
+
+				} catch (SQLException e2) {
+					e2.printStackTrace();
+				}
+
+			}
+
+		});
+
+		btnSalir.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				System.out.println("Prueba");
+				btnSalir.setBackground(new Color(0, 0, 0));
+			}
+		});
+
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				try {
+					BaseDeDatos.initBaseDatos("Clientes.db");
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			};
+
+			@Override
+			public void windowClosed(WindowEvent e) {
+				BaseDeDatos.closeBD(BaseDeDatos.con);
+			}
+		});
+
+		txtUsuario.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnIniciarSession.doClick();
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
+
+		passContraseya.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnIniciarSession.doClick();
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
 
 //HILOS
 
@@ -375,14 +366,12 @@ public class VentanaLoginN extends JFrame {
 					try {
 						Thread.sleep(500);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					lblRegistrate.setForeground(Color.BLACK);
 					try {
 						Thread.sleep(500);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 
@@ -392,44 +381,32 @@ public class VentanaLoginN extends JFrame {
 		};
 		Thread t1 = new Thread(r1);
 		t1.start();
-		
-		
-		
-		
-		
-		/*Runnable r2 =new Runnable() {
 
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				
-				 while (num < 2000) {
-					  progressBar.setValue(num);
-					  progressBar.repaint();
-					  
-					  try {
-					  Thread.sleep(50);
-					  } catch (InterruptedException e) { 
-					    }
-					  num += 95;
-					  }
-					  }
-				
-			};
-		Thread t2 = new Thread(r2);
-		t2.start();*/
+		/*
+		 * Runnable r2 =new Runnable() {
+		 * 
+		 * @Override public void run() { // TODO Auto-generated method stub
+		 * 
+		 * while (num < 2000) { progressBar.setValue(num); progressBar.repaint();
+		 * 
+		 * try { Thread.sleep(50); } catch (InterruptedException e) { } num += 95; } }
+		 * 
+		 * }; Thread t2 = new Thread(r2); t2.start();
+		 */
 
 	}
-	public void CentrarJFrame(JFrame v){
-	     
-	      Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-	      int height = pantalla.height;
-	      int width = pantalla.width;
-	      v.setSize(width/2, height/2);		
 
-	      v.setLocationRelativeTo(null);		
+//METODOS
 
-	  }
-	
+	public void CentrarJFrame(JFrame v) {
+
+		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+		int height = pantalla.height;
+		int width = pantalla.width;
+		v.setSize(width / 2, height / 2);
+
+		v.setLocationRelativeTo(null);
+
+	}
 
 }

@@ -57,16 +57,13 @@ public class VentanaRegistroN extends JFrame {
 
 	private JPanel contentPane, pnlSuperior, pnlCentral, pnlCentralIzq, pnlCentralDerecha;
 	private JLabel lblNombre, lblDni, lblEmail, lblDireccion, lblFNacimiento, lblCodigoPostal, lblSexo, lblAvatar,
-			lblRegistro, lblAvatarIcono, lblContraseña, lblUsuario, lblContraseña2;
-	private JTextField txtNombre, txtDni, txtEmail, txtDir, txtCodigoPostal, txtusuario;
+			lblRegistro, lblAvatarIcono, lblContraseña, lblUsuario, lblContraseña2, lblV1, lblV4, lbl3, lblV2;
+	private JTextField txtNombre, txtDni, txtEmail, txtDir, txtCodigoPostal, txtusuario, txtruta;
 	private JDateChooser dChooser;
 	private JComboBox<TipoSexo> cbSexo;
-	private JButton btnRegistrarse, btnSeleccionar, btnVolver;
-	private JLabel lblV1, lblV4, lbl3, lblV2;
+	private JButton btnRegistrarse, btnSeleccionar, btnVolver, btnCerrar;
 	private JPasswordField passContraseña, passContraseña2;
 	private JSeparator separator, separator_1, separator_2, separator_3;
-	private JButton btnCerrar;
-	private JTextField txtruta;
 
 	/**
 	 * Create the frame.
@@ -81,7 +78,6 @@ public class VentanaRegistroN extends JFrame {
 		setTitle("Registro Usuarios");
 		setContentPane(contentPane);
 		setIconImage(new ImageIcon(getClass().getResource("/img/iconoPass.png")).getImage());
-
 
 		pnlSuperior = new JPanel();
 		pnlSuperior.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(0, 0, 0)));
@@ -242,12 +238,12 @@ public class VentanaRegistroN extends JFrame {
 		btnSeleccionar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		pnlCentralIzq.add(btnSeleccionar);
-		
-        txtruta = new JTextField();
+
+		txtruta = new JTextField();
 		pnlCentralIzq.add(txtruta);
 		txtruta.setColumns(10);
 		txtruta.setEditable(false);
-        txtruta.setBackground(new java.awt.Color(204, 204, 255));
+		txtruta.setBackground(new java.awt.Color(204, 204, 255));
 
 		pnlCentralDerecha = new JPanel();
 		pnlCentralDerecha.setBackground(new Color(227, 48, 73));
@@ -271,11 +267,11 @@ public class VentanaRegistroN extends JFrame {
 		pnlCentralDerecha.add(btnRegistrarse, "cell 0 3,grow");
 
 		btnCerrar = new JButton("Abandonar");
-	
+
 		pnlCentralDerecha.add(btnCerrar, "cell 0 4,growx,aligny center");
 
 // EVENTOS
-		
+
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -301,14 +297,14 @@ public class VentanaRegistroN extends JFrame {
 							"Confirmacion", JOptionPane.YES_NO_CANCEL_OPTION);
 					if (input == JOptionPane.YES_OPTION) {
 						String nombreFoto = fSeleccionado.getName();
-						String rutaFoto = "src/img/";	
-						rutaFoto = rutaFoto +"avt/" +nombreFoto;
+						String rutaFoto = "src/img/";
+						rutaFoto = rutaFoto + "avt/" + nombreFoto;
 						ImageIcon imgIcon = new ImageIcon(rutaFoto);
 						Image imgEscalada = imgIcon.getImage().getScaledInstance(199, 199, Image.SCALE_SMOOTH);
 						ImageIcon im = new ImageIcon(imgEscalada);
 						im.setDescription(rutaFoto);
-						lblAvatarIcono.setIcon(im);	  
-			            txtruta.setText(rutaFoto);
+						lblAvatarIcono.setIcon(im);
+						txtruta.setText(rutaFoto);
 					} else {
 
 					}
@@ -328,9 +324,9 @@ public class VentanaRegistroN extends JFrame {
 				setVisible(false);
 			}
 		});
-		
 
 		btnRegistrarse.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 
 				if (!txtNombre.getText().isEmpty() && !txtDni.getText().isEmpty() && !txtEmail.getText().isEmpty()
@@ -375,7 +371,8 @@ public class VentanaRegistroN extends JFrame {
 									String usuario = txtusuario.getText();
 									String contraseña = passContraseña.getText();
 									String ruta = txtruta.getText();
-									Cliente clNuevo=new Cliente(nombre, eml, dni2, direccion, codigoPostal,fechanac, sexo, usuario,contraseña, ruta);
+									Cliente clNuevo = new Cliente(nombre, eml, dni2, direccion, codigoPostal, fechanac,
+											sexo, usuario, contraseña, ruta);
 									BaseDeDatos.insertarCliente(clNuevo);
 									JOptionPane.showMessageDialog(contentPane, "Registro  realizado");
 									limpiar();
@@ -401,23 +398,26 @@ public class VentanaRegistroN extends JFrame {
 				}
 			}
 		});
-		addWindowListener( new WindowAdapter() {
+		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
-					try {
-						BaseDeDatos.initBaseDatos("Clientes.db");
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}  // Crear base de datos con datos iniciales
+				try {
+					BaseDeDatos.initBaseDatos("Clientes.db");
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				} // Crear base de datos con datos iniciales
 			};
+
 			@Override
 			public void windowClosed(WindowEvent e) {
 				BaseDeDatos.closeBD(BaseDeDatos.con);
 			}
 		});
 	}
-	public void limpiar(){
+
+//METODOS
+
+	public void limpiar() {
 		txtNombre.setText("");
 		txtDni.setText("");
 		txtEmail.setText("");
@@ -427,7 +427,6 @@ public class VentanaRegistroN extends JFrame {
 		passContraseña.setText("");
 		passContraseña2.setText("");
 		txtruta.setText("");
-		
-    }
-}
 
+	}
+}

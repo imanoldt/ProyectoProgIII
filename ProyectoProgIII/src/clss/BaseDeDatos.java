@@ -409,11 +409,61 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
+				logger.log( Level.SEVERE, "Excepción:", e );
 				e.printStackTrace();
 
 			}
 			
 	}
+		
+		
+		
+		
+		
+		public static  String getRutaPerfil(String usu) {
+			
+			ArrayList<String> rutaL = new ArrayList<String>();
+			String rutaL1=rutaL.get(0);
+
+			try  {
+				rutaL.clear();
+				String st = "SELECT ruta FROM clientes WHERE usuario = '" + usu+ "'";
+				stmt = con.createStatement();
+				logger.log( Level.INFO, "Statement: " + st);
+				rs = stmt.executeQuery(st);
+				
+				String rutaP1=rs.getString("ruta");
+				rutaL.add(rutaP1);
+
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				logger.log( Level.SEVERE, "Excepción:", e );
+				e.printStackTrace();
+				
+			}
+			return rutaL1;
+
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 	
 	public static void main(String[] args) {

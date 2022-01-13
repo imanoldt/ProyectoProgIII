@@ -4,14 +4,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import clss.Articulo;
+
 import clss.BaseDeDatos;
 
+@SuppressWarnings("serial")
 public class VentanaDescatalogar extends JFrame{
 	
 	protected JPanel arriba;

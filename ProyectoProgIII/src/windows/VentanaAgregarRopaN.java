@@ -2,20 +2,20 @@ package windows;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
+
 import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
+
 import javax.swing.border.EmptyBorder;
 
-import com.toedter.calendar.JDateChooser;
+
 
 import clss.Articulo;
 import clss.BaseDeDatos;
 import clss.Camiseta;
-import clss.Cliente;
+
 import clss.Pantalon;
 import clss.Sudadera;
 import clss.Talla;
@@ -24,7 +24,7 @@ import clss.TipoSexo;
 import clss.Zapatos;
 
 import java.awt.GridLayout;
-import java.awt.HeadlessException;
+
 import java.awt.Image;
 
 import javax.swing.JLabel;
@@ -32,17 +32,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
+
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 import java.awt.event.ActionEvent;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JComboBox;
@@ -54,29 +49,22 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.MouseEvent;
+
 import javax.swing.JSeparator;
 import java.awt.Cursor;
 
+@SuppressWarnings("serial")
 public class VentanaAgregarRopaN extends JFrame {
 
 	private JPanel contentPane, pnlCentral, pnlCentralIzq, pnlCentralDerecha;
-	private JLabel labelcod, labeltalla, labelprecio, labelmarca, labelsexo, tipo, labelcolor, lblImagen;
-	private JTextField tfcod, tfprecio, tfmarca, tfcolor;
+	private JLabel labelcod,lblV1, lblV4, lbl3, lblV2,lblNewLabel_2,lblNewLabel_1,lblNewLabel, labeltalla, labelprecio, labelmarca, labelsexo, tipo, labelcolor, lblImagen;
+	private JTextField tfcod, tfprecio, tfmarca, tfcolor,txtruta;
 	private JComboBox<TipoSexo> cbsexo;
 	private JComboBox<Talla> cbtalla;
 	private JComboBox<TipoArticulo> cbtipo;
-	private JButton btnAgregar, btnBuscar;
-	private JLabel lblV1, lblV4, lbl3, lblV2;
+	private JButton btnAgregar, btnBuscar,btnCerrar;
 	private JSeparator separator, separator_1, separator_2, separator_3;
-	private JButton btnCerrar;
-	private JLabel lblNewLabel;
-	private JLabel lblNewLabel_1;
-	private JTextField txtruta;
-	private JLabel lblNewLabel_2;
+
 
 	/**
 	 * Create the frame.
@@ -134,7 +122,7 @@ public class VentanaAgregarRopaN extends JFrame {
 		pnlCentralIzq.add(tfprecio);
 
 		
-		cbtipo = new JComboBox();
+		cbtipo = new JComboBox<TipoArticulo>();
 		cbtipo = new JComboBox<TipoArticulo>();
 		for (TipoArticulo ta : TipoArticulo.values()) {
 			cbtipo.addItem(ta);
@@ -145,7 +133,7 @@ public class VentanaAgregarRopaN extends JFrame {
 		tipo.setFont(new Font("Montserrat", Font.PLAIN, 14));
 		pnlCentralIzq.add(tipo);
 
-		cbtipo = new JComboBox();
+		cbtipo = new JComboBox<TipoArticulo>();
 		cbtipo = new JComboBox<TipoArticulo>();
 		for (TipoArticulo ta : TipoArticulo.values()) {
 			cbtipo.addItem(ta);

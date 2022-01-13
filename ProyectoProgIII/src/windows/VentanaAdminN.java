@@ -56,12 +56,10 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class VentanaAdminN extends JFrame {
 
-	private JPanel contentPane;
-	private JPanel pnlIzquierda;
-	private JPanel pnlDerecha;
-	private JButton btnAgregar;
-	private JButton btnDescatalogar;
-	private JButton btnHome;
+	private JPanel contentPane,pnlDerecha,pnlIzquierda;
+
+	private JButton btnAgregar, btnHome, btnDescatalogar;
+
 	private static JTable tRopa;
 	private JLabel lblTAlmacen;
 	private static JScrollPane sRopa;
@@ -71,9 +69,8 @@ public class VentanaAdminN extends JFrame {
 	private JButton btnFiltrar;
 	private JLabel lblPedidos;
 	private JTextArea taPedidos;
-	private JButton btnExportar;
-	private JButton btnBorrar;
-	private JButton btnInicio;
+	private JButton btnExportar,btnInicio,btnBorrar;
+
 	private Icon icono = new ImageIcon(getClass().getResource("/img/IconoAplicacion.png"));
 	private static Boolean vr = true;
 	public static ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
