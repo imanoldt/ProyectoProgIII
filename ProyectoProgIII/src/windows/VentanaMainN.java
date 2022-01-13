@@ -210,7 +210,10 @@ public class VentanaMainN extends JFrame {
 			}
 		}
 
-//EVENTOS________		
+//EVENTOS________	
+		/**
+		 * Crea panales según la cantidad de articulos que hay en la base de datos
+		 */
 
 		lblCamisetas.addMouseListener(new MouseAdapter() {
 			@Override

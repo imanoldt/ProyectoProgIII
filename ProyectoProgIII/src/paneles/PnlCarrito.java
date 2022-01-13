@@ -79,6 +79,9 @@ public class PnlCarrito extends JPanel{
 	public void setArticulo_asignado(Articulo articulo_asignado) {
 		this.articulo_asignado = articulo_asignado;
 	}
+	/**
+	 * Rellena el panel
+	 */
 
 
 	public  void rellenarPanelesCarrito(int precio, String imagen, Articulo articulo) {

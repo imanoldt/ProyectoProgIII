@@ -185,6 +185,9 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 
 		return tmCliente;
 	}
+	/**
+	 * Crea las tablas
+	 */
 	
 	public static boolean crearTablas(String nombreBD) {
 		try {
@@ -210,7 +213,9 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 		}
 		
 		}
-	
+	/**
+	 * Getters con consultas a la base de datos
+	 */
 	public static ArrayList<Articulo> getArticulos() {
 		try (Statement statement = con.createStatement()) {
 			ArrayList<Articulo> ret = new ArrayList<>();
@@ -244,6 +249,7 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 		}
 		
 	}
+	
 	public static List<Articulo> getCamiseta() throws SQLException {
 		List<Articulo> camisetas = new ArrayList<>();
 		try (Statement stmt = con.createStatement()) {
@@ -381,7 +387,9 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 			}
 			
 			}
-
+	/**
+	 * Rellena la JTable de ventana Admin
+	 */
 		
 		public static void actualizaTabla(DefaultTableModel tabla) {
 			

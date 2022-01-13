@@ -397,6 +397,9 @@ public class VentanaAdminN extends JFrame {
 		btnDescatalogar.setIcon(new ImageIcon(imgEscalada5));
 		
 	}
+	/**
+	 * Guarda el text area con los pedidos en el archivo seleccionado
+	 */
 
 	private void ExportarPedidos() {
 		try {
@@ -412,6 +415,9 @@ public class VentanaAdminN extends JFrame {
 			JOptionPane.showMessageDialog(this, ex.getMessage());
 		}
 	}
+	/**
+	 * Borra todos los pedidos
+	 */
 	private void borrar() {
 		int input1 = JOptionPane.showConfirmDialog(null, "Estas seguro que desea borrar todos los pedidos?", "Borrar",
 				JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -425,6 +431,9 @@ public class VentanaAdminN extends JFrame {
 		}
 
 	}
+	/**
+	 * Filtrar tabla mediante consultas a la BD
+	 */
 	public static void FiltrarTabla(DefaultTableModel tabla) {
 		try {
 			List<Articulo> lista = BaseDeDatos.getMarca(textField.getText());
@@ -436,6 +445,9 @@ public class VentanaAdminN extends JFrame {
 		}
 		
 	}
+	/**
+	 * Calcula el precio total de una lista de articulos mediante Divide y Vencerás
+	 */
 	public static int precioPedido_DyV(ArrayList<Articulo> a, int inicio, int fin) {
 		if (inicio == fin) {
 			return a.get(inicio).getPrecio();
@@ -455,7 +467,10 @@ public class VentanaAdminN extends JFrame {
 		
 		return precioTotal;
 	
-	}		
+	}
+	/**
+	 * Metodo Recursivo para calcular el mayot valor de una lista
+	 */
 	
 	public static Pedido pedidoCaroRecursivamente(ArrayList<Pedido> p, int i, Pedido max) {
 		
@@ -470,6 +485,9 @@ public class VentanaAdminN extends JFrame {
 		return max;
 		
 	}
+	/**
+	 * Guarda datos del text Area de pedidos en el txt
+	 */
 	public static void guardarDatosBinario(ArrayList<Pedido> pedidos) {
 		try {
 			FileOutputStream fos = new FileOutputStream("Pedidos.txt");
@@ -483,6 +501,9 @@ public class VentanaAdminN extends JFrame {
 			System.out.println("No se han podido guardar los datos binarios");
 		}
 	}
+	/**
+	 * Carga datos del archivo txt
+	 */
 	public static void cargarDatosBinario() {
 		try {
 			ArrayList<Pedido> leidas = new ArrayList<Pedido>();

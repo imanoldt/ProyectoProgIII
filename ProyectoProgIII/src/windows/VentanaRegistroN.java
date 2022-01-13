@@ -416,6 +416,9 @@ public class VentanaRegistroN extends JFrame {
 	}
 
 //METODOS
+	/**
+	 * Limpia los huecos rellenables en la ventana.
+	 */
 
 	public void limpiar() {
 		txtNombre.setText("");

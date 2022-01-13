@@ -93,6 +93,9 @@ public class VentanaDescatalogar extends JFrame{
 			});
 		
 	}
+	/**
+	 * Borra el texto del TextField donde se introduce el codigo
+	 */
 	public void limpiar(){
 		tfInsertarCod.setText("");
     }

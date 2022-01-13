@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Pedido implements Serializable{
+	/**
+	 * Contador automatico para el codigo del pedido
+	 */
 	public static int contador = 1;
 	private int numero_pedido;
 	private ArrayList<Articulo> articulos;

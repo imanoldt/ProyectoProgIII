@@ -260,7 +260,7 @@ public class VentanaLoginN extends JFrame {
 								lblRegistrate.setText("Cargando datos... ");
 								for (int i = 1; i < 100; i++) {
 									try {
-										Thread.sleep(5);
+										Thread.sleep(15);
 									} catch (InterruptedException ex) {
 										ex.printStackTrace();
 									}
@@ -400,6 +400,9 @@ public class VentanaLoginN extends JFrame {
 	}
 
 //METODOS
+	/**
+	 * Centra Jframe en la ventana.
+	 */
 
 	public void CentrarJFrame(JFrame v) {
 

@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 public class TestPedido {
+	/**
+	 * JUnit de la clase pedido
+	 */
 
 	@Test
 	public void testPedido() {

@@ -124,6 +124,9 @@ public class VentanaCarrito extends JFrame{
 //		VentanaCarrito carrito = new VentanaCarrito();
 //		carrito.setVisible(true);
 //	}
+	/**
+	 * Calcula el precio total de una lista de articulos
+	 */
 
 	public static int calcularTotal(ArrayList<Articulo> articulos, int i) {
 		int total = 0;

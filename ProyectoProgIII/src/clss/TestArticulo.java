@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class TestArticulo {
+	/**
+	 * JUnit de la clase madre articulo y sus hijas
+	 */
 
 	@Test
 	public void testCamiseta() {

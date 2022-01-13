@@ -68,7 +68,7 @@ public class PnlPrueba extends JPanel {
 		
 		btnComprar = new JButton("Comprar");
 		btnComprar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnComprar.setBackground(Color.PINK);
+		btnComprar.setBackground(new Color(191, 236, 160));
 		add(btnComprar, "cell 1 5 2 1,grow");
 		
 		btnComprar.addActionListener(new ActionListener() {
@@ -83,6 +83,9 @@ public class PnlPrueba extends JPanel {
 		});
 
 	}
+	/**
+	 * Rellena panel
+	 */
 	public void rellenarPaneles(int precio, String imagen, Articulo articulo) {
 		lblPrecio.setText("Precio: "+precio+"€");
 	
