@@ -306,5 +306,6 @@ public class VentanaMainN extends JFrame {
 	}
 
 	// METODOS_______
+	
 
 }

@@ -73,7 +73,7 @@ public class VentanaAdminN extends JFrame {
 
 	private Icon icono = new ImageIcon(getClass().getResource("/img/IconoAplicacion.png"));
 	private static Boolean vr = true;
-	public static ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+	private static ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 	private static JTextField textField;
 
 	/**
@@ -261,10 +261,11 @@ public class VentanaAdminN extends JFrame {
 		pnlDerecha.add(lblPedidos, "cell 0 0,grow");
 
 		String pedidosStr = "";
-		for (Pedido pedido : pedidos) {
+		for (Pedido pedido : getPedidos()) {
 
-			pedidosStr = pedidosStr + pedido + "\n";
+			pedidosStr = pedidosStr + pedido + "\n" + precioPedido(pedido)+"€ \n";
 		}
+		pedidosStr = pedidosStr +"Pedido más caro: "+ pedidoCaroRecursivamente(getPedidos(), 0, getPedidos().get(0));
 
 		taPedidos = new JTextArea();
 		taPedidos.setText(pedidosStr);
@@ -383,7 +384,7 @@ public class VentanaAdminN extends JFrame {
 				JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 		if (input1==0) {
 			taPedidos.setText("");
-			pedidos.clear();
+			getPedidos().clear();
 			JOptionPane.showMessageDialog(rootPane, "Se ha borrado");
 		}else if (input1==1) {
 			assert true;
@@ -401,7 +402,54 @@ public class VentanaAdminN extends JFrame {
 		}
 		
 	}
+	public static int precioPedido_DyV(ArrayList<Articulo> a, int inicio, int fin) {
+		if (inicio == fin) {
+			return a.get(inicio).getPrecio();
+		}else {
+			int mitad = (inicio+fin)/2;
+			int x = precioPedido_DyV(a, inicio, mitad);
+			int y = precioPedido_DyV(a, mitad+1, fin);
+			
+			return x+y; }
+		}
+	private static int precioPedido(Pedido p) {
+		ArrayList<Articulo> articulos = p.getArticulos();
+		int precioTotal = 0;
+		for (Articulo articulo : articulos) {
+			precioTotal = precioTotal + articulo.getPrecio();
+		}
+		
+		return precioTotal;
+	
+	}		
+	
+	public static Pedido pedidoCaroRecursivamente(ArrayList<Pedido> p, int i, Pedido max) {
+		
+		if (i != p.size() -1) {
+			
+			if (precioPedido(p.get(i))> precioPedido(max)) {
+				max =pedidoCaroRecursivamente(p, i+1, p.get(i));
+			}else {
+				max = pedidoCaroRecursivamente(p, i+1, max);
+			}
+		}
+		return max;
+		
+	}
 	private static void updateUI(List<Articulo> articulos) {
 		tRopa.setModel(new ArticulosTableModel(articulos));
 	}
+
+	public static ArrayList<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public static void setPedidos(ArrayList<Pedido> pedidos) {
+		VentanaAdminN.pedidos = pedidos;
+	}
+
+
+
+
+	
 }

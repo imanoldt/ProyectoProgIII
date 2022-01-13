@@ -404,7 +404,6 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 					
 					
 					String tbData[] = {codigo,tipo, talla, precio, sexo, marca, color, ruta};
-					System.out.println(tbData);
 					tabla.addRow(tbData);	
 				}
 			} catch (SQLException e) {

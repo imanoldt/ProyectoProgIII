@@ -76,7 +76,7 @@ public class VentanaCarrito extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Pedido pedidonuevo = new Pedido(articulos_carrito);
-				VentanaAdminN.pedidos.add(pedidonuevo);
+				VentanaAdminN.getPedidos().add(pedidonuevo);
 				System.out.println(pedidonuevo);
 				dispose();
 //				articulos_carrito.clear();

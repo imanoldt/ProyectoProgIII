@@ -22,7 +22,7 @@ import windows.VentanaCarrito;
 
 public class PnlCarrito extends JPanel{
 	private static JLabel lblImagen;
-	private JButton btnComprar;
+	private JButton btnEliminar;
 	private JLabel lblNombre;
 	static JLabel lblPrecio;
 	private Articulo articulo_asignado;
@@ -51,12 +51,12 @@ public class PnlCarrito extends JPanel{
 		
 		
 		
-		btnComprar = new JButton("Eliminar");
-		btnComprar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnComprar.setBackground(Color.PINK);
-		add(btnComprar, "cell 1 5 2 1,grow");
+		btnEliminar = new JButton("Eliminar");
+		btnEliminar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnEliminar.setBackground(Color.PINK);
+		add(btnEliminar, "cell 1 5 2 1,grow");
 		
-		btnComprar.addActionListener(new ActionListener() {
+		btnEliminar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
