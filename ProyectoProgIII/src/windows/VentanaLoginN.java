@@ -50,6 +50,7 @@ public class VentanaLoginN extends JFrame {
 	private JProgressBar progressBar;
 	@SuppressWarnings("unused")
 	private int num;
+	public static String nick;
 
 	/**
 	 * Lanza Aplicacion
@@ -255,6 +256,7 @@ public class VentanaLoginN extends JFrame {
 							@Override
 							public void run() {
 								// TODO Auto-generated method stub
+								nick = usuario;
 								lblRegistrate.setText("Cargando datos... ");
 								for (int i = 1; i < 100; i++) {
 									try {

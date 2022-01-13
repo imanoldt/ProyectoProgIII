@@ -10,7 +10,10 @@ public class Pedido implements Serializable{
 	
 	public Pedido(ArrayList<Articulo> articulos) {
 		super();
-		this.articulos = articulos;
+		//this.articulos = articulos;
+		this.articulos = new ArrayList<>();
+		for(Articulo a: articulos)
+			this.articulos.add(a);
 		this.numero_pedido = Pedido.contador;
 		Pedido.contador++;
 	}

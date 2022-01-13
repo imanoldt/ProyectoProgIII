@@ -420,20 +420,15 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 		
 		
 		public static  String getRutaPerfil(String usu) {
-			
-			ArrayList<String> rutaL = new ArrayList<String>();
-			String rutaL1=rutaL.get(0);
-
+			String rutaP1 = null;
 			try  {
-				rutaL.clear();
 				String st = "SELECT ruta FROM clientes WHERE usuario = '" + usu+ "'";
 				stmt = con.createStatement();
 				logger.log( Level.INFO, "Statement: " + st);
 				rs = stmt.executeQuery(st);
 				
-				String rutaP1=rs.getString("ruta");
-				rutaL.add(rutaP1);
-
+				rutaP1=rs.getString("ruta");
+		
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -441,7 +436,7 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 				e.printStackTrace();
 				
 			}
-			return rutaL1;
+			return rutaP1;
 
 		}
 		
@@ -481,7 +476,6 @@ public static Logger logger = Logger.getLogger( "BaseDatos" );
 				System.out.println(articulo);
 			}
 		
-			
 	
 			
 		} catch (Exception e) {

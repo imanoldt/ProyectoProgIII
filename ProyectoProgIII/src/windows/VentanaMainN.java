@@ -12,6 +12,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.TreeMap;
@@ -173,14 +174,18 @@ public class VentanaMainN extends JFrame {
 	
 		pnlPrincipalDerecha.setLayout(h);
 
-		lblUsuario = new JLabel("Que bueno tenerte de vuelta, @\"USUARIO\"");
+		lblUsuario = new JLabel("Que bueno tenerte de vuelta, "+VentanaLoginN.nick);
 		lblUsuario.setHorizontalAlignment(SwingConstants.CENTER);
 		pnlPrincipalDerecha.add(lblUsuario, BorderLayout.NORTH);
 
-		lblIconoUsuario = new JLabel("");
+		BaseDeDatos.con = BaseDeDatos.initBaseDatos("Clientes.db");
+		String ruta = BaseDeDatos.getRutaPerfil(VentanaLoginN.nick);
+		BaseDeDatos.closeBD(BaseDeDatos.con);
+		
+		ImageIcon ii = new ImageIcon(ruta);
+		lblIconoUsuario = new JLabel(ii);
 		lblIconoUsuario.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIconoUsuario.setIcon(new ImageIcon(VentanaMainN.class.getResource("/img/avt/avt6.png")));
-		pnlPrincipalDerecha.add(lblIconoUsuario, BorderLayout.CENTER);
+	 	pnlPrincipalDerecha.add(lblIconoUsuario, BorderLayout.CENTER);
 
 		scrollPane = new JScrollPane();
 		pnlPrincipal.add(scrollPane);

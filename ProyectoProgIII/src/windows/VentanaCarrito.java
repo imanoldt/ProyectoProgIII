@@ -17,6 +17,7 @@ import paneles.PnlCarrito;
 import paneles.PnlPrueba;
 
 
+@SuppressWarnings("serial")
 public class VentanaCarrito extends JFrame{
 	public static ArrayList<Articulo> articulos_carrito = new ArrayList<Articulo>();
 	public static JPanel panelarriba = new JPanel();
@@ -24,6 +25,7 @@ public class VentanaCarrito extends JFrame{
 	public  ArrayList<Articulo> getArticulos_carrito() {
 		return articulos_carrito;
 	}
+	@SuppressWarnings("static-access")
 	public  void setArticulos_carrito(ArrayList<Articulo> articulos_carrito) {
 		this.articulos_carrito = articulos_carrito;
 	}
@@ -76,8 +78,11 @@ public class VentanaCarrito extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Pedido pedidonuevo = new Pedido(articulos_carrito);
+				articulos_carrito = new ArrayList<>();
 				VentanaAdminN.getPedidos().add(pedidonuevo);
-				System.out.println(pedidonuevo);
+				for(Pedido p: VentanaAdminN.getPedidos())
+					System.out.println(p);
+				//System.out.println(pedidonuevo);
 				dispose();
 //				articulos_carrito.clear();
 				JOptionPane.showMessageDialog(null, "Compra realizada con exito");
@@ -115,10 +120,10 @@ public class VentanaCarrito extends JFrame{
 			panelarriba.updateUI();
 		}
 	}
-	public static void main(String[] args) {
-		VentanaCarrito carrito = new VentanaCarrito();
-		carrito.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		VentanaCarrito carrito = new VentanaCarrito();
+//		carrito.setVisible(true);
+//	}
 
 	public static int calcularTotal(ArrayList<Articulo> articulos, int i) {
 		int total = 0;
