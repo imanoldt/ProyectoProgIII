@@ -278,7 +278,7 @@ public class VentanaAdminN extends JFrame {
 		String pedidosStr = "";
 		for (Pedido pedido : getPedidos()) {
 
-			pedidosStr = pedidosStr + pedido + "\n" + precioPedido(pedido)+"€ \n";
+			pedidosStr = pedidosStr + pedido + "\n" +"Importe: "+ precioPedido(pedido)+"€ \n";
 		}
 		if (pedidos.size() > 0) {
 			pedidosStr = pedidosStr +"Pedido más caro: "+ pedidoCaroRecursivamente(getPedidos(), 0, getPedidos().get(0));
@@ -459,7 +459,7 @@ public class VentanaAdminN extends JFrame {
 	
 	public static Pedido pedidoCaroRecursivamente(ArrayList<Pedido> p, int i, Pedido max) {
 		
-		if (i != p.size() -1) {
+		if (i != p.size()) {
 			
 			if (precioPedido(p.get(i))> precioPedido(max)) {
 				max =pedidoCaroRecursivamente(p, i+1, p.get(i));
