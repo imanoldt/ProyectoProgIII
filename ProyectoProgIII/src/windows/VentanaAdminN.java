@@ -61,7 +61,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
-public class VentanaAdminN extends JFrame implements WindowListener {
+public class VentanaAdminN extends JFrame {
 
 	private JPanel contentPane,pnlDerecha,pnlIzquierda;
 
@@ -358,6 +358,21 @@ public class VentanaAdminN extends JFrame implements WindowListener {
 				ExportarPedidos();
 			}
 		});
+		
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				System.out.println("Ventana abierta");
+				cargarDatosBinario();
+			};
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.out.println("Ventana cerrada");
+				guardarDatosBinario(pedidos);
+			}
+		});
+		
 //IMAGENES
 
 		ImageIcon imgIcon = new ImageIcon(getClass().getResource("/img/Inicio.png"));
@@ -488,56 +503,5 @@ public class VentanaAdminN extends JFrame implements WindowListener {
 	public static void setPedidos(ArrayList<Pedido> pedidos) {
 		VentanaAdminN.pedidos = pedidos;
 	}
-	@Override
-	public void windowOpened(WindowEvent e) {
-		System.out.println("Ventana abierta");
-		cargarDatosBinario();
-		
-	}
-
-	@Override
-	public void windowClosing(WindowEvent e) {
-		System.out.println("Ventana cerrada");
-		guardarDatosBinario(pedidos);
-		
-
-	}
-
-	@Override
-	public void windowClosed(WindowEvent e) {
-		System.out.println("kscjkdjcvsd");
-		guardarDatosBinario(pedidos);
-		
-		
-	}
-
-	@Override
-	public void windowIconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowDeiconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowActivated(WindowEvent e) {
-		System.out.println("Ventana abierta");
-		cargarDatosBinario();
-		
-	}
-
-	@Override
-	public void windowDeactivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
 	
 }
