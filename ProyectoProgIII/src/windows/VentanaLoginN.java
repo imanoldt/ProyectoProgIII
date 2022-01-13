@@ -266,7 +266,7 @@ public class VentanaLoginN extends JFrame {
 									}
 									progressBar.setValue(i);
 									// progressBar.updateUI();
-									System.out.println("El valor de la pb: " + progressBar.getValue());
+									//System.out.println("El valor de la pb: " + progressBar.getValue());
 								}
 								if (usuario.equals("admin") && contrasenya.equals("admin")) {
 									setVisible(false);
@@ -303,7 +303,7 @@ public class VentanaLoginN extends JFrame {
 		btnSalir.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
-				System.out.println("Prueba");
+				//System.out.println("Prueba");
 				btnSalir.setBackground(new Color(0, 0, 0));
 			}
 		});
