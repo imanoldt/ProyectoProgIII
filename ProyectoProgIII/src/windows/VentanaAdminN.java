@@ -1,6 +1,7 @@
 package windows;
 
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -29,13 +30,19 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.Icon;
@@ -54,7 +61,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
-public class VentanaAdminN extends JFrame {
+public class VentanaAdminN extends JFrame implements WindowListener {
 
 	private JPanel contentPane,pnlDerecha,pnlIzquierda;
 
@@ -111,7 +118,9 @@ public class VentanaAdminN extends JFrame {
 				}
 			}
 		});
+		
 	}
+	
 
 	/**
 	 * Create the frame.
@@ -157,6 +166,8 @@ public class VentanaAdminN extends JFrame {
 
 		btnAgregar = new JButton("Agregar Ropa");
 		pnlIzquierda.add(btnAgregar, "cell 1 16,growx,aligny center");
+		
+		
 
 		cbTipo = new JComboBox();
 		cbTipo.addItem("Sin Filtro");
@@ -203,6 +214,7 @@ public class VentanaAdminN extends JFrame {
 				
 			}
 		});
+		
 		
 		pnlIzquierda.add(cbTipo, "cell 2 16,grow");
 		btnFiltrar = new JButton("Filtrar por Marca");
@@ -259,6 +271,7 @@ public class VentanaAdminN extends JFrame {
 		lblPedidos.setFont(new Font("Montserrat", Font.PLAIN, 16));
 		lblPedidos.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
 		pnlDerecha.add(lblPedidos, "cell 0 0,grow");
+		
 
 		String pedidosStr = "";
 		for (Pedido pedido : getPedidos()) {
@@ -275,7 +288,7 @@ public class VentanaAdminN extends JFrame {
 		JScrollPane scrollTAPedidos = new JScrollPane(taPedidos);
 		scrollTAPedidos.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		pnlDerecha.add(scrollTAPedidos, "cell 0 1,grow");
-		taPedidos.setEditable(false);
+		taPedidos.setEditable(true);
 
 		btnExportar = new JButton("Exportar Pedidos");
 		
@@ -439,6 +452,30 @@ public class VentanaAdminN extends JFrame {
 		return max;
 		
 	}
+	public static void guardarDatosBinario(ArrayList<Pedido> pedidos) {
+		try {
+			FileOutputStream fos = new FileOutputStream("Pedidos.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			
+			for (Pedido p : pedidos) {
+				oos.writeObject(p);
+			}
+			System.out.println("Se han guardado los datos binarios");
+		} catch (Exception e) {
+			System.out.println("No se han podido guardar los datos binarios");
+		}
+	}
+	public static void cargarDatosBinario() {
+		try {
+			FileInputStream fis = new FileInputStream("Pedidos.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis); 
+			pedidos=(ArrayList<Pedido>) ois.readObject();
+			System.out.println("Datos cargados");
+		} catch (Exception e) {
+			System.out.println("No se ha podido leer el fichero");
+		}
+	}
+	
 	private static void updateUI(List<Articulo> articulos) {
 		tRopa.setModel(new ArticulosTableModel(articulos));
 	}
@@ -449,6 +486,52 @@ public class VentanaAdminN extends JFrame {
 
 	public static void setPedidos(ArrayList<Pedido> pedidos) {
 		VentanaAdminN.pedidos = pedidos;
+	}
+	@Override
+	public void windowOpened(WindowEvent e) {
+		System.out.println("Ventana abierta");
+		cargarDatosBinario();
+		
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		System.out.println("Ventana cerrada");
+		guardarDatosBinario(pedidos);
+		
+
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		guardarDatosBinario(pedidos);
+		
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		System.out.println("Ventana abierta");
+		cargarDatosBinario();
+		
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
